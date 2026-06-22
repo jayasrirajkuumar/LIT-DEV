@@ -1,0 +1,17 @@
+.article-page-wrapper {
+  /* You can set a page background here if you want */
+  /* background-color: var(--color-background); */
+  width: 100%;
+  min-height: 100vh;
+  background: transparent;
+}
+
+.article-content-main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+footer {
+  margin-left: 0px;
+}

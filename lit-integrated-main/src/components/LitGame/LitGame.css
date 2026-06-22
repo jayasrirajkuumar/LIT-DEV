@@ -1,0 +1,532 @@
+.lit-game-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.game-section {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  padding-top: 3rem;
+}
+
+.lit-game-header {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-141%) translateY(5%);
+  z-index: 2;
+  padding: 0.75rem 3rem;
+  border: 3px solid #ffffff;
+  border-radius: 12px;
+  background: linear-gradient(
+    334.55deg,
+    #000000 -20.97%,
+    rgba(147, 51, 234, 0.99) 399.56%
+  );
+  border: 4px solid rgba(255, 255, 255, 1);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.lit-game-header span {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 2.4rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.lit-game-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 6rem;
+}
+
+/* --- Corrected Game Preview Section --- */
+.game-preview {
+  flex: 1.2;
+  padding: 2rem 1rem;
+  border: 3px solid #ffffff;
+  border-radius: 24px;
+  background: radial-gradient(
+    361.9% 1005.15% at 49.99% 60.82%,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(147, 51, 234, 0.7) 50%
+  );
+  border: 4px solid rgba(255, 255, 255, 1);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 400px;
+}
+
+.game-cards {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.card {
+  position: relative;
+  width: 198px;
+  height: 288px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  background: transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid rgba(174, 174, 174, 1);
+  border-radius: 12px;
+  margin: 0 5rem;
+}
+
+.image-container {
+  width: 198px;
+  height: 235px;
+  background: rgba(217, 217, 217, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card img {
+  width: 85%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.2));
+}
+
+.left-card {
+  transform: rotate(342deg);
+}
+
+.right-card {
+  transform: rotate(16deg);
+}
+
+.left-card:hover {
+  transform: rotate(342deg) translateY(-8px);
+}
+
+.right-card:hover {
+  transform: rotate(16deg) translateY(-8px);
+}
+
+.card-caption {
+  position: absolute;
+  bottom: 12px;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  background: transparent;
+  padding: 4px 12px;
+  border-radius: 4px;
+}
+
+.vs-text {
+  position: absolute;
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  font-size: 64px;
+  background: linear-gradient(180deg, #cdb3ff 0%, #7b6b99 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  z-index: 2;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* --- Game Info Section --- */
+.game-info {
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  color: #ffffff;
+}
+
+.game-info h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 3.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  width: 100%;
+}
+
+.game-info p {
+  font-family: "Inter", sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 500px;
+  opacity: 0.9;
+}
+
+/* --- Corrected Button with Unique Class Name --- */
+.lit-game-play-now-btn {
+  padding: 1rem 3rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: radial-gradient(
+    308.33% 308.33% at 53.98% 55.95%,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(147, 51, 234, 0.4) 50%
+  );
+  border: 1px solid rgba(174, 174, 174, 1);
+  border-radius: 16px;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: auto;
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.lit-game-play-now-btn:hover {
+  filter: brightness(1.2);
+  border-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* === Responsive Design (Final Version) === */
+@media (min-width: 1441px) {
+  .game-section {
+    max-width: 1400px;
+  }
+  .game-preview {
+    min-height: 450px;
+    padding: 2.5rem 1rem;
+  }
+  .game-cards {
+    max-width: 900px;
+    padding: 1.5rem 0;
+  }
+  .card {
+    width: 220px;
+    height: 320px;
+    margin: 0 6rem;
+  }
+  .image-container {
+    width: 220px;
+    height: 260px;
+  }
+  .vs-text {
+    font-size: 72px;
+  }
+  .lit-game-play-now-btn {
+    padding: 1.2rem 3.5rem;
+    font-size: 1.3rem;
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .game-preview {
+    min-height: 400px;
+    padding: 2rem 1rem;
+  }
+  .game-cards {
+    max-width: 850px;
+    padding: 1rem 0;
+  }
+  .card {
+    margin: 0 5.5rem;
+  }
+  .lit-game-header {
+    transform: translateX(-119%) translateY(5%);
+  }
+  .game-info h2 {
+    font-size: 3.2rem;
+  }
+  .lit-game-play-now-btn {
+    padding: 1.1rem 3.2rem;
+    font-size: 1.25rem;
+    min-width: 210px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .game-preview {
+    min-height: 380px;
+    padding: 2rem 1rem;
+  }
+  .game-cards {
+    max-width: 800px;
+    padding: 1rem 0;
+  }
+  .card {
+    margin: 0 5rem;
+  }
+  .lit-game-header {
+    transform: translateX(-95%) translateY(39%);
+  }
+  .game-info h2 {
+    font-size: 3rem;
+    text-align: left;
+  }
+  .game-info p {
+    font-size: 1.1rem;
+  }
+  .lit-game-play-now-btn {
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .lit-game-content {
+    flex-direction: column;
+    gap: 4rem;
+  }
+  .lit-game-header {
+    transform: translateX(-50%) translateY(10%);
+    padding: 0.6rem 2.5rem;
+  }
+  .lit-game-header span {
+    font-size: 2rem;
+  }
+  .game-preview {
+    width: 100%;
+    max-width: 800px;
+    min-height: 350px;
+    padding: 1.5rem 1rem;
+    margin: 0 auto;
+  }
+  .game-info {
+    width: 100%;
+    align-items: left;
+    text-align: left;
+    padding: 0 2rem;
+  }
+  .game-info h2 {
+    text-align: left;
+    font-size: 2.8rem;
+  }
+  .game-cards {
+    max-width: 700px;
+    padding: 1rem 0;
+  }
+  .card {
+    width: 180px;
+    height: 270px;
+    margin: 0 4rem;
+  }
+  .image-container {
+    width: 180px;
+    height: 220px;
+  }
+  .lit-game-play-now-btn {
+    padding: 0.9rem 2.5rem;
+    font-size: 1.1rem;
+    min-width: 180px;
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-preview {
+    width: 100%;
+    max-width: 700px;
+    min-height: 320px;
+    padding: 1.5rem 0.75rem;
+  }
+  .game-section {
+    padding-top: 2.5rem;
+  }
+  .lit-game-header {
+    padding: 0.5rem 2rem;
+  }
+  .lit-game-header span {
+    font-size: 1.75rem;
+  }
+  .game-cards {
+    max-width: 600px;
+    padding: 0.75rem 0;
+  }
+  .card {
+    width: 160px;
+    height: 240px;
+    margin: 0 3.5rem;
+  }
+  .image-container {
+    width: 160px;
+    height: 190px;
+  }
+  .vs-text {
+    font-size: 54px;
+  }
+  .game-info h2 {
+    font-size: 2rem;
+    text-align: left;
+  }
+  .game-info p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .lit-game-play-now-btn {
+    padding: 0.8rem 2.2rem;
+    font-size: 1rem;
+    min-width: 160px;
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 576px) {
+  .lit-game-container {
+    padding: 1rem 0.5rem;
+  }
+  .game-section {
+    padding-top: 2rem;
+  }
+  .lit-game-header {
+    padding: 0.4rem 1.75rem;
+  }
+  .lit-game-header span {
+    font-size: 1.5rem;
+  }
+  .game-preview {
+    width: 100%;
+    max-width: 600px;
+    min-height: 300px;
+    padding: 1.25rem 0.75rem;
+  }
+  .game-cards {
+    max-width: 500px;
+    padding: 0.75rem 0;
+  }
+  .card {
+    width: 142px;
+    height: 214px;
+    margin: 0 3rem;
+  }
+  .image-container {
+    width: 139px;
+    height: 169px;
+  }
+  .vs-text {
+    font-size: 48px;
+  }
+  .game-info {
+    padding: 0 1rem;
+  }
+  .game-info h2 {
+    font-size: 1.75rem;
+    text-align: left;
+  }
+  .lit-game-play-now-btn {
+    padding: 0.7rem 2rem;
+    font-size: 0.95rem;
+    min-width: 140px;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lit-game-header {
+    padding: 0.4rem 1.5rem;
+  }
+  .lit-game-header span {
+    font-size: 1.25rem;
+  }
+  .game-preview {
+    width: 100%;
+    max-width: 500px;
+    min-height: 20px;
+    padding: 1rem 0.5rem;
+  }
+  .game-cards {
+    max-width: 450px;
+    padding: 0.5rem 0;
+  }
+  .card {
+    width: 130px;
+    height: 190px;
+    margin: 0 2.5rem;
+  }
+  .image-container {
+    width: 130px;
+    height: 155px;
+  }
+  .vs-text {
+    font-size: 40px;
+  }
+  .game-info h2 {
+    font-size: 1.5rem;
+    text-align: left;
+  }
+  .card-caption {
+    font-size: 0.9rem;
+    padding: 3px 8px;
+    bottom: 8px;
+  }
+  .lit-game-play-now-btn {
+    padding: 0.6rem 1.8rem;
+    font-size: 0.9rem;
+    min-width: 130px;
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 375px) {
+  .lit-game-header span {
+    font-size: 1.1rem;
+  }
+  .card {
+    width: 89px;
+    height: 171px;
+    margin: 0 2rem;
+  }
+  .image-container {
+    width: 86px;
+    height: 136px;
+  }
+  .vs-text {
+    font-size: 36px;
+  }
+  .game-cards {
+    max-width: 400px;
+    padding: 0.5rem 0;
+  }
+  .game-info h2 {
+    font-size: 1.25rem;
+    text-align: left;
+  }
+  .game-info p {
+    font-size: 0.9rem;
+  }
+  .lit-game-play-now-btn {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.85rem;
+    min-width: 120px;
+    max-width: 160px;
+  }
+}

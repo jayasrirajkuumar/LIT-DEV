@@ -1,0 +1,168 @@
+/* === Luxury Fashion Section (Updated) === */
+.lf-section {
+  margin-bottom: 120px;
+}
+
+.lf-title-container {
+  margin-bottom: 60px;
+}
+
+.lf-title-line1,
+.lf-title-line2 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.lf-title-line1 {
+  font-size: 64px;
+}
+
+.lf-title-line2 {
+  font-size: 82px;
+}
+
+/* Featured Grid - NO CHANGES HERE */
+.lf-grid-container {
+  display: grid;
+  gap: 30px;
+  grid-template-areas:
+    "card1 card1 card2 card2 card3 card3"
+    "large large large tall tall tall";
+  grid-template-columns: repeat(6, 1fr);
+  align-items: end;
+}
+
+.lf-card-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.lf-card-1 {
+  grid-area: card1;
+}
+.lf-card-2 {
+  grid-area: card2;
+}
+.lf-card-3 {
+  grid-area: card3;
+}
+.lf-card-large {
+  grid-area: large;
+}
+.lf-card-tall {
+  grid-area: tall;
+}
+
+.lf-grid-container .card-image-container {
+  aspect-ratio: 1 / 1;
+}
+
+.lf-card-large .card-image-container,
+.lf-card-tall .card-image-container {
+  aspect-ratio: 679 / 453;
+}
+
+/* Extra Posts Grid - THIS IS WHERE THE FIX IS */
+.lf-grid-extra {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Fixed to 4 columns */
+  gap: 30px;
+  margin-top: 60px;
+  padding: 0 1rem;
+  justify-items: start;
+  /* 
+    --- THIS IS THE FIX ---
+    Changed from 'align-items: start' to 'align-items: stretch'.
+    This forces all cards within this "extra" grid to have a uniform height per row,
+    without affecting the custom featured grid above.
+  */
+  align-items: stretch;
+}
+
+.lf-grid-extra .lf-card-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Read More / Read Less */
+.read-more-container {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.read-more-button {
+  background-color: transparent;
+  border: 2px solid #333;
+  color: #333;
+  font-size: 16px;
+  padding: 10px 24px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.read-more-button:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Media Queries - NO CHANGES HERE */
+@media (max-width: 1023px) {
+  .lf-grid-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "card1   card2"
+      "card3   card3"
+      "large   tall";
+  }
+
+  .lf-title-line1 {
+    font-size: 64px;
+  }
+  .lf-title-line2 {
+    font-size: 72px;
+  }
+
+  .lf-grid-extra {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .lf-grid-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .lf-card-wrapper {
+    max-width: 400px;
+    width: 100%;
+  }
+
+  .lf-grid-extra {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .lf-title-line1 {
+    font-size: 44px;
+  }
+  .lf-title-line2 {
+    font-size: 60px;
+  }
+}
+
+@media (max-width: 479px) {
+  .lf-title-line1 {
+    font-size: 38px;
+  }
+  .lf-title-line2 {
+    font-size: 52px;
+  }
+}

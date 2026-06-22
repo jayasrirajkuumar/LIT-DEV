@@ -1,0 +1,750 @@
+/* --- BULLETPROOF VISIBILITY FIX --- */
+.newsletter-card .card-content {
+  position: static !important;
+  display: flex !important;
+}
+.newsletter-card .card-image,
+.newsletter-card .card-image img {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+/* --- END OF FIX --- */
+
+.newsletter-container {
+  width: 100%;
+  padding: 4rem 2rem;
+  color: #ffffff;
+  margin-top: 2rem;
+}
+
+.newsletter-header {
+  text-align: left;
+  margin-bottom: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.newsletter-header h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 4.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.newsletter-header p {
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+}
+
+.explore-btn,
+.subscribe-btn {
+  padding: 0.8rem 2rem;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 180px;
+  text-align: center;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.explore-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.explore-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(147, 51, 234, 0.5) 40%,
+    rgba(211, 129, 223, 0.5) 100%
+  );
+  opacity: 50%;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.explore-btn:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.explore-btn:hover {
+  filter: brightness(1.2);
+  border-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.subscribe-btn {
+  background: radial-gradient(
+    308.33% 308.33% at 53.98% 55.95%,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(147, 51, 234, 0.4) 50%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  color: #ffffff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.subscribe-btn:hover {
+  filter: brightness(1.2);
+  border-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.newsletter-slider {
+  position: relative;
+  width: 100%;
+  margin-top: 3rem;
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  padding: 0 3rem;
+}
+
+.cards-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1.5rem;
+  padding: 1rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.cards-container::-webkit-scrollbar {
+  display: none;
+}
+
+.newsletter-card {
+  flex: 0 0 calc(100% - 2rem);
+  display: flex;
+  background: rgba(18, 18, 18, 0.95);
+  border-radius: 24px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  height: 400px;
+  min-width: 800px;
+}
+
+.card-image {
+  flex: 0 0 50%;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card-content {
+  flex: 0 0 50%;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(
+    to right,
+    rgba(18, 18, 18, 0.95),
+    rgba(18, 18, 18, 0.98)
+  );
+  text-align: left;
+  max-width: 50%;
+  box-sizing: border-box;
+}
+
+.card-content h3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.card-content p {
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8) !important; /* LESS BRIGHT LIKE VERSION 1 */
+  margin-bottom: 2.5rem; /* INCREASED SPACE BETWEEN PARAGRAPH AND BUTTON */
+  text-align: left;
+  word-wrap: break-word;
+  hyphens: none;
+  word-break: keep-all; /* KEEPS WORDS LIKE "ECO-CONSCIOUS" TOGETHER */
+  overflow-wrap: break-word;
+  white-space: normal;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+}
+
+.learn-more-btn {
+  background: radial-gradient(
+    308.33% 308.33% at 53.98% 55.95%,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(147, 51, 234, 0.4) 50%
+  );
+  color: #ffffff;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  align-self: flex-start;
+  min-width: 160px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.learn-more-btn:hover {
+  filter: brightness(1.2);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  opacity: 0.5;
+  color: #ffffff;
+  border-color: transparent;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  font-size: 1.5rem;
+}
+
+.scroll-btn:hover,
+.scroll-btn:focus {
+  border-color: transparent;
+  opacity: 0.5;
+  outline: none;
+}
+
+.scroll-btn:active {
+  border-color: transparent;
+  opacity: 0.5;
+  outline: none;
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.4);
+}
+
+.scroll-btn.left {
+  left: -24px;
+}
+
+.scroll-btn.right {
+  right: -24px;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .newsletter-card {
+    height: 380px;
+    min-width: 760px;
+  }
+
+  .card-content {
+    padding: 2.5rem;
+    text-align: left;
+  }
+
+  .card-content h3 {
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+    text-align: left;
+  }
+
+  .card-content p {
+    font-size: 1.05rem;
+    margin-bottom: 2.3rem; /* INCREASED SPACE */
+    text-align: left;
+    color: rgba(255, 255, 255, 0.8) !important; /* LESS BRIGHT LIKE VERSION 1 */
+    word-break: keep-all; /* PREVENTS BREAKING OF COMPOUND WORDS */
+  }
+
+  .learn-more-btn {
+    padding: 0.75rem 1.8rem;
+    font-size: 0.95rem;
+    min-width: 150px;
+  }
+
+  .explore-btn,
+  .subscribe-btn {
+    width: 170px;
+    padding: 0.75rem 1.8rem;
+    font-size: 0.95rem;
+  }
+
+  .explore-btn {
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  .scroll-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1.4rem;
+  }
+
+  .scroll-btn.left {
+    left: -22px;
+  }
+
+  .scroll-btn.right {
+    right: -22px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .newsletter-header h2 {
+    font-size: 4rem;
+  }
+
+  .newsletter-card {
+    height: 360px;
+    min-width: 720px;
+  }
+
+  .card-content {
+    padding: 2.2rem;
+    text-align: left;
+  }
+
+  .card-content h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  .card-content p {
+    font-size: 1rem;
+    margin-bottom: 2rem; /* INCREASED SPACE */
+    text-align: left;
+    color: rgba(255, 255, 255, 0.8) !important; /* LESS BRIGHT LIKE VERSION 1 */
+    word-break: keep-all; /* PREVENTS BREAKING OF COMPOUND WORDS */
+  }
+
+  .learn-more-btn {
+    padding: 0.7rem 1.6rem;
+    font-size: 0.9rem;
+    min-width: 140px;
+  }
+
+  .explore-btn,
+  .subscribe-btn {
+    width: 160px;
+    padding: 0.7rem 1.6rem;
+    font-size: 0.9rem;
+  }
+
+  .explore-btn {
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  .newsletter-slider {
+    padding: 0 2.5rem;
+  }
+
+  .scroll-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 1.3rem;
+  }
+
+  .scroll-btn.left {
+    left: -21px;
+  }
+
+  .scroll-btn.right {
+    right: -21px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .newsletter-card {
+    height: 340px;
+    min-width: 680px;
+  }
+
+  .card-content {
+    padding: 2rem;
+    text-align: left;
+  }
+
+  .card-content h3 {
+    font-size: 1.9rem;
+    margin-bottom: 0.8rem;
+    text-align: left;
+  }
+
+  .card-content p {
+    font-size: 0.95rem;
+    margin-bottom: 1.8rem; /* INCREASED SPACE */
+    text-align: left;
+    color: rgba(255, 255, 255, 0.8) !important; /* LESS BRIGHT LIKE VERSION 1 */
+    word-break: keep-all; /* PREVENTS BREAKING OF COMPOUND WORDS */
+  }
+
+  .learn-more-btn {
+    padding: 0.65rem 1.5rem;
+    font-size: 0.85rem;
+    min-width: 130px;
+  }
+
+  .explore-btn,
+  .subscribe-btn {
+    width: 150px;
+    padding: 0.65rem 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .explore-btn {
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  .scroll-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .scroll-btn.left {
+    left: -20px;
+  }
+
+  .scroll-btn.right {
+    right: -20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .newsletter-container {
+    padding: 3rem 1rem;
+  }
+
+  .newsletter-header {
+    text-align: left;
+  }
+
+  .newsletter-header h2 {
+    font-size: 3rem;
+  }
+
+  .newsletter-header p {
+    font-size: 1rem;
+    margin: 0 auto 2rem;
+  }
+
+  .newsletter-card {
+    height: 320px;
+    min-width: 640px;
+  }
+
+  .card-content {
+    padding: 1.8rem;
+    text-align: left;
+  }
+
+  .card-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.7rem;
+    text-align: left;
+  }
+
+  .card-content p {
+    font-size: 0.9rem;
+    margin-bottom: 1.2rem;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.95) !important; /* INCREASED BRIGHTNESS */
+    word-break: keep-all; /* PREVENTS BREAKING OF COMPOUND WORDS */
+  }
+
+  .learn-more-btn {
+    padding: 0.6rem 1.4rem;
+    font-size: 0.8rem;
+    min-width: 120px;
+  }
+
+  .cta-buttons {
+    justify-content: flex-start;
+    gap: 0.8rem;
+  }
+
+  .explore-btn,
+  .subscribe-btn {
+    width: 140px;
+    padding: 0.6rem 1.4rem;
+    font-size: 0.8rem;
+  }
+
+  .explore-btn {
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .scroll-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
+  }
+
+  .scroll-btn.left {
+    left: -19px;
+  }
+
+  .scroll-btn.right {
+    right: -19px;
+  }
+
+  .newsletter-slider {
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .newsletter-card {
+    height: 300px;
+    min-width: 600px;
+  }
+
+  .card-content {
+    padding: 1.5rem;
+    text-align: left;
+  }
+
+  .card-content h3 {
+    font-size: 1.7rem;
+    margin-bottom: 0.6rem;
+    text-align: left;
+  }
+
+  .card-content p {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.95) !important; /* INCREASED BRIGHTNESS */
+    word-break: keep-all; /* PREVENTS BREAKING OF COMPOUND WORDS */
+  }
+
+  .learn-more-btn {
+    padding: 0.55rem 1.3rem;
+    font-size: 0.75rem;
+    min-width: 110px;
+  }
+
+  .cta-buttons {
+    gap: 0.6rem;
+  }
+
+  .explore-btn,
+  .subscribe-btn {
+    width: 130px;
+    padding: 0.55rem 1.3rem;
+    font-size: 0.75rem;
+  }
+
+  .explore-btn {
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .scroll-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .scroll-btn.left {
+    left: -18px;
+  }
+
+  .scroll-btn.right {
+    right: -18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .newsletter-header h2 {
+    font-size: 2.5rem;
+  }
+
+  .newsletter-card {
+    height: 280px;
+    min-width: 560px;
+  }
+
+  .card-content {
+    padding: 1.3rem;
+    text-align: left;
+  }
+
+  .card-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+  }
+
+  .card-content p {
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.95) !important; /* INCREASED BRIGHTNESS */
+    word-break: keep-all; /* PREVENTS BREAKING OF COMPOUND WORDS */
+  }
+
+  .learn-more-btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.7rem;
+    min-width: 100px;
+  }
+
+  .cta-buttons {
+    gap: 0.5rem;
+  }
+
+  .explore-btn,
+  .subscribe-btn {
+    width: 120px;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.7rem;
+  }
+
+  .explore-btn {
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .newsletter-slider {
+    padding: 0 1.5rem;
+  }
+
+  .scroll-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 0.9rem;
+  }
+
+  .scroll-btn.left {
+    left: -17px;
+  }
+
+  .scroll-btn.right {
+    right: -17px;
+  }
+}
+
+@media (max-width: 375px) {
+  .newsletter-card {
+    height: 260px;
+    min-width: 520px;
+  }
+
+  .card-content {
+    padding: 1.2rem;
+    text-align: left;
+  }
+
+  .card-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
+    text-align: left;
+  }
+
+  .card-content p {
+    font-size: 0.75rem;
+    margin-bottom: 0.7rem;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.95) !important; /* INCREASED BRIGHTNESS */
+    word-break: keep-all; /* PREVENTS BREAKING OF COMPOUND WORDS */
+  }
+
+  .learn-more-btn {
+    padding: 0.45rem 1.1rem;
+    font-size: 0.65rem;
+    min-width: 90px;
+  }
+
+  .cta-buttons {
+    gap: 0.4rem;
+  }
+
+  .explore-btn,
+  .subscribe-btn {
+    width: 110px;
+    padding: 0.45rem 1.1rem;
+    font-size: 0.65rem;
+  }
+
+  .explore-btn {
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .scroll-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+
+  .scroll-btn.left {
+    left: -16px;
+  }
+
+  .scroll-btn.right {
+    right: -16px;
+  }
+}

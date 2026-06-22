@@ -1,0 +1,325 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.category-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 0 2rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.category-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+}
+
+.category-card {
+  width: 100%;
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.category-card.men {
+  background-size: cover;
+  background-position: center;
+  animation-delay: 0.2s;
+}
+
+.category-card.women {
+  background-size: cover;
+  background-position: center;
+  animation-delay: 0.4s;
+}
+
+.category-card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  z-index: 0;
+}
+
+.category-card:hover {
+  transform: translateY(-10px);
+}
+
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  text-align: center;
+  transition: opacity 0.3s ease;
+}
+
+.category-card:hover .card-content {
+  opacity: 0;
+}
+
+.category-options {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+  padding: 1.5rem;
+}
+
+.category-card:hover .category-options {
+  opacity: 1;
+  visibility: visible;
+}
+
+.option {
+  color: white;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.6rem 2rem;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  width: 85%;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transform: translateX(-10px);
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+
+.category-card:hover .option {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.category-card:hover .option:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.category-card:hover .option:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.category-card:hover .option:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.category-card:hover .option:nth-child(4) {
+  transition-delay: 0.4s;
+}
+.category-card:hover .option:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
+.option:hover {
+  background: linear-gradient(85.68deg, #9333ea, #fffefe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: translateX(10px);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card-content h2 {
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  font-size: 42px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: 0.6s;
+}
+
+.card-content p {
+  margin-bottom: 0.5rem;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  color: #aeaeae;
+  opacity: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: 0.8s;
+}
+
+/* Title below cards */
+.category-title {
+  margin-top: 1rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* Scroll Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+
+.fade-in-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+  .category-container {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1.5rem;
+    min-height: auto;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .category-card {
+    width: 100%;
+    height: 300px;
+    min-width: unset;
+    margin: 0;
+    flex: none;
+  }
+
+  .card-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .card-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-content p {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    padding: 0 0.5rem;
+  }
+
+  .option {
+    font-size: 1.1rem;
+    padding: 0.5rem 1.5rem;
+  }
+
+  .category-title {
+    font-size: 1.3rem;
+    margin-top: 0.8rem;
+  }
+
+  .category-card:hover {
+    transform: none;
+  }
+
+  .category-card:active .category-options,
+  .category-card:active .card-content {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-card {
+    height: 250px;
+  }
+
+  .option {
+    font-size: 1rem;
+    padding: 0.4rem 1rem;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 768px) {
+  .category-container {
+    flex-direction: row; /* Keep cards side-by-side */
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .category-card-wrapper {
+    flex: 1;
+    min-width: 300px;
+    max-width: 50%; /* Ensures 2 cards fit in a row */
+  }
+
+  .category-card {
+    height: 300px;
+  }
+}
+
+@media (max-width: 655px) {
+  .category-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .category-card-wrapper {
+    width: 100%; /* take full width */
+    max-width: 500px;
+  }
+
+  .category-card {
+    height: 350px; /* increase height */
+    padding: 2rem; /* optional */
+  }
+
+  .category-card h2 {
+    font-size: 1.8rem; /* increase text size */
+  }
+
+  .category-card p {
+    font-size: 1.1rem; /* increase paragraph text */
+  }
+
+  .category-options {
+    gap: 1rem;
+    padding: 2rem;
+  }
+}

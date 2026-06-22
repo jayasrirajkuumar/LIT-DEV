@@ -1,0 +1,83 @@
+.article-body-content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+div.article-body-content {
+  font-family: "Merriweather", serif;
+  font-size: 18px;
+  line-height: 1.8;
+  margin: 0 0 2em 0;
+  color: #e0e0e0;
+}
+#text {
+  font-family: "Merriweather", serif;
+  font-size: 18px;
+  line-height: 1.8;
+  margin: 0 0 2em 0;
+  color: #e0e0e0;
+}
+.article-body-content h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  margin: 2.5em 0 1em 0;
+  line-height: 1.3;
+}
+.article-body-content blockquote {
+  font-family: "Merriweather", serif;
+  font-size: 22px;
+  font-style: italic;
+  border-left: 3px solid #9333ea;
+  padding-left: 30px;
+  margin: 2.5em 40px;
+  color: #d0d0d0;
+}
+.article-body-content a {
+  color: #a78bfa;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(167, 139, 250, 0.5);
+  transition: all 0.2s ease;
+}
+.article-body-content a:hover {
+  background-color: rgba(167, 139, 250, 0.1);
+  border-bottom-color: #a78bfa;
+}
+
+@media (max-width: 768px) {
+  .article-body-content p {
+    font-size: 17px;
+  }
+  .article-body-content h2 {
+    font-size: 26px;
+  }
+  .article-body-content blockquote {
+    font-size: 19px;
+    margin: 2em 10px;
+  }
+}
+
+.subscribe-button {
+  background: transparent;
+  border: 1.5px solid #fff;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 5px 20px;
+  /* border-radius: 16px; */
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+  cursor: pointer;
+  box-shadow: none;
+  outline: none;
+}
+
+.subscribe-button:hover {
+  background: #fff;
+  color: #fff; /* or your brand purple */
+  border-color: #fff;
+  padding: 5px 20px;
+}

@@ -1,0 +1,56 @@
+.f-section {
+  margin-bottom: 80px;
+}
+
+.f-image-container {
+  position: relative;
+  width: 100%;
+}
+
+/* --- THIS IS THE FIX --- */
+/* We now target the correct class name from the Card component */
+.f-image-container .card-image-container {
+  width: 100%;
+  aspect-ratio: 1436 / 958;
+}
+
+.f-title-overlay {
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  z-index: 2;
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 48px;
+  color: #ffffff;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+@media (min-width: 768px) {
+  .f-section {
+    margin-bottom: 100px;
+  }
+  .f-title-overlay {
+    font-size: 64px;
+    top: 100px;
+    left: 40px;
+  }
+}
+
+@media (min-width: 992px) {
+  .f-title-overlay {
+    font-size: 80px;
+    top: 150px;
+    left: 50px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .f-title-overlay {
+    font-size: 102px;
+    top: 200px;
+    left: 64px;
+  }
+}

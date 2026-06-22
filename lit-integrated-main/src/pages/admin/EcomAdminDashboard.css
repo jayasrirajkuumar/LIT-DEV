@@ -1,0 +1,109 @@
+/* C:\lit-integrated\frontend\src/pages/admin/EcomAdminDashboard.css */
+
+/* --- Main Layout for Desktop --- */
+.ecom-admin-layout {
+  position: relative;
+  width: 100%;
+}
+
+.ecom-admin-content {
+  /* This margin-left is the key. It pushes the content area to the right
+     to make exactly enough space for the fixed 250px sidebar. */
+  margin-left: 250px;
+  padding: 2rem;
+  width: calc(100% - 250px); /* Ensures content doesn't overflow */
+  min-height: 100vh;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Space between icon and text */
+  font-size: 2rem;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+.dashboard-title-icon {
+  display: inline-flex;
+  /* A subtle animation for the icon change */
+  transition:
+    transform 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.dashboard-title-text {
+  /* A subtle animation for the text change */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.page-back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(46, 26, 73, 0.8);
+  border: 1px solid #7a4edb;
+  color: #a78bfa;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.page-back-button:hover {
+  background: #7a4edb;
+  color: white;
+  box-shadow: 0 4px 15px rgba(120, 0, 255, 0.3);
+}
+
+/* --- Hamburger Menu and Overlay (for Mobile) --- */
+.mobile-menu-toggle {
+  display: none; /* Hidden on desktop */
+  background: none;
+  border: none;
+  color: #d4bfff;
+  cursor: pointer;
+  z-index: 1002;
+  padding: 5px;
+}
+
+.sidebar-overlay {
+  display: none; /* Hidden on desktop */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+}
+
+/* --- Main Layout Responsiveness for Mobile --- */
+@media (max-width: 768px) {
+  .ecom-admin-content {
+    /* On mobile, the content takes the full width */
+    margin-left: 0;
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .mobile-menu-toggle {
+    display: block; /* Show the hamburger icon */
+  }
+
+  /* When the sidebar is open, show the overlay */
+  .sidebar-open .sidebar-overlay {
+    display: block;
+  }
+}

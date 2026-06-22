@@ -1,0 +1,391 @@
+/* frontend/src/styles/AddProductForm.css */
+
+.add-product-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+
+.modal-content {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.close-button:hover {
+  transform: rotate(90deg);
+}
+
+.modal-content h2 {
+  color: white;
+  margin-bottom: 2rem;
+  text-align: center;
+  background: linear-gradient(85.68deg, #9333ea, #fffefe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.modal-content h3 {
+  color: white;
+  margin: 1.5rem 0 1rem;
+  font-size: 1.2rem;
+  background: linear-gradient(85.68deg, #9333ea, #fffefe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  color: white;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 8px;
+  background: #111 !important;
+  color: #fff !important;
+  font-size: 1rem;
+  outline: none !important;
+}
+
+.form-group select option {
+  background: #111;
+  color: #fff;
+}
+
+.form-group input[type="number"]::-webkit-inner-spin-button,
+.form-group input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+.form-group input[type="number"] {
+  -moz-appearance: textfield !important;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.color-selection,
+.size-input,
+.feature-input {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.color-selection select,
+.size-input input,
+.feature-input input {
+  flex: 1;
+}
+
+.color-selection button,
+.size-input button,
+.feature-input button,
+.choose-file-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: radial-gradient(
+    309.68% 308.36% at 53.98% 55.95%,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(147, 51, 234, 0.4) 50%
+  ) !important;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.color-selection button:hover,
+.size-input button:hover,
+.feature-input button:hover,
+.choose-file-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 8px 0px rgba(0, 0, 0, 0.3) !important;
+}
+
+.selected-colors,
+.selected-sizes,
+.selected-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.color-tag,
+.size-tag,
+.feature-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.color-tag button,
+.size-tag button,
+.feature-tag button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.color-tag button:hover,
+.size-tag button:hover,
+.feature-tag button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.color-images-section {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.color-image-upload {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.color-image-upload:last-child {
+  border-bottom: none;
+}
+
+.image-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.preview-item {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.submit-button,
+.cancel-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-button {
+  background: radial-gradient(
+    309.68% 308.36% at 53.98% 55.95%,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(147, 51, 234, 0.4) 50%
+  ) !important;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.cancel-button {
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+}
+
+.submit-button:hover,
+.cancel-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 8px 0px rgba(0, 0, 0, 0.3) !important;
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+.upload-section {
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 1rem;
+}
+
+.upload-box {
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.upload-box.dragging {
+  background: rgba(147, 51, 234, 0.1);
+  border-color: #9333ea;
+}
+
+.upload-box .upload-icon {
+  font-size: 2rem;
+  color: #9333ea;
+  margin-bottom: 1rem;
+}
+
+.upload-box p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.upload-progress-list {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.upload-progress-item {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  position: relative;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  gap: 1rem;
+}
+
+.file-icon {
+  font-size: 1.5rem;
+  color: #9333ea;
+}
+
+.file-name {
+  color: white;
+  word-break: break-all;
+}
+
+.file-meta {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.remove-file-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.remove-file-btn:hover {
+  color: white;
+}
+
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 0 0 8px 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #9333ea;
+  transition: width 0.3s ease;
+}

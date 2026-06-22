@@ -1,0 +1,165 @@
+/* === Sustainable Fashion Section === */
+.sf-section {
+  margin-bottom: 120px;
+}
+
+.sf-title-container {
+  margin-bottom: 60px;
+}
+
+.sf-title-line1,
+.sf-title-line2 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-top: 40px;
+  line-height: 1.1;
+}
+
+.sf-title-line1 {
+  font-size: 64px;
+}
+
+.sf-title-line2 {
+  font-size: 82px;
+}
+
+/* Hero section (first 2 posts) */
+.sf-grid-hero {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-bottom: 30px;
+  justify-items: start;
+  align-items: start;
+}
+
+.sf-grid-hero .card-wrapper {
+  width: 100%;
+}
+
+.sf-grid-hero .card-image-container {
+  aspect-ratio: 630 / 428;
+}
+
+/* Small grid section (remaining posts) */
+.sf-grid-small {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Fixed 4 columns */
+  gap: 30px;
+  justify-items: start;
+  align-items: start;
+}
+
+.sf-grid-small .card-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sf-grid-small .card-image-container {
+  aspect-ratio: 1 / 1;
+}
+
+/* Read More / Read Less Button */
+.read-more-container {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.read-more-button {
+  background-color: transparent;
+  border: 2px solid #333;
+  color: #333;
+  font-size: 16px;
+  padding: 10px 24px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.read-more-button:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .sf-section {
+    margin-bottom: 80px;
+  }
+
+  .sf-title-line1 {
+    font-size: 38px;
+  }
+
+  .sf-title-line2 {
+    font-size: 52px;
+  }
+
+  .sf-title-line1,
+  .sf-title-line2 {
+    line-height: 0.4;
+  }
+
+  .sf-grid-hero,
+  .sf-grid-small {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .sf-grid-hero .card-wrapper,
+  .sf-grid-small .card-wrapper {
+    max-width: 400px;
+  }
+}
+
+/* Medium desktops */
+@media (min-width: 992px) and (max-width: 1200px) {
+  .sf-title-line1 {
+    font-size: 54px;
+  }
+
+  .sf-title-line2 {
+    font-size: 72px;
+  }
+
+  .sf-title-line1,
+  .sf-title-line2 {
+    line-height: 0.3;
+  }
+
+  .sf-grid-hero {
+    gap: 25px;
+  }
+
+  .sf-grid-small {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+}
+
+/* Large desktops */
+@media (min-width: 1201px) and (max-width: 1700px) {
+  .sf-title-line1 {
+    font-size: 64px;
+  }
+
+  .sf-title-line2 {
+    font-size: 72px;
+  }
+
+  .sf-title-line1,
+  .sf-title-line2 {
+    line-height: 0.5;
+  }
+
+  .sf-grid-hero {
+    gap: 45px;
+  }
+
+  .sf-grid-small {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 45px;
+  }
+}

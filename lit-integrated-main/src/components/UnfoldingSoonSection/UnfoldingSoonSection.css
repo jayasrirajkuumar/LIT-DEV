@@ -1,0 +1,296 @@
+/* --- Base Styles --- */
+.unfolding-soon-container {
+  width: 100%;
+  padding: 3rem 1.5rem;
+  color: #ffffff;
+  margin-top: 2rem;
+  margin-bottom: 8rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.unfolding-soon-container h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 4.5rem;
+  font-weight: 600;
+  text-align: left;
+  margin-bottom: 4rem;
+  color: #ffffff;
+  line-height: 1.2;
+  padding: 0;
+  width: 100%;
+}
+
+.icons-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.section-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 6rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+/* --- Flipping Card Styles --- */
+.icon-card-wrapper {
+  perspective: 1000px;
+  width: 300px;
+  height: 300px;
+}
+
+.icon-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.icon-card-wrapper:hover .icon-card {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 16px;
+}
+
+.card-front {
+  background: transparent;
+}
+
+.card-back {
+  background: radial-gradient(
+    123.29% 123.29% at 49.82% 56.77%,
+    rgba(0, 0, 0, 0.67) 0%,
+    rgba(135, 85, 180, 0) 100%
+  );
+  box-shadow: -4px 4px 4px 3px rgba(174, 174, 174, 0.1);
+  transform: rotateY(180deg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-back p {
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ffffff;
+  text-align: left;
+}
+
+/* --- Icon and Description Styles --- */
+.vertical-icon {
+  width: 200px;
+  height: 400px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.icon-card-wrapper:hover .vertical-icon {
+  transform: scale(1.1);
+}
+
+/* Specific icon sizes for proper aspect ratio */
+#social-platform-icon {
+  width: 375px;
+  height: 480px;
+}
+#ir-platform-icon {
+  width: 260px;
+  height: 520px;
+}
+#avatar-store-icon {
+  width: 227px;
+  height: 560px;
+}
+
+.card-description {
+  text-align: left;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+  position: relative;
+  width: 100%;
+}
+
+.card-description h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  width: 100%;
+}
+
+.card-description p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  max-width: 300px;
+  margin: 0;
+  text-align: left;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1200px) {
+  .unfolding-soon-container h1 {
+    font-size: 4rem;
+  }
+  .icons-container {
+    gap: 0rem;
+  }
+  .icon-card-wrapper {
+    width: 280px;
+    height: 280px;
+  }
+  .vertical-icon {
+    width: 180px;
+    height: 360px;
+  }
+  #social-platform-icon {
+    width: 340px;
+    height: 440px;
+  }
+  #ir-platform-icon {
+    width: 240px;
+    height: 480px;
+  }
+  #avatar-store-icon {
+    width: 207px;
+    height: 520px;
+  }
+}
+
+@media (max-width: 992px) {
+  .unfolding-soon-container h1 {
+    font-size: 3rem;
+  }
+  .icons-container {
+    flex-direction: column;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .icon-card-wrapper {
+    width: 260px;
+    height: 260px;
+  }
+  .vertical-icon {
+    width: 160px;
+    height: 320px;
+  }
+  #social-platform-icon {
+    width: 300px;
+    height: 400px;
+  }
+  #ir-platform-icon {
+    width: 220px;
+    height: 440px;
+  }
+  #avatar-store-icon {
+    width: 187px;
+    height: 480px;
+  }
+}
+
+@media (max-width: 768px) {
+  .unfolding-soon-container {
+    padding: 2rem 1rem;
+    margin-bottom: 4rem;
+  }
+  .unfolding-soon-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  .icons-container {
+    gap: 4rem;
+    padding: 1rem;
+  }
+  .section-wrapper {
+    margin-bottom: 2rem;
+  }
+  .icon-card-wrapper {
+    width: 100%;
+    max-width: 280px;
+    height: 250px;
+  }
+  .card-description h2 {
+    font-size: 1.75rem;
+  }
+  .card-description p {
+    font-size: 0.9rem;
+  }
+  .vertical-icon,
+  #social-platform-icon,
+  #ir-platform-icon,
+  #avatar-store-icon {
+    width: 140px;
+    height: 280px;
+  }
+  .card-back p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .unfolding-soon-container {
+    padding: 1.5rem 1rem;
+    margin-bottom: 3rem;
+  }
+  .unfolding-soon-container h1 {
+    font-size: 2rem;
+  }
+  .icons-container {
+    gap: 3rem;
+  }
+  .icon-card-wrapper {
+    height: 220px;
+  }
+  .vertical-icon,
+  #social-platform-icon,
+  #ir-platform-icon,
+  #avatar-store-icon {
+    width: 120px;
+    height: 240px;
+  }
+  .card-description h2 {
+    font-size: 1.5rem;
+  }
+  .card-description p,
+  .card-back p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .icon-card-wrapper {
+    height: 160px;
+  }
+  .vertical-icon,
+  #social-platform-icon,
+  #ir-platform-icon,
+  #avatar-store-icon {
+    width: 100px;
+    height: 200px;
+  }
+}

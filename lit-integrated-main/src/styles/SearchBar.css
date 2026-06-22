@@ -1,0 +1,144 @@
+:root {
+  --text-color: #d1d1d1;
+  --placeholder-color: #8e8e9c;
+  --search-bg: #323240;
+  --icon-hover-bg: #4a4a5a;
+  --panel-bg: #2a2a36; /* Slightly different bg for the panel */
+}
+
+.search-container {
+  position: relative; /* This is crucial for positioning the filter panel */
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Gap between search bar and action buttons */
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  flex: 1; /* Takes up available space */
+  background: var(--search-bg);
+  border-radius: 12px;
+  padding: 0.5rem 1rem; /* Padding inside the search box */
+  transition: all 0.3s ease;
+  gap: 0.75rem; /* Gap between items inside search box */
+  height: 40px;
+}
+
+.search-box:focus-within {
+  box-shadow: 0 0 0 2px var(--placeholder-color); /* Optional focus outline */
+}
+
+.search-icon {
+  color: var(--placeholder-color);
+  flex-shrink: 0; /* Prevents the icon from shrinking */
+}
+
+.search-input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: none;
+  color: var(--text-color);
+  font-size: 16px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: var(--placeholder-color);
+  opacity: 1; /* Ensure placeholder is visible */
+}
+
+/* Base styles for all icon buttons */
+.icon-button,
+.action-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+/* Filter icon button inside search bar */
+.icon-button {
+  padding: 0.25rem;
+}
+.icon-button:hover {
+  background-color: var(--icon-hover-bg);
+}
+
+/* Heart and Bag buttons */
+.action-buttons-search {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.action-button {
+  padding: 0.5rem;
+}
+.action-button:hover {
+  background-color: var(--icon-hover-bg);
+}
+
+/* --- (You can keep your existing media queries and adjust if needed) --- */
+@media (max-width: 768px) {
+  .search-container {
+    padding: 0 1rem;
+    margin-top: 5rem;
+  }
+  .search-wrapper {
+    gap: 0.75rem;
+  }
+}
+
+/* changes */
+/* Add this to SearchBar.css if missing */
+
+.search-result-item {
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.search-loading,
+.no-results {
+  padding: 8px;
+  font-style: italic;
+  color: #666;
+}
+
+.search-input {
+  background-color: transparent !important;
+  border: none !important;
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.search-input:focus {
+  border-color: none !important;
+  box-shadow: none !important;
+}

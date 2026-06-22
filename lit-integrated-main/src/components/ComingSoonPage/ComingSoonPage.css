@@ -1,0 +1,227 @@
+.coming-soon-overlay {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.coming-soon-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(75, 44, 107, 0.25) 0%,
+    rgba(10, 6, 12, 0) 70%
+  );
+  animation: pulse-background 10s infinite ease-in-out;
+  z-index: -1;
+  pointer-events: none;
+  transform-origin: center;
+}
+
+@keyframes pulse-background {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+.coming-soon-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- Logo Icon --- */
+.coming-soon-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 60px;
+  transition: all 0.3s ease-out;
+}
+
+/* --- Main Heading "COMING SOON" Styling --- */
+.main-heading {
+  font-family: "Krona One", sans-serif;
+  font-size: 110px;
+  line-height: 1.1;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+  transition: font-size 0.3s ease-out;
+  color: #282727;
+  opacity: 0.5;
+}
+
+/* --- THE SPOTLIGHT EFFECT --- */
+.spotlight-text {
+  color: transparent;
+  background-image: radial-gradient(
+    circle 70px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    #fff 10%,
+    rgba(220, 220, 220, 0.4) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  cursor: none;
+}
+
+/* --- Subtext and Button --- */
+.subtext,
+.home-button {
+  font-family: "Krona One", sans-serif;
+  line-height: 1.5;
+  transition: all 0.3s ease-out;
+}
+
+.subtext {
+  font-size: 20px;
+  color: #cccccc;
+  margin-top: 40px;
+}
+
+.home-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 20px;
+  color: #9370db;
+  margin-top: 30px;
+  text-decoration: none;
+}
+
+.home-button:hover {
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+/* =========================================== */
+/* ---             RESPONSIVE STYLES         --- */
+/* =========================================== */
+@media (max-width: 1200px) {
+  .main-heading {
+    font-size: 90px;
+  }
+  .spotlight-text {
+    background-image: radial-gradient(
+      circle 200px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      #e0e0e0 0%,
+      rgba(220, 220, 220, 0.4) 100%
+    );
+  }
+  .subtext,
+  .home-button {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 992px) {
+  .main-heading {
+    font-size: 100px;
+  }
+  .spotlight-text {
+    background-image: radial-gradient(
+      circle 160px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      #e0e0e0 0%,
+      rgba(220, 220, 220, 0.4) 100%
+    );
+  }
+  .subtext,
+  .home-button {
+    font-size: 18px;
+  }
+  .coming-soon-icon {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-heading {
+    font-size: 65px;
+  }
+  .spotlight-text {
+    background-image: radial-gradient(
+      circle 120px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      #e0e0e0 0%,
+      rgba(220, 220, 220, 0.4) 100%
+    );
+  }
+  .subtext,
+  .home-button {
+    font-size: 16px;
+  }
+  .coming-soon-icon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 30px;
+  }
+  .subtext {
+    margin-top: 30px;
+  }
+  .home-button {
+    margin-top: 25px;
+  }
+}
+
+@media (max-width: 576px) {
+  .main-heading {
+    font-size: 60px;
+  }
+  .spotlight-text {
+    background-image: radial-gradient(
+      circle 100px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      #e0e0e0 0%,
+      rgba(220, 220, 220, 0.4) 100%
+    );
+  }
+  .subtext,
+  .home-button {
+    font-size: 14px;
+  }
+  .coming-soon-icon {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 420px) {
+  .main-heading {
+    font-size: 48px;
+  }
+  .spotlight-text {
+    background-image: radial-gradient(
+      circle 80px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      #e0e0e0 0%,
+      rgba(220, 220, 220, 0.4) 100%
+    );
+  }
+  .subtext,
+  .home-button {
+    font-size: 14px;
+  }
+}

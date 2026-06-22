@@ -1,0 +1,40 @@
+.flip-card {
+  perspective: 1200px;
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+}
+
+.flip-card-inner {
+  width: 100%;
+  min-height: 100vh;
+  transition: transform 0.7s ease;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flip-card.flipping .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  z-index: 2;
+  transform: rotateY(0deg);
+  background: transparent;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  z-index: 1;
+  background: transparent;
+}

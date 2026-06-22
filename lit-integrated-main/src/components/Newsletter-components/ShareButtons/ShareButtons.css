@@ -1,0 +1,87 @@
+.share-buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 40px 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: 20px 0;
+}
+.share-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  color: #a0a0a0;
+  margin-right: 10px;
+}
+.share-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  color: #a0a0a0;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+.share-icon:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+/* Add these new styles to your existing ShareButtons.css file */
+
+/* Make sure the container can hold the feedback message */
+.share-buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjust gap as needed */
+  position: relative; /* Needed for positioning the feedback message if you want */
+}
+
+/* Style for the new Instagram button to make it look like the other icons */
+.share-icon.instagram-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex; /* Ensures icon inside is centered */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Your existing .share-icon styles will apply, just add this for the new button */
+.share-icon.instagram-button svg {
+  width: 24px; /* Or whatever size your other icons are */
+  height: 24px;
+  fill: #a0a0a0; /* Or your default icon color */
+  transition: opacity 0.2s ease-in-out;
+}
+
+.share-icon.instagram-button:hover svg {
+  opacity: 0.7;
+}
+
+/* Style for the "Link Copied!" feedback message */
+.copy-feedback {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #28a745; /* A green color for success */
+  font-weight: 500;
+  animation: fadeInOut 2s ease-in-out;
+}
+
+/* Simple fade in/out animation for the message */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

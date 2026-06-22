@@ -1,0 +1,210 @@
+/* --- The Main Hero Section Container --- */
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 670px; /* 80% of the viewport height */
+  max-height: 750px;
+  background-size: cover;
+  background-position: center 30%; /* Position the image slightly higher */
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  text-align: center;
+  transition:
+    opacity 0s ease-in-out,
+    transform 0.6s ease-in-out;
+  opacity: 1;
+}
+
+.hero-title span {
+  font-family: "Krona One", sans-serif;
+}
+/* Dark overlay for text readability */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 0, 31, 0.2) 0%,
+    rgba(15, 0, 31, 0.7) 100%
+  );
+  z-index: 1;
+}
+
+/* The content that sits on top */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  justify-content: flex-start;
+  /* padding-top: 1rem;  1.5rem   */
+}
+
+.hero-title {
+  font-family: "Krona One", sans-serif;
+  font-size: 56px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  margin: 0;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  padding-top: 100px;
+}
+
+.hero-button-group {
+  display: flex;
+  gap: 80px;
+}
+
+.hero-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: none;
+  position: relative;
+  padding: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: Poppins, Inter, sans-serif;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 200px;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+  white-space: nowrap;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.hero-button:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.1)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.hero-button:hover {
+  filter: brightness(1.2);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+button:hover {
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Style for the active button */
+.hero-button.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.hero-button.active:before {
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0.3)
+  );
+}
+/* --- Responsive Styles --- */
+@media (max-width: 768px) {
+  .hero-container {
+    height: auto; /* Let content determine height */
+    min-height: 50vh; /* Adjust this value as needed */
+    max-height: none;
+    background-position: center 30%; /* Keep your original positioning */
+    background-size: cover;
+  }
+  .hero-content {
+    justify-content: flex-start; /* Align content to top */
+    padding-top: 80px;
+    height: auto;
+    gap: 20px; /* Reduced from 40px */
+  }
+  .hero-title {
+    font-size: 42px; /* Slightly smaller than desktop */
+    padding-top: 40px; /* Reduced from 100px */
+  }
+  .hero-button-group {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+  .hero-button {
+    width: 80%;
+    max-width: 280px;
+    height: 48px;
+    margin: 0 auto; /* Center buttons */
+  }
+}
+
+/* Extra small devices (phones, 480px and down) */
+@media (max-width: 480px) {
+  .hero-container {
+    min-height: 40vh; /* Smaller height */
+  }
+  .hero-title {
+    font-size: 36px;
+    padding-top: 60px;
+  }
+}
+
+/* Very small devices (small phones, 360px and down) */
+@media (max-width: 360px) {
+  .hero-container {
+    min-height: 35vh; /* Even smaller height */
+  }
+  .hero-title {
+    font-size: 32px;
+    padding-top: 65px;
+  }
+}
+
+/* Remove orientation-specific full-height rules */
+@media (max-width: 768px) and (orientation: portrait),
+  (max-width: 768px) and (orientation: landscape) {
+  .hero-container {
+    height: auto;
+    min-height: 50vh;
+    padding-top: 0;
+  }
+}
+
+/* Reduce button size at 570px and below */
+@media (max-width: 570px) {
+  .hero-button {
+    width: 180px;
+    height: 45px;
+    padding: 8px;
+  }
+  .hero-title {
+    font-size: 31px;
+    padding-top: 155px;
+  }
+}

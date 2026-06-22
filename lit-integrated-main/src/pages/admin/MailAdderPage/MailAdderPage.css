@@ -1,0 +1,150 @@
+.adder-page-container {
+  padding: 2rem;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.adder-page-container .list-page-header,
+.editor-container .list-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.purple-gradient-header {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #d8b4fe, #a78bfa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.publish-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(90deg, #a78bfa, #8b5cf6);
+  color: white;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.publish-button:hover {
+  box-shadow: 0 4px 25px rgba(139, 92, 246, 0.5);
+  transform: translateY(-2px);
+}
+
+.adder-sections-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.adder-section {
+  background-color: rgba(10, 5, 15, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  transition: all 0.3s ease;
+}
+
+.adder-section:hover {
+  border-color: rgba(167, 139, 250, 0.5);
+  box-shadow: 0 0 30px rgba(167, 139, 250, 0.1);
+}
+
+.adder-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.adder-section-header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #f3e8ff;
+  margin: 0;
+}
+
+.adder-add-item-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid #a78bfa;
+  background-color: rgba(167, 139, 250, 0.1);
+  color: #c4b5fd;
+  transition: all 0.3s ease;
+}
+
+.adder-add-item-btn:hover {
+  background-color: rgba(167, 139, 250, 0.2);
+  color: white;
+}
+
+.adder-items-area {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.adder-item-card {
+  background: rgba(17, 24, 39, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.adder-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.adder-card-field-full {
+  grid-column: 1 / -1;
+}
+
+.adder-card-grid label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #9ca3af;
+  margin-bottom: 0.4rem;
+}
+
+.adder-input {
+  width: 100%;
+  background-color: #111827;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  padding: 0.75rem;
+  color: #f9fafb;
+  transition: all 0.2s ease-in-out;
+}
+
+.adder-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #8b5cf6;
+  border-color: #a78bfa;
+}
+.list-page-header .header-actions {
+  display: flex;
+  gap: 1rem;
+}

@@ -1,0 +1,193 @@
+.editor-header.purple-theme-header h1 {
+  background: linear-gradient(90deg, #d8b4fe, #a78bfa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.editor-container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.editor-form {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.editor-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #d8b4fe, #a78bfa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.editor-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.action-btn-primary,
+.action-btn-secondary {
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.action-btn-primary {
+  background: linear-gradient(90deg, #a78bfa, #8b5cf6);
+  color: white;
+}
+.action-btn-primary:hover {
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+  transform: translateY(-2px);
+}
+
+.action-btn-secondary {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #a1a1aa;
+}
+.action-btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.editor-main-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.editor-content-area {
+  background-color: rgba(17, 17, 21, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.editor-sidebar {
+  position: sticky;
+  top: 2rem;
+}
+
+.sidebar-card {
+  background-color: rgba(17, 17, 21, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-card h3 {
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f4f4f5;
+}
+
+.editor-input-group {
+  margin-bottom: 2rem;
+}
+
+.editor-input-group label {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #a1a1aa;
+  font-weight: 500;
+}
+
+.editor-input-group input,
+.editor-input-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #374151;
+  border: 1px solid #4b5563;
+  border-radius: 8px;
+  color: #f9fafb;
+  font-size: 1rem;
+}
+.editor-input-group input:focus,
+.editor-input-group textarea:focus {
+  outline: 2px solid #8b5cf6;
+  border-color: #8b5cf6;
+}
+
+.image-preview {
+  width: 100%;
+  margin-top: 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+.radio-group label:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.radio-group input[type="radio"] {
+  accent-color: #8b5cf6;
+}
+
+/* React Quill Dark Theme */
+.ql-toolbar {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 8px 8px 0 0 !important;
+  background-color: #374151;
+}
+.ql-container {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 0 0 8px 8px !important;
+  color: #f9fafb;
+  min-height: 300px;
+  font-size: 1rem;
+  background-color: #1f2937;
+}
+.ql-snow .ql-stroke {
+  stroke: #d1d5db !important;
+}
+.ql-snow .ql-picker-label {
+  color: #d1d5db !important;
+}
