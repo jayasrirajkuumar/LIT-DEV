@@ -3,8 +3,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #000;
-  /* background-color: transparent; */
+  background: transparent;
   color: #fff;
   padding: 0;
   margin: 0;
@@ -14,15 +13,6 @@
 }
 
 /* Additional global styles for the landing page */
-@font-face {
-  font-family: "Inter";
-  src: url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-}
 
 * {
   margin: 0;

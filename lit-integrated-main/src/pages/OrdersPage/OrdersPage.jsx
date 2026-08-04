@@ -1,23 +1,22 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { getOrders } from "../../services/orderService";
 import OrderControls from "../../components/order-returns/OrderControls/OrderControls";
 import OrderCard from "../../components/order-returns/OrderCard/OrderCard";
-import "./OrdersPage.css"; // We'll create a new CSS file for the page
+import PageShell from "../../components/layout/PageShell";
+import "./OrdersPage.css";
+
 const OrdersPage = () => {
-  // --- STEP 1: ENHANCE STATE MANAGEMENT ---
-  const [allOrders, setAllOrders] = useState([]); // Master list of all orders
+  const [allOrders, setAllOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  // State to hold the current filter settings
   const [filters, setFilters] = useState({
     status: "All",
     searchTerm: "",
-    timeRange: "all", // Default to all time
+    timeRange: "all",
   });
 
-  // --- Initial Data Fetch ---
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchOrders = async () => {
       try {
         setLoading(true);
@@ -33,24 +32,19 @@ const OrdersPage = () => {
     fetchOrders();
   }, []);
 
-  // --- STEP 2: FILTERING LOGIC ---
-  // useMemo will re-run this logic only when allOrders or filters change.
   const filteredOrders = useMemo(() => {
     let processedOrders = [...allOrders];
 
-    // Filter by Status
     if (filters.status !== "All") {
-      processedOrders = processedOrders.filter(
-        (order) => order.status === filters.status,
-      );
+      processedOrders = processedOrders.filter((order) => order.status === filters.status);
     }
 
-    // Filter by Search Term
     if (filters.searchTerm) {
       const lowercasedTerm = filters.searchTerm.toLowerCase();
       processedOrders = processedOrders.filter(
         (order) =>
           order.id.toLowerCase().includes(lowercasedTerm) ||
+          (order.orderNumber || "").toLowerCase().includes(lowercasedTerm) ||
           order.items.some(
             (item) =>
               item.name.toLowerCase().includes(lowercasedTerm) ||
@@ -59,7 +53,6 @@ const OrdersPage = () => {
       );
     }
 
-    // Filter by Time Range
     if (filters.timeRange !== "all") {
       const today = new Date();
       const cutoffDate = new Date();
@@ -74,8 +67,6 @@ const OrdersPage = () => {
     return processedOrders;
   }, [allOrders, filters]);
 
-  // --- STEP 3: FUNCTION TO HANDLE FILTER CHANGES ---
-  // This function will be passed down to OrderControls
   const handleFilterChange = (newFilter) => {
     setFilters((prevFilters) => ({
       ...prevFilters,
@@ -84,35 +75,77 @@ const OrdersPage = () => {
   };
 
   if (loading) {
-    return <div className="page-status-container">Loading your orders...</div>;
+    return (
+      <PageShell
+        title="My Orders"
+        subtitle="View, track, and manage your past and current orders."
+        backLabel="Back to Marketplace"
+        backTo="/shop"
+      >
+        <div className="orders-status">
+          <div className="lit-spinner" aria-hidden="true" />
+          <p>Loading your orders...</p>
+        </div>
+      </PageShell>
+    );
   }
 
   if (error) {
-    return <div className="page-status-container error">{error}</div>;
+    return (
+      <PageShell
+        title="My Orders"
+        backLabel="Back to Marketplace"
+        backTo="/shop"
+      >
+        <div className="lit-alert lit-alert--error">{error}</div>
+      </PageShell>
+    );
+  }
+
+  if (allOrders.length === 0) {
+    return (
+      <PageShell
+        title="My Orders & Returns"
+        subtitle="View, track, and manage your past and current orders."
+        backLabel="Back to Marketplace"
+        backTo="/shop"
+      >
+        <div className="orders-empty-state">
+          <div className="lit-empty__icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+              <path d="M3 6h18" />
+            </svg>
+          </div>
+          <h2 className="lit-empty__title">No Orders Yet</h2>
+          <p className="lit-empty__message">You haven&apos;t placed any orders yet.</p>
+          <Link to="/shop" className="lit-btn lit-btn--primary">
+            Explore Marketplace
+          </Link>
+        </div>
+      </PageShell>
+    );
   }
 
   return (
-    <div className="orders-page-container">
-      <div className="orders-header">
-        <h1>My Orders & Returns</h1>
-        <p>View, track, and manage your past and current orders.</p>
-      </div>
-
-      {/* Pass the handler and current filters down to the controls */}
+    <PageShell
+      title="My Orders & Returns"
+      subtitle="View, track, and manage your past and current orders."
+      backLabel="Back to Marketplace"
+      backTo="/shop"
+    >
       <OrderControls filters={filters} onFilterChange={handleFilterChange} />
 
       <div className="order-list">
         {filteredOrders.length > 0 ? (
-          filteredOrders.map((order) => (
-            <OrderCard key={order.id} order={order} />
-          ))
+          filteredOrders.map((order) => <OrderCard key={order.id} order={order} />)
         ) : (
-          <p className="no-orders-message">
-            No orders match your current filters.
-          </p>
+          <div className="orders-empty-state orders-empty-state--compact">
+            <p className="lit-empty__message">No orders match your current filters.</p>
+          </div>
         )}
       </div>
-    </div>
+    </PageShell>
   );
 };
 

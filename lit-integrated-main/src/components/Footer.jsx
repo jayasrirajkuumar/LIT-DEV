@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { USER_API_BASE } from "../config/apiBase.js";
 import "../styles/Footer.css";
 import logo from "../assets/logo.png";
 import googlePlay from "../assets/google-play.png";
@@ -17,7 +18,7 @@ const Footer = () => {
 
     try {
       const response = await fetch(
-        "https://lit-backend-azajexa8e2a9g4az.canadacentral-01.azurewebsites.net/api/subscribers/subscribe",
+        `${USER_API_BASE}/subscribers/subscribe`,
         {
           method: "POST",
           headers: {
@@ -72,7 +73,7 @@ const Footer = () => {
               <Link to="/about-us" className="footer-link">
                 About Us
               </Link>
-              <Link to="/contact-us" className="footer-link">
+              <Link to="/contact" className="footer-link">
                 Contact Us
               </Link>
               <Link to="/faq" className="footer-link">

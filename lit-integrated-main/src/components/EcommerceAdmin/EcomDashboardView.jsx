@@ -1,280 +1,347 @@
-// C:\lit-integrated\frontend\src\components\EcommerceAdmin\EcomDashboardView.jsx
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { fetchDashboardStats } from "../../services/adminApiService";
+import {
+  FaBox,
+  FaShoppingCart,
+  FaUsers,
+  FaWarehouse,
+  FaTags,
+  FaRupeeSign,
+  FaPlus,
+  FaBoxOpen,
+  FaClock,
+  FaBan,
+  FaHeadset,
+} from "react-icons/fa";
+import {
+  AdminKpiCard,
+  AdminCard,
+  AdminCardHeader,
+  AdminCardBody,
+  AdminQuickAction,
+  AdminEmptyState,
+  AdminSkeletonCard,
+  AdminStatusBadge,
+} from "../admin-ui";
 
-import React from "react";
-import { FaDollarSign, FaShoppingCart, FaUsers, FaBox } from "react-icons/fa";
-import { Line, Doughnut } from "react-chartjs-2";
-import "chart.js/auto";
-import "./EcomDashboardView.css";
+function formatAction(action) {
+  return String(action || "")
+    .replace(/_/g, " ")
+    .toLowerCase()
+    .replace(/^\w/, (c) => c.toUpperCase());
+}
 
-// --- Child Component Contents ---
-const StatCardContent = ({ icon, label, value, growth }) => {
-  return (
-    <>
-      <div className="stat-card-header">
-        <div className="stat-icon-wrapper">{icon}</div>
-        <p className="stat-label">{label}</p>
-      </div>
-      <div className="stat-card-body">
-        <h3>{value}</h3>
-        <span
-          className={`stat-growth ${growth.startsWith("+") ? "positive" : "negative"}`}
-        >
-          {growth}
-        </span>
-      </div>
-    </>
-  );
-};
-
-const SalesAnalyticContent = () => {
-  const data = {
-    labels: [
-      "21 Jul",
-      "22 Jul",
-      "23 Jul",
-      "24 Jul",
-      "25 Jul",
-      "26 Jul",
-      "27 Jul",
-    ],
-    datasets: [
-      {
-        data: [12000, 19000, 15000, 25000, 22000, 32000, 28000],
-        borderColor: "#a78bfa",
-        backgroundColor: "rgba(167, 139, 250, 0.2)",
-        fill: true,
-        tension: 0.4,
-        pointBackgroundColor: "#a78bfa",
-        pointBorderColor: "#fff",
-        pointHoverRadius: 7,
-      },
-    ],
-  };
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: { legend: { display: false } },
-    scales: {
-      x: { ticks: { color: "#b0a0ca" }, grid: { display: false } },
-      y: {
-        ticks: { color: "#b0a0ca" },
-        grid: { color: "rgba(255, 255, 250, 0.1)" },
-      },
-    },
-  };
-  return (
-    <>
-      <div className="card-header">
-        <h4>Sales Analytic</h4>
-        <select className="date-filter">
-          <option>Jul 2023</option>
-        </select>
-      </div>
-      <div className="analytic-metrics">
-        <div className="metric-item">
-          <span>Total Income</span>
-          <p>$23,262.00</p>
-        </div>
-        <div className="metric-item">
-          <span>Total Expense</span>
-          <p>$11,135.00</p>
-        </div>
-        <div className="metric-item">
-          <span>Total Profit</span>
-          <p>$48,135.00</p>
-        </div>
-      </div>
-      <div className="chart-container">
-        <Line data={data} options={options} />
-      </div>
-    </>
-  );
-};
-
-const SalesTargetContent = () => {
-  const percentage = 78;
-  const centerTextPlugin = {
-    id: "centerText",
-    afterDraw: (chart) => {
-      const ctx = chart.ctx;
-      const { width, height } = chart.chartArea;
-      ctx.restore();
-      ctx.font = "bold 2rem sans-serif";
-      ctx.fillStyle = "#e2b3ff";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText(`${percentage}%`, width / 2, height / 2 - 10);
-      ctx.font = "500 0.9rem sans-serif";
-      ctx.fillStyle = "#b0a0ca";
-      ctx.fillText("Achieved", width / 2, height / 2 + 20);
-      ctx.save();
-    },
-  };
-  const data = {
-    labels: ["Achieved", "Remaining"],
-    datasets: [
-      {
-        data: [percentage, 100 - percentage],
-        backgroundColor: ["#8b5cf6", "transparent"],
-        borderColor: "transparent",
-        cutout: "80%",
-        borderRadius: 20,
-      },
-      {
-        data: [100],
-        backgroundColor: ["rgba(139, 92, 246, 0.1)"],
-        borderColor: "transparent",
-        cutout: "80%",
-      },
-    ],
-  };
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: { legend: { display: false }, tooltip: { enabled: false } },
-  };
-  return (
-    <>
-      <div className="card-header">
-        <h4>Sales Target</h4>
-      </div>
-      <div className="doughnut-container">
-        <Doughnut data={data} options={options} plugins={[centerTextPlugin]} />
-      </div>
-      <div className="target-labels">
-        <div className="target-label-item">
-          <span className="dot daily"></span>
-          <div>
-            <p>Daily Target</p>
-            <span>$850</span>
-          </div>
-        </div>
-        <div className="target-label-item">
-          <span className="dot monthly"></span>
-          <div>
-            <p>Monthly Target</p>
-            <span>$145,00</span>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
-
-const TopSellingProductsContent = () => {
-  const products = [
-    {
-      name: "Air Jordan 8",
-      sales: "752 Pcs",
-      img: "https://picsum.photos/id/211/100",
-    },
-    {
-      name: "Air Jordan 5",
-      sales: "680 Pcs",
-      img: "https://picsum.photos/id/101/100",
-    },
-    {
-      name: "Air Jordan 13",
-      sales: "512 Pcs",
-      img: "https://picsum.photos/id/122/100",
-    },
-  ];
-  return (
-    <>
-      <div className="card-header">
-        <h4>Top Selling Products</h4>
-      </div>
-      <div className="top-products-grid">
-        {products.map((p) => (
-          <div className="top-product-card" key={p.name}>
-            <div className="img-wrapper">
-              <img src={p.img} alt={p.name} />
-            </div>
-            <p className="name">{p.name}</p>
-            <p className="sales">{p.sales}</p>
-          </div>
-        ))}
-      </div>
-    </>
-  );
-};
-
-const CurrentOfferContent = () => (
-  <>
-    <div className="card-header">
-      <h4>Current Offer</h4>
-    </div>
-    <div className="offer-list">
-      <div className="offer-item">
-        <p>40% Discount Offer</p>
-        <span>Expires in: 05:45 h</span>
-      </div>
-      <div className="offer-item">
-        <p>100 Take Coupon</p>
-        <span>Expires in: 10:45 h</span>
-      </div>
-      <div className="offer-item disabled">
-        <p>Stock Out Set</p>
-        <span>Upcoming on: 15-08-25</span>
-      </div>
-    </div>
-  </>
-);
-
-// --- Main Dashboard Component ---
 const EcomDashboardView = () => {
-  return (
-    <div className="dashboard-view-container">
-      <div className="dashboard-header">
-        <h3>Overview</h3>
-      </div>
-      <div className="dashboard-layout-grid">
-        <div className="dashboard-card stat-card revenue">
-          <StatCardContent
-            icon={<FaDollarSign />}
-            label="Total Revenue"
-            value="$82,650"
-            growth="+2.5%"
-          />
-        </div>
-        <div className="dashboard-card stat-card order">
-          <StatCardContent
-            icon={<FaShoppingCart />}
-            label="Total Order"
-            value="1,645"
-            growth="+5.2%"
-          />
-        </div>
-        <div className="dashboard-card stat-card customer">
-          <StatCardContent
-            icon={<FaUsers />}
-            label="Total Customer"
-            value="1,462"
-            growth="+0.5%"
-          />
-        </div>
-        <div className="dashboard-card stat-card delivery">
-          <StatCardContent
-            icon={<FaBox />}
-            label="Pending Delivery"
-            value="117"
-            growth="-1.2%"
-          />
-        </div>
+  const navigate = useNavigate();
+  const [stats, setStats] = useState(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
-        <div className="dashboard-card" id="sales-analytic">
-          <SalesAnalyticContent />
-        </div>
-        <div className="dashboard-card" id="sales-target">
-          <SalesTargetContent />
-        </div>
-        <div className="dashboard-card" id="top-products">
-          <TopSellingProductsContent />
-        </div>
-        <div className="dashboard-card" id="current-offer">
-          <CurrentOfferContent />
+  useEffect(() => {
+    let mounted = true;
+    fetchDashboardStats()
+      .then((data) => {
+        if (mounted) setStats(data);
+      })
+      .catch((err) => {
+        if (mounted) setError(err.message || "Failed to load dashboard.");
+      })
+      .finally(() => {
+        if (mounted) setLoading(false);
+      });
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="adm-page">
+        <div className="adm-grid adm-grid--dashboard-kpi">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <AdminSkeletonCard key={i} lines={2} />
+          ))}
         </div>
       </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="adm-page">
+        <div className="adm-alert">{error}</div>
+        <p className="adm-page-header__subtitle">
+          Sign in with an Azure account that has the ADMIN role to access admin APIs.
+        </p>
+      </div>
+    );
+  }
+
+  const cards = stats?.cards ?? {};
+  const support = stats?.support ?? {};
+  const revenue = Number(cards.revenue ?? 0).toLocaleString("en-IN");
+
+  return (
+    <div className="adm-page">
+      <div className="adm-grid adm-grid--dashboard-kpi">
+        <AdminKpiCard
+          icon={<FaRupeeSign />}
+          label="Revenue"
+          value={`₹${revenue}`}
+          description={`Today: ₹${Number(cards.revenueToday ?? 0).toLocaleString("en-IN")}`}
+        />
+        <AdminKpiCard
+          icon={<FaShoppingCart />}
+          label="Orders Today"
+          value={cards.ordersToday ?? 0}
+          description={`Week: ${cards.ordersThisWeek ?? 0} · Month: ${cards.ordersThisMonth ?? 0}`}
+        />
+        <AdminKpiCard
+          icon={<FaClock />}
+          label="Pending Orders"
+          value={cards.pendingOrders ?? 0}
+          description="Awaiting processing"
+        />
+        <AdminKpiCard
+          icon={<FaBan />}
+          label="Cancelled"
+          value={cards.cancelledOrders ?? 0}
+          description="All-time cancelled"
+        />
+        <AdminKpiCard
+          icon={<FaBox />}
+          label="Products"
+          value={cards.products ?? 0}
+          description={`${cards.activeProducts ?? 0} active`}
+        />
+        <AdminKpiCard
+          icon={<FaWarehouse />}
+          label="Low Stock"
+          value={cards.inventoryAlerts ?? 0}
+          description={`${cards.outOfStock ?? 0} out of stock`}
+        />
+        <AdminKpiCard
+          icon={<FaUsers />}
+          label="Customers"
+          value={cards.customers ?? 0}
+          description="Registered shoppers"
+        />
+        <AdminKpiCard
+          icon={<FaTags />}
+          label="Categories"
+          value={cards.categories ?? 0}
+          description="Active catalog groups"
+        />
+        <AdminKpiCard
+          icon={<FaHeadset />}
+          label="Open Conversations"
+          value={support.openConversations ?? support.openTickets ?? 0}
+          description={`${support.waitingForAdmin ?? support.inProgress ?? 0} waiting for admin`}
+        />
+        <AdminKpiCard
+          icon={<FaHeadset />}
+          label="Waiting for Customer"
+          value={support.waitingForCustomer ?? 0}
+          description={`${support.unreadMessages ?? 0} unread messages`}
+        />
+        <AdminKpiCard
+          icon={<FaHeadset />}
+          label="Resolved Today"
+          value={support.resolvedToday ?? 0}
+          description={
+            support.averageResponseTimeMinutes
+              ? `Avg response ${support.averageResponseTimeMinutes}m`
+              : `${support.totalTickets ?? 0} total tickets`
+          }
+        />
+      </div>
+
+      <div className="adm-grid adm-grid--dashboard-main">
+        <AdminCard padding="md">
+          <AdminCardHeader title="Recent Orders" subtitle="Latest marketplace activity" />
+          <AdminCardBody>
+            {(stats?.recentOrders ?? []).length === 0 ? (
+              <AdminEmptyState compact title="No orders yet" description="Orders will appear here once customers checkout." />
+            ) : (
+              <ul className="adm-list">
+                {stats.recentOrders.map((order) => (
+                  <li key={order.id} className="adm-list__item">
+                    <div>
+                      <div className="adm-list__primary">{order.orderNumber}</div>
+                      <div className="adm-list__secondary">{order.customer}</div>
+                    </div>
+                    <div style={{ textAlign: "right" }}>
+                      <AdminStatusBadge status={order.status} />
+                      <div className="adm-list__secondary">₹{order.total}</div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </AdminCardBody>
+        </AdminCard>
+
+        <div className="adm-grid adm-grid--dashboard-secondary">
+          <AdminCard padding="md">
+            <AdminCardHeader title="Top Products" subtitle="By units sold" />
+            <AdminCardBody>
+              {(stats?.topProducts ?? []).length === 0 ? (
+                <AdminEmptyState compact title="No sales data" />
+              ) : (
+                <ul className="adm-list">
+                  {stats.topProducts.map((item) => (
+                    <li key={item.product?.id} className="adm-list__item">
+                      <div className="adm-list__primary">{item.product?.name ?? "Product"}</div>
+                      <span>{item.unitsSold} sold</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </AdminCardBody>
+          </AdminCard>
+
+          <AdminCard padding="md">
+            <AdminCardHeader title="Top Categories" subtitle="By product count" />
+            <AdminCardBody>
+              {(stats?.topCategories ?? []).length === 0 ? (
+                <AdminEmptyState compact title="No categories" />
+              ) : (
+                <ul className="adm-list">
+                  {stats.topCategories.map((item) => (
+                    <li key={item.category?.id} className="adm-list__item">
+                      <div className="adm-list__primary">{item.category?.name ?? "Category"}</div>
+                      <span>{item.productCount} products</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </AdminCardBody>
+          </AdminCard>
+
+          <AdminCard padding="md">
+            <AdminCardHeader title="Newest Customers" subtitle="Recent registrations" />
+            <AdminCardBody>
+              {(stats?.recentUsers ?? []).length === 0 ? (
+                <AdminEmptyState compact title="No users yet" />
+              ) : (
+                <ul className="adm-list">
+                  {stats.recentUsers.map((user) => (
+                    <li key={user.id} className="adm-list__item">
+                      <div>
+                        <div className="adm-list__primary">{user.displayName || user.email}</div>
+                        <div className="adm-list__secondary">{user.role}</div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </AdminCardBody>
+          </AdminCard>
+
+          <AdminCard padding="md">
+            <AdminCardHeader title="Low Stock" subtitle="Products below threshold" />
+            <AdminCardBody>
+              {(stats?.lowStockProducts ?? []).length === 0 ? (
+                <AdminEmptyState compact title="All stocked" description="No low stock alerts." />
+              ) : (
+                <ul className="adm-list">
+                  {stats.lowStockProducts.map((product) => (
+                    <li key={product.id} className="adm-list__item">
+                      <div className="adm-list__primary">{product.name}</div>
+                      <span className="adm-stock--low">{product.quantity} left</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </AdminCardBody>
+          </AdminCard>
+
+          <AdminCard padding="md">
+            <AdminCardHeader title="Out of Stock" subtitle="Needs restocking" />
+            <AdminCardBody>
+              {(stats?.outOfStockProducts ?? []).length === 0 ? (
+                <AdminEmptyState compact title="Fully stocked" />
+              ) : (
+                <ul className="adm-list">
+                  {stats.outOfStockProducts.map((product) => (
+                    <li key={product.id} className="adm-list__item">
+                      <div className="adm-list__primary">{product.name}</div>
+                      <span className="adm-stock--out">0 left</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </AdminCardBody>
+          </AdminCard>
+
+          <AdminCard padding="md">
+            <AdminCardHeader title="Latest Support Tickets" subtitle="Recent customer requests" />
+            <AdminCardBody>
+              {(support.latestConversations ?? support.latestTickets ?? []).length === 0 ? (
+                <AdminEmptyState compact title="No support tickets" description="New tickets will appear here." />
+              ) : (
+                <ul className="adm-list">
+                  {(support.latestConversations ?? support.latestTickets).map((ticket) => (
+                    <li key={ticket.id} className="adm-list__item">
+                      <div>
+                        <div className="adm-list__primary">{ticket.ticketNumber}</div>
+                        <div className="adm-list__secondary">
+                          {ticket.contactName || ticket.contactEmail} · {ticket.lastMessagePreview || ticket.subject}
+                        </div>
+                      </div>
+                      <div style={{ textAlign: "right" }}>
+                        <AdminStatusBadge status={ticket.status} />
+                        <div className="adm-list__secondary">
+                          {new Date(ticket.lastMessageAt || ticket.createdAt).toLocaleString()}
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </AdminCardBody>
+          </AdminCard>
+
+          <AdminCard padding="md">
+            <AdminCardHeader title="Recent Activity" subtitle="Admin audit log" />
+            <AdminCardBody>
+              {(stats?.recentActivity ?? []).length === 0 ? (
+                <AdminEmptyState compact title="No activity yet" />
+              ) : (
+                <ul className="adm-list">
+                  {stats.recentActivity.map((entry) => (
+                    <li key={entry.id} className="adm-list__item">
+                      <div>
+                        <div className="adm-list__primary">{formatAction(entry.action)}</div>
+                        <div className="adm-list__secondary">
+                          {entry.admin?.displayName || entry.admin?.email || "System"}
+                        </div>
+                      </div>
+                      <div className="adm-list__secondary">
+                        {new Date(entry.createdAt).toLocaleString()}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </AdminCardBody>
+          </AdminCard>
+        </div>
+      </div>
+
+      <AdminCard padding="md">
+        <AdminCardHeader title="Quick Actions" subtitle="Common admin workflows" />
+        <AdminCardBody>
+          <div className="adm-grid adm-grid--4">
+            <AdminQuickAction icon={<FaPlus />} title="Add Product" description="Create a new catalog item" onClick={() => navigate("products/add")} />
+            <AdminQuickAction icon={<FaTags />} title="Manage Categories" description="Organize your catalog" onClick={() => navigate("categories")} />
+            <AdminQuickAction icon={<FaShoppingCart />} title="View Orders" description="Process and ship orders" onClick={() => navigate("orders")} />
+            <AdminQuickAction icon={<FaBoxOpen />} title="Inventory" description="Update stock levels" onClick={() => navigate("inventory")} />
+            <AdminQuickAction icon={<FaHeadset />} title="Support Tickets" description="Manage customer requests" onClick={() => navigate("support")} />
+          </div>
+        </AdminCardBody>
+      </AdminCard>
     </div>
   );
 };

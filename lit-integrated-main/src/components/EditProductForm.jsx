@@ -32,7 +32,7 @@ const EditProductForm = ({ isOpen, onClose, productId }) => {
   const fetchProductData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/products/${productId}`,
+        `/api/products/${productId}`,
       );
       if (!response.ok) throw new Error("Failed to fetch product");
       const data = await response.json();
@@ -65,7 +65,7 @@ const EditProductForm = ({ isOpen, onClose, productId }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/products/${productId}`,
+        `/api/products/${productId}`,
         {
           method: "PUT",
           headers: {

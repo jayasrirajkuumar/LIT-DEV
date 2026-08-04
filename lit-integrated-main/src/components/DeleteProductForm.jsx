@@ -10,7 +10,7 @@ const DeleteProductForm = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     if (isOpen) {
-      fetch("http://localhost:5000/api/products")
+      fetch("/api/products")
         .then((res) => res.json())
         .then((data) => setProducts(data))
         .catch(() => setProducts([]));
@@ -30,7 +30,7 @@ const DeleteProductForm = ({ isOpen, onClose }) => {
     setSuccess("");
     try {
       const response = await fetch(
-        `http://localhost:5000/api/products/${selectedProductId}`,
+        `/api/products/${selectedProductId}`,
         {
           method: "DELETE",
         },

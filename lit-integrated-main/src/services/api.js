@@ -309,15 +309,5 @@ export const getArticleBySlug = async (slug) => {
   return found;
 };
 
-// ✅ Create or update user in DB
-export const createUser = async (userData) => {
-  await delay(100);
-  return {
-    message: "User logged in successfully (Mock)",
-    user: {
-      ...userData,
-      _id: "mock-user-id-123",
-      createdAt: new Date().toISOString(),
-    },
-  };
-};
+// ✅ Create or update user in DB — delegated to userService
+export { createUser } from "./userService";

@@ -1,0 +1,417 @@
+/**
+ * LIT Global UI — pill purple gradient button system
+ * Maps legacy class names + common CTAs to design-system tokens.
+ * Primary = filled gradient (Gems / Subscribe). Secondary = purple outline (Lives).
+ */
+
+/* ─── Primary buttons (filled pill gradient) ─── */
+.lit-btn--primary,
+.mp-buy-now,
+.mp-btn-primary,
+.mp-filter-apply,
+.btn-primary,
+.payment-btn,
+.adm-btn--primary,
+.action-btn-primary,
+.footer-subscribe-btn,
+.mp-lux-btn--primary,
+.mp-home-btn--primary,
+.login-button,
+.subscribe-button,
+.subscribe-button-nw,
+.publish-button,
+.submit-button,
+.submit-button-contact,
+.admin-action-btn,
+.action-btn,
+.cta-button,
+.read-more-button,
+.read-more-btn,
+.shop-btn,
+.edit-btn,
+.lit-auth__submit,
+.lit-game-play-now-btn,
+.play-now-btn,
+.buy-now-btn,
+.btn-buy-now,
+.add-friends-btn,
+.create-btn,
+.see-more-btn,
+.success-popup-btn,
+.profile-save-btn,
+.profile-primary-btn,
+.user-menu-signin-btn,
+.adder-add-item-btn,
+.home-button,
+.step-navigation button,
+button[type="submit"]:not(.adm-btn--ghost):not(.adm-btn--danger):not(.unstyled):not(.lit-btn-unstyled) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem;
+  height: var(--lit-btn-height, 44px) !important;
+  min-height: var(--lit-btn-height, 44px) !important;
+  padding: 0 var(--lit-btn-padding-x, 28px) !important;
+  border: var(--lit-btn-primary-border, 1px solid rgba(196, 181, 253, 0.42)) !important;
+  border-radius: var(--lit-btn-radius, 999px) !important;
+  background: var(--lit-primary-gradient) !important;
+  color: #ffffff !important;
+  font-family: var(--lit-font-display);
+  font-size: var(--lit-btn-font-size, 14px) !important;
+  font-weight: 600 !important;
+  line-height: 1;
+  letter-spacing: 0.2px !important;
+  text-decoration: none !important;
+  cursor: pointer;
+  box-shadow: var(--lit-btn-shadow) !important;
+  filter: none !important;
+  transition:
+    transform 0.3s var(--lit-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow 0.3s var(--lit-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    background 0.3s ease,
+    border-color 0.3s ease,
+    opacity 0.2s ease;
+}
+
+.lit-btn--primary:hover:not(:disabled),
+.mp-buy-now:hover:not(:disabled),
+.mp-btn-primary:hover:not(:disabled),
+.mp-filter-apply:hover:not(:disabled),
+.btn-primary:hover:not(:disabled),
+.payment-btn:hover:not(:disabled),
+.adm-btn--primary:hover:not(:disabled),
+.action-btn-primary:hover:not(:disabled),
+.footer-subscribe-btn:hover:not(:disabled),
+.mp-lux-btn--primary:hover:not(:disabled),
+.mp-home-btn--primary:hover:not(:disabled),
+.login-button:hover:not(:disabled),
+.subscribe-button:hover:not(:disabled),
+.subscribe-button-nw:hover:not(:disabled),
+.publish-button:hover:not(:disabled),
+.submit-button:hover:not(:disabled),
+.submit-button-contact:hover:not(:disabled),
+.admin-action-btn:hover:not(:disabled),
+.action-btn:hover:not(:disabled),
+.cta-button:hover:not(:disabled),
+.read-more-button:hover:not(:disabled),
+.read-more-btn:hover:not(:disabled),
+.shop-btn:hover:not(:disabled),
+.edit-btn:hover:not(:disabled),
+.lit-auth__submit:hover:not(:disabled),
+.lit-game-play-now-btn:hover:not(:disabled),
+.play-now-btn:hover:not(:disabled),
+.buy-now-btn:hover:not(:disabled),
+.btn-buy-now:hover:not(:disabled),
+.add-friends-btn:hover:not(:disabled),
+.create-btn:hover:not(:disabled),
+.see-more-btn:hover:not(:disabled),
+.success-popup-btn:hover:not(:disabled),
+.profile-save-btn:hover:not(:disabled),
+.profile-primary-btn:hover:not(:disabled),
+.user-menu-signin-btn:hover:not(:disabled),
+.adder-add-item-btn:hover:not(:disabled),
+.home-button:hover:not(:disabled),
+.step-navigation button:hover:not(:disabled),
+button[type="submit"]:not(.adm-btn--ghost):not(.adm-btn--danger):not(.unstyled):not(.lit-btn-unstyled):hover:not(:disabled) {
+  background: var(--lit-primary-gradient-hover) !important;
+  border-color: rgba(216, 180, 254, 0.55) !important;
+  transform: translateY(-1px);
+  box-shadow: var(--lit-btn-shadow-hover) !important;
+  filter: none !important;
+}
+
+.lit-btn--primary:active:not(:disabled),
+.mp-buy-now:active:not(:disabled),
+.mp-btn-primary:active:not(:disabled),
+.btn-primary:active:not(:disabled),
+.payment-btn:active:not(:disabled),
+.adm-btn--primary:active:not(:disabled),
+.cta-button:active:not(:disabled),
+.read-more-button:active:not(:disabled),
+.lit-auth__submit:active:not(:disabled),
+.play-now-btn:active:not(:disabled),
+button[type="submit"]:not(.unstyled):not(.lit-btn-unstyled):active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.lit-btn--primary:disabled,
+.mp-buy-now:disabled,
+.mp-btn-primary:disabled,
+.btn-primary:disabled,
+.payment-btn:disabled,
+.adm-btn--primary:disabled,
+.action-btn-primary:disabled,
+.footer-subscribe-btn:disabled,
+.mp-lux-btn--primary:disabled,
+.login-button:disabled,
+.subscribe-button:disabled,
+.submit-button:disabled,
+.admin-action-btn:disabled,
+.action-btn:disabled,
+.cta-button:disabled,
+.read-more-button:disabled,
+.shop-btn:disabled,
+.lit-auth__submit:disabled,
+.play-now-btn:disabled,
+.profile-primary-btn:disabled,
+button[type="submit"]:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none !important;
+}
+
+/* Auth full-width primary CTA */
+.lit-auth__submit {
+  width: 100% !important;
+  height: 56px !important;
+  min-height: 56px !important;
+  font-size: 16px !important;
+}
+
+/* ─── Secondary buttons (purple outline pill) ─── */
+.lit-btn--secondary,
+.lit-btn--outline,
+.mp-add-to-cart,
+.mp-btn-outline,
+.adm-btn--outline,
+.adm-btn--secondary,
+.cancel-button,
+.mp-lux-btn--ghost,
+.secondary-button,
+.btn-secondary,
+.btn-secondary-cart,
+.add-to-cart-btn,
+.profile-cancel-btn,
+.profile-secondary-btn,
+.profile-edit-btn,
+.user-menu-signup-btn,
+.view-all-btn,
+.coming-soon-btn,
+.auth-modal-btn.secondary,
+.delete-popup-btn.cancel,
+.shopping-cart-link-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem;
+  height: var(--lit-btn-height, 44px) !important;
+  min-height: var(--lit-btn-height, 44px) !important;
+  padding: 0 var(--lit-btn-padding-x, 28px) !important;
+  border: var(--lit-btn-secondary-border, 1.5px solid rgba(139, 92, 246, 0.88)) !important;
+  border-radius: var(--lit-btn-radius, 999px) !important;
+  background: var(--lit-btn-secondary-bg, transparent) !important;
+  color: #ffffff !important;
+  font-family: var(--lit-font-display);
+  font-size: var(--lit-btn-font-size, 14px) !important;
+  font-weight: 600 !important;
+  line-height: 1;
+  letter-spacing: 0.2px !important;
+  text-decoration: none !important;
+  cursor: pointer;
+  box-shadow: none !important;
+  filter: none !important;
+  transition:
+    transform 0.3s var(--lit-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow 0.3s var(--lit-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.lit-btn--secondary:hover:not(:disabled),
+.lit-btn--outline:hover:not(:disabled),
+.mp-add-to-cart:hover:not(:disabled),
+.mp-btn-outline:hover:not(:disabled),
+.adm-btn--outline:hover:not(:disabled),
+.adm-btn--secondary:hover:not(:disabled),
+.cancel-button:hover:not(:disabled),
+.mp-lux-btn--ghost:hover:not(:disabled),
+.secondary-button:hover:not(:disabled),
+.btn-secondary:hover:not(:disabled),
+.btn-secondary-cart:hover:not(:disabled),
+.add-to-cart-btn:hover:not(:disabled),
+.profile-cancel-btn:hover:not(:disabled),
+.profile-secondary-btn:hover:not(:disabled),
+.profile-edit-btn:hover:not(:disabled),
+.user-menu-signup-btn:hover:not(:disabled),
+.view-all-btn:hover:not(:disabled),
+.coming-soon-btn:hover:not(:disabled),
+.auth-modal-btn.secondary:hover:not(:disabled),
+.delete-popup-btn.cancel:hover:not(:disabled),
+.shopping-cart-link-btn:hover:not(:disabled) {
+  background: var(--lit-btn-secondary-hover-bg, rgba(109, 40, 217, 0.1)) !important;
+  border-color: var(--lit-btn-secondary-hover-border, rgba(167, 139, 250, 0.95)) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: var(--lit-btn-secondary-hover-shadow, 0 0 20px rgba(124, 58, 237, 0.28)) !important;
+  filter: none !important;
+}
+
+.lit-btn--secondary:active:not(:disabled),
+.lit-btn--outline:active:not(:disabled),
+.mp-add-to-cart:active:not(:disabled),
+.mp-btn-outline:active:not(:disabled),
+.cancel-button:active:not(:disabled),
+.mp-lux-btn--ghost:active:not(:disabled),
+.secondary-button:active:not(:disabled),
+.add-to-cart-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.lit-btn--secondary:disabled,
+.lit-btn--outline:disabled,
+.mp-add-to-cart:disabled,
+.mp-btn-outline:disabled,
+.adm-btn--outline:disabled,
+.adm-btn--secondary:disabled,
+.cancel-button:disabled,
+.mp-lux-btn--ghost:disabled,
+.secondary-button:disabled,
+.add-to-cart-btn:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none !important;
+}
+
+/* Product card buttons — fixed widths */
+.mp-button-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--lit-btn-gap, 16px);
+}
+
+.mp-product-carousel .mp-button-row {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.mp-button-row .mp-buy-now,
+.mp-product-carousel .mp-button-row .mp-buy-now {
+  width: var(--lit-btn-buy-width, 140px) !important;
+  min-width: var(--lit-btn-buy-width, 140px) !important;
+  max-width: var(--lit-btn-buy-width, 140px) !important;
+  padding: 0 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.2px !important;
+  text-transform: none !important;
+}
+
+.mp-button-row .mp-add-to-cart,
+.mp-product-carousel .mp-button-row .mp-add-to-cart {
+  width: var(--lit-btn-cart-width, 170px) !important;
+  min-width: var(--lit-btn-cart-width, 170px) !important;
+  max-width: var(--lit-btn-cart-width, 170px) !important;
+  padding: 0 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.2px !important;
+  text-transform: none !important;
+}
+
+/* ─── Global inputs ─── */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="hidden"]):not([type="file"]),
+textarea,
+select,
+.footer-email-input,
+.mp-search-input {
+  border-radius: var(--lit-radius-md, 14px);
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="hidden"]):not([type="file"]):focus,
+textarea:focus,
+select:focus,
+.footer-email-input:focus,
+.mp-search-input:focus {
+  outline: none;
+  border-color: var(--lit-accent-light, #8b5cf6) !important;
+  box-shadow: 0 0 0 3px var(--lit-accent-glow) !important;
+}
+
+input[type="checkbox"],
+input[type="radio"],
+input[type="range"] {
+  accent-color: var(--lit-accent-hover, #7c3aed);
+}
+
+/* ─── Badges ─── */
+.mp-discount-pill,
+.lit-badge,
+.mp-flash-deals__chip {
+  border-radius: var(--lit-radius-pill, 999px);
+  background: var(--lit-primary-gradient) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+
+/* ─── Danger buttons ─── */
+.lit-btn--danger,
+.adm-btn--danger,
+.delete-button,
+.logout-button,
+.profile-danger-btn,
+.profile-modal-delete-btn,
+.delete-popup-btn.ok {
+  background: rgba(239, 68, 68, 0.12) !important;
+  border: 1.5px solid rgba(239, 68, 68, 0.45) !important;
+  color: #fecaca !important;
+  border-radius: var(--lit-btn-radius, 999px) !important;
+  box-shadow: none !important;
+  height: var(--lit-btn-height, 44px);
+  min-height: var(--lit-btn-height, 44px);
+  padding: 0 var(--lit-btn-padding-x, 28px);
+}
+
+.lit-btn--danger:hover:not(:disabled),
+.adm-btn--danger:hover:not(:disabled),
+.delete-button:hover:not(:disabled),
+.logout-button:hover:not(:disabled),
+.profile-danger-btn:hover:not(:disabled),
+.profile-modal-delete-btn:hover:not(:disabled),
+.delete-popup-btn.ok:hover:not(:disabled) {
+  background: var(--lit-error, #ef4444) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.25) !important;
+}
+
+/* Ghost / link buttons keep their own styles — not listed in primary/secondary selectors above. */
+
+.lit-link-btn {
+  color: var(--lit-accent-light, #8b5cf6) !important;
+}
+
+.lit-link-btn:hover {
+  color: #c4b5fd !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lit-btn--primary,
+  .lit-btn--secondary,
+  .mp-buy-now,
+  .mp-add-to-cart,
+  .btn-primary,
+  .adm-btn--primary,
+  .cta-button,
+  .read-more-button,
+  .lit-auth__submit,
+  .play-now-btn {
+    transition: opacity 0.2s ease, background 0.2s ease;
+  }
+
+  .lit-btn--primary:hover:not(:disabled),
+  .lit-btn--secondary:hover:not(:disabled),
+  .mp-buy-now:hover:not(:disabled),
+  .mp-add-to-cart:hover:not(:disabled),
+  .btn-primary:hover:not(:disabled),
+  .cta-button:hover:not(:disabled),
+  .read-more-button:hover:not(:disabled),
+  .lit-auth__submit:hover:not(:disabled),
+  .play-now-btn:hover:not(:disabled) {
+    transform: none;
+  }
+}

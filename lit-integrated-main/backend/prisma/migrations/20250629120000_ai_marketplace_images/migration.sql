@@ -1,0 +1,1 @@
+-- Placeholder migration (ai_marketplace_images module removed / no schema changes)

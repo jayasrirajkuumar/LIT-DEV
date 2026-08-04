@@ -1,59 +1,123 @@
-/*
-  This new style is universal for both mobile and desktop.
-  It creates the centered, stacked layout you requested.
-*/
-
 .product-item-details-container {
   display: flex;
-  flex-direction: column; /* Stack image and info vertically */
-  align-items: center; /* Center them horizontally */
-  background-color: transparent; /* No background color, as requested */
-  padding: 2rem 0; /* Vertical padding to give it space */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator for lists */
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  padding: var(--lit-space-8) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* The last item in a list shouldn't have a border below it */
 .product-item-details-container:last-child {
   border-bottom: none;
 }
 
+.product-item-details-container.is-row {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--lit-space-4);
+  padding: var(--lit-space-4) 0;
+  text-align: left;
+}
+
+.product-item-details-container.is-row .item-image {
+  width: 88px;
+  height: 88px;
+  max-width: 88px;
+  aspect-ratio: 1;
+  margin-bottom: 0;
+  border-radius: var(--lit-radius-sm);
+  flex-shrink: 0;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.product-item-details-container.is-row .item-info {
+  flex: 1;
+  align-items: flex-start;
+  text-align: left;
+  min-width: 0;
+}
+
 .item-image {
   width: 100%;
-  max-width: 200px; /* Controls the max size on large screens */
+  max-width: 200px;
   height: auto;
   aspect-ratio: 1 / 1.2;
   object-fit: cover;
-  border-radius: 12px; /* Slightly more rounded corners */
-  margin-bottom: 1.5rem; /* Space between image and text */
+  border-radius: var(--lit-radius-md);
+  margin-bottom: var(--lit-space-4);
 }
 
 .item-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center; /* Ensure all text is centered */
+  text-align: center;
 }
 
 .item-brand {
-  color: #e0e0e0; /* Bright white for the brand */
+  color: var(--lit-text-subtle);
   text-transform: uppercase;
-  font-size: 0.9rem;
+  font-size: var(--lit-text-xs);
   font-weight: 600;
-  letter-spacing: 0.5px;
-  margin: 0 0 0.5rem;
+  letter-spacing: var(--lit-tracking-wide);
+  margin: 0 0 var(--lit-space-1);
 }
 
 .item-name {
-  color: #a7a7a7; /* Muted grey for the name */
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
+  color: var(--lit-text);
+  font-family: var(--lit-font-display);
+  font-size: var(--lit-text-base);
+  font-weight: 500;
+  line-height: var(--lit-leading-tight);
   margin: 0;
+}
+
+.item-meta {
+  margin: var(--lit-space-2) 0 0;
+  font-size: var(--lit-text-sm);
+  color: var(--lit-text-muted);
 }
 
 .item-description,
 .item-size {
-  color: #a7a7a7; /* Muted grey for other details */
-  font-size: 1rem;
-  margin: 0.5rem 0 0;
+  color: var(--lit-text-muted);
+  font-size: var(--lit-text-sm);
+  margin: var(--lit-space-2) 0 0;
+}
+
+.item-price-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--lit-space-1);
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.item-line-price {
+  font-family: var(--lit-font-display);
+  font-size: var(--lit-text-base);
+  font-weight: 600;
+  color: var(--lit-text);
+  white-space: nowrap;
+}
+
+.item-unit-price {
+  font-size: var(--lit-text-xs);
+  color: var(--lit-text-subtle);
+}
+
+@media (max-width: 560px) {
+  .product-item-details-container.is-row {
+    flex-wrap: wrap;
+  }
+
+  .product-item-details-container.is-row .item-price-col {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: calc(88px + var(--lit-space-4));
+  }
 }

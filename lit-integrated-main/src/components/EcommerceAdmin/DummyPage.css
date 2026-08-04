@@ -1,9 +1,74 @@
 .dummy-page {
-  background: rgba(30, 0, 40, 0.4);
-  border-radius: 10px;
-  padding: 30px;
+  background: var(--lit-glass);
+  border: 1px solid var(--lit-glass-border);
+  border-radius: var(--lit-radius-md);
+  padding: var(--lit-space-8);
   text-align: center;
-  color: #e0b0ff;
-  margin-top: 20px;
-  box-shadow: 0 0 10px rgba(224, 176, 255, 0.3);
+  color: var(--lit-text-muted);
+  margin-top: var(--lit-space-5);
+  box-shadow: var(--lit-shadow-sm);
+}
+
+.admin-table-page {
+  text-align: left;
+}
+
+.admin-table-page h1,
+.admin-table-page h2 {
+  font-family: var(--lit-font-display);
+  color: var(--lit-text);
+  margin-bottom: var(--lit-space-4);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--lit-space-4);
+  font-size: var(--lit-text-sm);
+}
+
+.admin-table th,
+.admin-table td {
+  padding: var(--lit-space-3) var(--lit-space-4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+}
+
+.admin-table th {
+  font-family: var(--lit-font-display);
+  font-size: var(--lit-text-xs);
+  font-weight: 600;
+  letter-spacing: var(--lit-tracking-wide);
+  text-transform: uppercase;
+  color: var(--lit-text-subtle);
+}
+
+.admin-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.admin-table input {
+  width: 80px;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--lit-text);
+  border-radius: var(--lit-radius-sm);
+  padding: 0.4rem 0.55rem;
+  font-size: var(--lit-text-sm);
+}
+
+.admin-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.admin-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--lit-space-4);
+  padding: var(--lit-space-3) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: var(--lit-text-sm);
 }

@@ -1,7 +1,10 @@
-export const API_CONFIG = {
-  // Local Backend URL for development
+import { USER_API_BASE } from "./config/apiBase.js";
 
-  BASE_URL: "http://localhost:5000",
+export const API_CONFIG = {
+  BASE_URL:
+    import.meta.env.VITE_API_BASE_URL ||
+    (import.meta.env.DEV ? "/api" : "http://localhost:3001/api"),
+  USER_API_BASE,
   ENDPOINTS: {
     SUBSCRIBE: "/api/newsletter/subscribe",
     CONFIRM: "/api/newsletter/confirm",

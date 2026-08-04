@@ -66,7 +66,7 @@ const MailAdderPage = () => {
         );
         if (items.length === 0) continue;
 
-        const endpoint = `http://localhost:5000/api/${categoryId}`;
+        const endpoint = `/api/${categoryId}`;
         const payload = {
           caption: items[0].caption,
           url: items[0].articleUrl,
@@ -86,7 +86,7 @@ const MailAdderPage = () => {
       }
 
       // Save to MailArticle
-      await fetch("http://localhost:5000/api/mail-articles", {
+      await fetch("/api/mail-articles", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(mailArticleData),

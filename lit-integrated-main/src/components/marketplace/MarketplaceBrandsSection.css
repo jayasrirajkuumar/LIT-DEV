@@ -1,0 +1,233 @@
+.mp-brands-section {
+  margin: 2.5rem 0 0;
+}
+
+.mp-brand-ticker {
+  width: calc(100% + 2 * var(--mp-page-gutter, 32px));
+  max-width: none;
+  margin-left: calc(-1 * var(--mp-page-gutter, 32px));
+  margin-right: calc(-1 * var(--mp-page-gutter, 32px));
+  overflow: hidden;
+  background: #f3f3f1;
+  border-block: 1px solid rgba(0, 0, 0, 0.06);
+  margin-bottom: 0;
+}
+
+.mp-brand-ticker__track {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  width: max-content;
+  padding: 0.65rem 0;
+  animation: mp-brand-ticker-scroll 36s linear infinite;
+}
+
+.mp-brand-ticker__item {
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #111;
+  opacity: 0.82;
+  white-space: nowrap;
+}
+
+.mp-brand-ticker__logo {
+  height: 18px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0);
+  opacity: 0.85;
+}
+
+@keyframes mp-brand-ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.mp-brands-section__panel {
+  width: calc(100% + 2 * var(--mp-page-gutter, 32px));
+  max-width: none;
+  margin-left: calc(-1 * var(--mp-page-gutter, 32px));
+  margin-right: calc(-1 * var(--mp-page-gutter, 32px));
+  background: #fafaf8;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 2.25rem var(--mp-page-gutter, 32px) 2.5rem;
+}
+
+.mp-brands-section__inner {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.mp-brands-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.35rem;
+}
+
+.mp-brands-section__header h2 {
+  margin: 0;
+  font-family: "Inter", "Poppins", sans-serif;
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  font-weight: 200;
+  letter-spacing: 0.01em;
+  color: #111;
+}
+
+.mp-brands-section__title-accent {
+  position: relative;
+  display: inline-block;
+}
+
+.mp-brands-section__title-accent::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.06em;
+  height: 0.42em;
+  background: rgba(255, 183, 140, 0.55);
+  z-index: -1;
+}
+
+.mp-brands-section__nav {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.mp-brands-section__nav button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(17, 17, 17, 0.22);
+  background: transparent;
+  color: #111;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.mp-brands-section__nav button:hover {
+  border-color: #111;
+  background: rgba(17, 17, 17, 0.04);
+}
+
+.mp-brands-section__track {
+  display: flex;
+  gap: clamp(0.85rem, 1.5vw, 1.15rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 0.35rem;
+  scrollbar-width: none;
+}
+
+.mp-brands-section__track::-webkit-scrollbar {
+  display: none;
+}
+
+.mp-brand-card {
+  flex: 0 0 clamp(160px, 18vw, 220px);
+  scroll-snap-align: start;
+  text-decoration: none;
+  color: inherit;
+}
+
+.mp-brand-card__logo {
+  aspect-ratio: 1;
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.06), transparent 52%),
+    #161616;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.92);
+  overflow: hidden;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.mp-brand-card__logo img {
+  max-width: 58%;
+  max-height: 58%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.92;
+}
+
+.mp-brand-card__monogram {
+  font-family: "Inter", "Poppins", sans-serif;
+  font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0 1rem;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.mp-brand-card:hover .mp-brand-card__logo,
+.mp-brand-card--active .mp-brand-card__logo {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
+}
+
+.mp-brand-card__meta {
+  padding-top: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: rgba(17, 17, 17, 0.72);
+}
+
+.mp-brand-card__name {
+  font-family: "Inter", "Poppins", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: rgba(17, 17, 17, 0.78);
+  transition: color 0.2s ease;
+}
+
+.mp-brand-card__arrow {
+  display: grid;
+  place-items: center;
+  color: rgba(17, 17, 17, 0.45);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.mp-brand-card:hover .mp-brand-card__name,
+.mp-brand-card--active .mp-brand-card__name {
+  color: #111;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.mp-brand-card:hover .mp-brand-card__arrow,
+.mp-brand-card--active .mp-brand-card__arrow {
+  color: #111;
+}
+
+@media (max-width: 768px) {
+  .mp-brands-section {
+    margin-top: 1.75rem;
+  }
+
+  .mp-brands-section__panel {
+    padding-top: 1.75rem;
+    padding-bottom: 2rem;
+  }
+
+  .mp-brand-ticker__track {
+    gap: 2rem;
+  }
+
+  .mp-brand-card {
+    flex-basis: 68vw;
+    max-width: 220px;
+  }
+}

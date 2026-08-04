@@ -31,7 +31,7 @@ const ArticleListPage = () => {
         endpoint = `/api/articles/category/${category}/location/${normalizedLocation}`;
       }
 
-      const response = await fetch(`http://localhost:5000${endpoint}`);
+      const response = await fetch(endpoint);
       if (!response.ok) throw new Error(`Error: ${response.statusText}`);
 
       const data = await response.json();
@@ -55,7 +55,7 @@ const ArticleListPage = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/articles/slug/${slug}`,
+        `/api/articles/slug/${slug}`,
         {
           method: "DELETE",
         },

@@ -1,73 +1,95 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/context-admin/AuthContext";
-import "../styles/AdminLogin.css"; //  CSS stays imported here
+import { useUserAuth } from "../context/UserAuthContext";
+import "../styles/AdminLogin.css";
 
 const AdminLogin = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { login } = useAuth();
+  const { login: localLogin } = useAuth();
+  const { login: azureLogin, isAuthenticated, userProfile, loading } = useUserAuth();
 
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
 
-  // const params = new URLSearchParams(location.search);
-  // const redirectParam = params.get('redirect');
+  const redirectParam =
+    new URLSearchParams(location.search).get("redirect") ||
+    sessionStorage.getItem("redirectAfterLogin");
 
-  // let redirectPath = '/admin/dashboard';
-  // if (redirectParam === 'ecommerce') {
-  //   redirectPath = '/admin/ecomDashboard';
-  // }
+  const isEcommerceAdmin = redirectParam === "ecommerce";
 
-  // Get ?redirect= from the URL
-  let redirectParam = new URLSearchParams(location.search).get("redirect");
+  useEffect(() => {
+    if (redirectParam) {
+      sessionStorage.setItem("redirectAfterLogin", redirectParam);
+    }
+  }, [redirectParam]);
 
-  // If not found in URL, check sessionStorage
-  if (!redirectParam) {
-    redirectParam = sessionStorage.getItem("redirectAfterLogin");
-  } else {
-    sessionStorage.setItem("redirectAfterLogin", redirectParam);
-  }
+  useEffect(() => {
+    if (loading || !isEcommerceAdmin) return;
 
-  // Decide where to go
-  let redirectPath = "/admin/dashboard";
-  if (redirectParam === "ecommerce") {
-    redirectPath = "/admin/ecomDashboard";
-  }
-
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     navigate(redirectPath);
-  //   }
-  // }, [isAuthenticated, navigate, redirectPath]);
+    if (isAuthenticated && userProfile?.role === "ADMIN") {
+      const from = new URLSearchParams(location.search).get("from");
+      navigate(from || "/admin/ecomDashboard", { replace: true });
+    }
+  }, [loading, isAuthenticated, userProfile, isEcommerceAdmin, navigate, location.search]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredentials((prev) => ({ ...prev, [name]: value }));
   };
 
-  //   if (success) {
-  //   console.log("Redirecting to:", redirectPath); // ✅ This will help you confirm
-  //   navigate(redirectPath);
-  // }
-
-  const handleLogin = (e) => {
+  const handleLocalLogin = (e) => {
     e.preventDefault();
     setError("");
-    const success = login(credentials.email, credentials.password);
+    const success = localLogin(credentials.email, credentials.password);
     if (success) {
-      navigate(redirectPath);
+      navigate("/admin/dashboard");
     } else {
       setError("Invalid email or password. Please try again.");
     }
   };
 
+  const handleAzureAdminLogin = async () => {
+    setError("");
+    try {
+      sessionStorage.setItem("redirectAfterLogin", "ecommerce");
+      sessionStorage.setItem("auth_return_to", "/admin/ecomDashboard");
+      await azureLogin("/admin/ecomDashboard");
+    } catch (loginError) {
+      setError(loginError.message || "Unable to start Azure sign-in.");
+    }
+  };
+
+  if (isEcommerceAdmin) {
+    return (
+      <div className="admin-login-container">
+        <div className="admin-login-box">
+          <h1>E-Commerce Admin</h1>
+          <p className="admin-login-subtitle">
+            Sign in with your Azure CIAM account. Your PostgreSQL user must have the ADMIN role.
+          </p>
+          {error && <div className="error-message">{error}</div>}
+          <button type="button" className="login-button" onClick={handleAzureAdminLogin}>
+            Sign in with Azure
+          </button>
+          {isAuthenticated && userProfile?.role !== "ADMIN" && (
+            <p className="admin-login-note">
+              Signed in as {userProfile?.email}, but this account is not an administrator.
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="admin-login-container">
       <div className="admin-login-box">
-        <h1>Admin Login</h1>
+        <h1>Content Admin Login</h1>
+        <p className="admin-login-subtitle">Newsletter and website content management.</p>
         {error && <div className="error-message">{error}</div>}
-        <form onSubmit={handleLogin} className="admin-login-form">
+        <form onSubmit={handleLocalLogin} className="admin-login-form">
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
@@ -96,6 +118,16 @@ const AdminLogin = () => {
             Login
           </button>
         </form>
+        <p className="admin-login-note">
+          For marketplace admin, use{" "}
+          <button
+            type="button"
+            className="link-button"
+            onClick={() => navigate("/admin/login?redirect=ecommerce")}
+          >
+            E-Commerce Admin sign-in
+          </button>
+        </p>
       </div>
     </div>
   );

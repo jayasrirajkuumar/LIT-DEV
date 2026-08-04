@@ -1,0 +1,92 @@
+.cancel-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 4000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(8px);
+}
+
+.cancel-modal {
+  width: min(480px, 100%);
+  padding: 24px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(12, 8, 20, 0.95);
+  color: #f5f3ff;
+}
+
+.cancel-modal h2 {
+  margin: 0 0 8px;
+}
+
+.cancel-modal__reasons {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.cancel-modal__reason {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.cancel-modal__textarea {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+}
+
+.cancel-modal__actions,
+.cancel-modal__help-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.collection-picker__list {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0;
+  max-height: 240px;
+  overflow: auto;
+}
+
+.collection-picker__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  cursor: pointer;
+}
+
+.collection-picker__create {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.collection-picker__create input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+}

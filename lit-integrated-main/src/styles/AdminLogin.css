@@ -18,12 +18,45 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.admin-login-subtitle {
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+}
+
+.admin-login-note {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #c9a96e;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  font: inherit;
+}
+
+.ecom-admin-auth-loading,
+.ecom-admin-access-denied {
+  padding: 3rem 2rem;
+  text-align: center;
+  color: #fff;
+}
+
+.ecom-admin-access-denied button {
+  margin-top: 1rem;
+}
+
 .admin-login-box h1 {
   text-align: center;
   background: linear-gradient(85.68deg, #9333ea, #fffefe);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 2rem;
+  margin-bottom: 0.75rem;
 }
 
 .admin-login-form {

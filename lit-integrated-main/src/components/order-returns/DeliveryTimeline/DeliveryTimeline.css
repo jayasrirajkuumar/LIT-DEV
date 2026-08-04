@@ -1,106 +1,127 @@
-/* Container for the horizontal timeline */
-.timeline-horizontal-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start; /* Aligns items at the top */
-  padding: 1rem 0;
+.delivery-timeline--stepper {
+  position: relative;
+  padding-top: 8px;
 }
 
-/* A single step in the timeline (icon + label) */
-.timeline-step {
+.delivery-timeline__track {
+  position: absolute;
+  top: 28px;
+  left: 24px;
+  right: 24px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.delivery-timeline__track-fill {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(147, 51, 234, 0.85), rgba(196, 181, 253, 0.95));
+  border-radius: inherit;
+}
+
+.delivery-timeline__steps {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.delivery-timeline__step {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  /* flex: 1; allows the steps to space out evenly */
-  flex: 1;
-  position: relative;
-}
-/* The last step shouldn't grow to push others away */
-.timeline-step:last-child {
-  flex: 0;
+  gap: 10px;
+  opacity: 0.42;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-/* The top row containing the icon and the connecting line */
-.step-top-row {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.5rem;
+.delivery-timeline__step--completed,
+.delivery-timeline__step--active {
+  opacity: 1;
 }
 
-/* Wrapper for the circular icon */
-.step-icon-wrapper {
+.delivery-timeline__step--active {
+  transform: translateY(-2px);
+}
+
+.delivery-timeline__step--active .delivery-timeline__icon {
+  box-shadow: 0 0 0 4px rgba(147, 51, 234, 0.18);
+  border-color: rgba(196, 181, 253, 0.55);
+}
+
+.delivery-timeline__step--cancelled {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 12px;
+  align-items: start;
+  opacity: 1;
+}
+
+.delivery-timeline__step--cancelled .delivery-timeline__icon {
+  background: rgba(239, 68, 68, 0.18);
+  color: #fca5a5;
+}
+
+.delivery-timeline__icon {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-  flex-shrink: 0; /* Prevents the icon from shrinking */
-  transition:
-    background-color 0.3s,
-    border-color 0.3s;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* The line connecting the icons */
-.step-line {
-  height: 4px;
-  /* flex-grow: 1; is the key to making the line fill the space */
-  flex-grow: 1;
-  transition: background 0.3s;
-}
-
-/* --- STYLING BASED ON STATUS --- */
-
-/* PENDING (Future Steps) */
-.timeline-step.pending .step-icon-wrapper {
-  background-color: transparent;
-  border: 2px solid #374151; /* Dark grey border */
-  color: #6b7280; /* Muted icon color */
-}
-.timeline-step.pending .step-line {
-  background-color: #374151;
-}
-.timeline-step.pending .step-label {
-  color: #6b7280; /* Muted text */
-}
-
-/* COMPLETED (Past Steps) */
-.timeline-step.completed .step-icon-wrapper {
-  background-color: #2dd4bf; /* Teal color from image */
-  border: 2px solid #2dd4bf;
-  color: #ffffff;
-}
-/* The beautiful gradient line */
-.timeline-step.completed .step-line {
-  background: linear-gradient(to right, #2dd4bf, #facc15); /* Teal to Yellow */
-}
-.timeline-step.completed .step-label {
-  color: #e0e0e0; /* Bright, but not as bright as current */
-}
-
-/* CURRENT (The Active Step) */
-.timeline-step.current .step-icon-wrapper {
-  background-color: #facc15; /* Yellow color from image */
-  border: 2px solid #facc15;
-  color: #111827; /* Dark text for contrast on yellow */
-}
-/* The line after the current step is pending */
-.timeline-step.current .step-line {
-  background-color: #374151;
-}
-.timeline-step.current .step-label {
-  color: #ffffff; /* Brightest white for the active label */
+.delivery-timeline__title {
   font-weight: 600;
+  font-size: 0.82rem;
 }
 
-/* Label Styling */
-.step-label {
-  font-size: 0.85rem;
-  max-width: 80px; /* Prevents long labels from breaking the layout */
-  transition:
-    color 0.3s,
-    font-weight 0.3s;
+.delivery-timeline__time {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 2px;
+}
+
+.delivery-timeline--bare {
+  padding-top: 4px;
+}
+
+.order-support-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.order-support-card {
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  text-align: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+.order-support-card:hover {
+  border-color: rgba(147, 51, 234, 0.35);
+}
+
+@media (max-width: 900px) {
+  .delivery-timeline__track {
+    display: none;
+  }
+
+  .delivery-timeline__steps {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .delivery-timeline__step {
+    flex-direction: row;
+    text-align: left;
+  }
 }

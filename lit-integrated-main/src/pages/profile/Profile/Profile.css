@@ -5,8 +5,7 @@
 }
 
 .profile-page {
-  background: url(/src/assets/body-bg.png) no-repeat center center fixed;
-  background-size: cover;
+  background: transparent;
   min-height: 100vh;
   color: #fff;
   font-family: "Inter", "Segoe UI", Arial, sans-serif;

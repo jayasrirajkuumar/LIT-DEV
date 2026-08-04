@@ -10,7 +10,7 @@ import googlePlayBadge from "../../../assets/googlePlayBadge.png";
 import appStoreBadge from "../../../assets/app-store-badge.svg";
 import { subscribeToNewsletter } from "../../../services/api";
 
-const Footer = () => {
+const Footer = ({ className = "" }) => {
   const [email, setEmail] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [subscriptionStatus, setSubscriptionStatus] = useState("");
@@ -44,7 +44,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="footer-container" id="footer-community-section">
+    <footer className={`footer-container${className ? ` ${className}` : ""}`} id="footer-community-section">
       <div className="footer-content">
         <div className="footer-main">
           <div

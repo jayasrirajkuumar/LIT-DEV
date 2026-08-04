@@ -1,0 +1,29 @@
+.mp-announcement-bar {
+  background: #5b21b6;
+  color: #ffffff;
+  border-bottom: none;
+  min-height: var(--mp-announcement-height, 28px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.mp-announcement-bar__track {
+  width: 100%;
+  text-align: center;
+  padding: 0 var(--mp-page-gutter, 32px);
+}
+
+.mp-announcement-bar__message {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  animation: mp-announcement-fade 0.45s ease;
+}
+
+@keyframes mp-announcement-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}

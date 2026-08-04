@@ -12,7 +12,7 @@ const CATEGORIES = [
   "SneakerWorld",
 ];
 const LOCATIONS = ["Domestic", "International"];
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "";
 
 const ArticleEditor = () => {
   const { section, slug } = useParams();

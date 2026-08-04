@@ -15,7 +15,7 @@
 
 /* --- General Styling --- */
 .about-page {
-  background-color: var(--background-primary);
+  background: transparent;
   color: var(--text-primary);
   min-height: 100vh;
   font-family: "Poppins", sans-serif;

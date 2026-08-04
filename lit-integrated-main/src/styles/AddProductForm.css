@@ -389,3 +389,24 @@
   background-color: #9333ea;
   transition: width 0.3s ease;
 }
+
+.product-image-url-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.image-url-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto auto;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.add-image-url-btn {
+  align-self: flex-start;
+}
+
+.edit-product-page {
+  padding-bottom: 2rem;
+}

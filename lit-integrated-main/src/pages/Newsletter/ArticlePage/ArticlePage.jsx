@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { USER_API_BASE } from "../../../config/apiBase.js";
 import "./ArticlePage.css";
 
 // Components
@@ -24,17 +25,13 @@ const ArticlePage = () => {
 
       try {
         // Fetch the main article by slug
-        const res = await fetch(
-          `https://lit-backend-azajexa8e2a9g4az.canadacentral-01.azurewebsites.net/api/articles/slug/${slug}`,
-        );
+        const res = await fetch(`${USER_API_BASE}/articles/slug/${slug}`);
         if (!res.ok) throw new Error("Article not found");
         const data = await res.json();
         setArticle(data);
 
         // Fetch all articles to pick related ones
-        const allRes = await fetch(
-          "https://lit-backend-azajexa8e2a9g4az.canadacentral-01.azurewebsites.net/api/articles",
-        );
+        const allRes = await fetch(`${USER_API_BASE}/articles`);
         const allData = await allRes.json();
         const filtered = allData.filter((p) => p.slug !== slug).slice(0, 3);
         setRelatedArticles(filtered);

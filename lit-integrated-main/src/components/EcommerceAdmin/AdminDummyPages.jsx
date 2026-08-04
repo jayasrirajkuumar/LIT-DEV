@@ -1,57 +1,17 @@
 import React from "react";
-import "./DummyPage.css";
+import { AdminEmptyState } from "../admin-ui";
+import AdminSettingsView from "./AdminSettingsView";
 
 export const Analytics = () => (
-  <div className="dummy-page">
-    <h2>Analytics</h2>
-    <p></p>
-  </div>
-);
-export const Products = () => (
-  <div className="dummy-page">
-    <h2>Products</h2>
-    <p>.</p>
-  </div>
+  <AdminEmptyState title="Analytics" description="Advanced analytics coming soon." compact />
 );
 export const Offers = () => (
-  <div className="dummy-page">
-    <h2>Offers</h2>
-    <p></p>
-  </div>
-);
-export const Inventory = () => (
-  <div className="dummy-page">
-    <h2>Inventory</h2>
-    <p></p>
-  </div>
-);
-export const Orders = () => (
-  <div className="dummy-page">
-    <h2>Orders</h2>
-    <p></p>
-  </div>
+  <AdminEmptyState title="Offers" description="Promotional offers management coming soon." compact />
 );
 export const Sales = () => (
-  <div className="dummy-page">
-    <h2>Sales</h2>
-    <p></p>
-  </div>
-);
-export const Customers = () => (
-  <div className="dummy-page">
-    <h2>Customers</h2>
-    <p></p>
-  </div>
+  <AdminEmptyState title="Sales" description="Sales reporting coming soon." compact />
 );
 export const Newsletter = () => (
-  <div className="dummy-page">
-    <h2>Newsletter</h2>
-    <p></p>
-  </div>
+  <AdminEmptyState title="Newsletter" description="Newsletter admin coming soon." compact />
 );
-export const Settings = () => (
-  <div className="dummy-page">
-    <h2>Settings</h2>
-    <p></p>
-  </div>
-);
+export const Settings = AdminSettingsView;

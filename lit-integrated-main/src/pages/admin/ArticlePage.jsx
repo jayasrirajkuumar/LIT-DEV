@@ -32,7 +32,7 @@ const ArticlePage = () => {
       // 2. Try fetching from website backend
       try {
         const res = await fetch(
-          `http://localhost:5000/api/articles/slug/${slug}`,
+          `/api/articles/slug/${slug}`,
         );
         if (res.ok) {
           const data = await res.json();

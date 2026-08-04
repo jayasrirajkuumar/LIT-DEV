@@ -23,7 +23,7 @@ const MailItemEditor = () => {
           "sneaker-world",
         ];
         for (const cat of categories) {
-          const res = await fetch(`http://localhost:5000/api/${cat}/${id}`);
+          const res = await fetch(`/api/${cat}/${id}`);
           if (res.ok) {
             const data = await res.json();
             setItemData({
@@ -52,7 +52,7 @@ const MailItemEditor = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/${originalCategory}/${id}`,
+        `/api/${originalCategory}/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

@@ -269,37 +269,11 @@
 .step-navigation button,
 .btn-primary,
 .payment-btn {
-  padding: 0.7rem 3rem;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #ffffff;
-  background: radial-gradient(circle at 60% 40%, #110e14 0%, #2d133d 100%);
-  border: 1.5px solid rgb(255 255 255 / 60%);
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
   margin-left: auto;
   margin-right: auto;
 }
-.step-navigation button:hover,
-.btn-primary:hover,
-.payment-btn:hover {
-  filter: brightness(1.2);
-  border-color: rgba(255, 255, 255, 1);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-}
-.btn-primary:disabled,
-.payment-btn:disabled {
-  background: #23232b;
-  color: #aaa;
-  cursor: not-allowed;
-  border: 1.5px solid #e0e0e0;
-  box-shadow: none;
-  transform: none;
-  opacity: 1;
-}
+
+/* Button visuals — lit-global-overrides.css */
 
 /* =============================
    PAYMENT SELECTION SIDEBAR (PaymentSelection.jsx)
@@ -344,10 +318,11 @@
   border: 1px solid transparent !important;
 }
 .method-btn.active {
-  background-color: rgba(255, 255, 255, 0.1);
+  background: var(--lit-accent-soft);
   color: #fff;
   font-weight: 600;
-  border: 1px solid transparent !important;
+  border: 1px solid var(--lit-accent-light) !important;
+  box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.2);
 }
 .method-btn svg {
   width: 24px;

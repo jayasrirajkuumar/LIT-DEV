@@ -33,6 +33,12 @@
   color: #f87171; /* Bright Red Text */
 }
 
+/* For "Pending" status */
+.status-badge.pending {
+  background-color: rgba(147, 51, 234, 0.2);
+  color: #c4b5fd;
+}
+
 /* For "Returned" status */
 .status-badge.returned {
   background-color: rgba(107, 114, 128, 0.2); /* Transparent Gray */

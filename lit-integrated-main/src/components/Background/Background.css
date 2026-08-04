@@ -1,24 +1,25 @@
-.background-wrapper {
+.background-wrapper,
+.background-container {
   position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: transparent;
 }
 
 .background-image {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
+  width: 100%;
+  min-height: 100vh;
   background-color: #000;
-  background-image: url("../../assets/body-bg.png");
+  background-image: var(--lit-page-bg-image);
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   z-index: -1;
   pointer-events: none;
-  opacity: 1;
 }
 
 .background-content {
@@ -28,4 +29,16 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: transparent;
+}
+
+.background-container--auth .background-image {
+  display: none;
+}
+
+.background-container--auth main {
+  flex: 1;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
 }

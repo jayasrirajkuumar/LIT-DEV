@@ -77,7 +77,12 @@ const Shop = () => {
               </button>
             </div>
 
-            <button className="coming-soon-btn">Shop Now</button>
+            <button
+              className="coming-soon-btn"
+              onClick={() => navigate("/shop")}
+            >
+              Shop Now
+            </button>
           </div>
           <div className="shop-card-image">
             <img

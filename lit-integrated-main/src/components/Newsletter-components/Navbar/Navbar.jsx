@@ -1,113 +1,94 @@
 import React, { useState, useEffect } from "react";
-// Make sure both Link and useNavigate are imported
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import "./Navbar.css";
 
 import litLogo from "../../../assets/lit-logo.png";
 import notificationIcon from "../../../assets/notification-icon.svg";
+import UserMenu from "../../UserMenu/UserMenu";
+import { useUserAuth } from "../../../hooks/useUserAuth";
+
+const NAV_LINKS = [
+  { id: "game-modes", label: "Game Modes", path: "/game-modes" },
+  { id: "shop", label: "Marketplace", path: "/shop" },
+  { id: "socials", label: "Socials", path: "/socials" },
+  { id: "newsletter", label: "Newsletter", path: "/newsletter" },
+  { id: "avatar-store", label: "Avatar Store", path: "/avatar-store" },
+  { id: "ir-icon", label: "IR Icon", path: "/ir-icon" },
+];
+
+const isLinkActive = (pathname, path) => {
+  if (path === "/shop") return pathname.startsWith("/shop");
+  if (path === "/") return pathname === "/";
+  return pathname === path || pathname.startsWith(`${path}/`);
+};
 
 const Navbar = () => {
-  const [activeLink, setActiveLink] = useState("");
-  // 1. This state is required for the menu to work
+  const location = useLocation();
+  const { isAuthenticated } = useUserAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const offset = window.scrollY;
-      if (offset > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleLinkClick = (link) => {
-    setActiveLink(link);
-    setIsMenuOpen(false); // This closes the menu when a link is clicked
-  };
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
 
-  // 2. This function definition is ESSENTIAL. It was likely missing.
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = () => setIsMenuOpen((open) => !open);
 
   return (
-    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+    <nav className={`navbar ${scrolled ? "scrolled" : ""}`} aria-label="Main navigation">
       <div className="navbar-container">
         <div className="navbar-logo">
-          <Link to="/">
+          <Link to="/" aria-label="LIT Home">
             <img src={litLogo} alt="LIT Logo" className="logo-img" />
           </Link>
         </div>
 
-        {/* This `active` class depends on the isMenuOpen state */}
         <div className={`navbar-links ${isMenuOpen ? "active" : ""}`}>
-          <Link
-            to="/game-modes"
-            className={activeLink === "game-modes" ? "active" : ""}
-            onClick={() => handleLinkClick("game-modes")}
-          >
-            Game Modes
-          </Link>
-          <Link
-            to="/shop"
-            className={activeLink === "shop" ? "active" : ""}
-            onClick={() => handleLinkClick("shop")}
-          >
-            Marketplace
-          </Link>
-          <Link
-            to="/socials"
-            className={activeLink === "socials" ? "active" : ""}
-            onClick={() => handleLinkClick("socials")}
-          >
-            Socials
-          </Link>
-          <Link
-            to="/newsletter"
-            className={activeLink === "newsletter" ? "active" : ""}
-            onClick={() => handleLinkClick("newsletter")}
-          >
-            Newsletter
-          </Link>
-          <Link
-            to="/avatar-store"
-            className={activeLink === "avatar-store" ? "active" : ""}
-            onClick={() => handleLinkClick("avatar-store")}
-          >
-            Avatar Store
-          </Link>
-          <Link
-            to="/ir-icon"
-            className={activeLink === "ir-icon" ? "active" : ""}
-            onClick={() => handleLinkClick("ir-icon")}
-          >
-            IR Icon
-          </Link>
+          {NAV_LINKS.map((item) => {
+            const active = isLinkActive(location.pathname, item.path);
+            return (
+              <Link
+                key={item.id}
+                to={item.path}
+                className={active ? "active" : ""}
+                aria-current={active ? "page" : undefined}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
 
         <div className="navbar-right">
-          <div className="notification-icon">
-            <img
-              src={notificationIcon}
-              alt="Notifications"
-              className="notification-img"
-            />
-          </div>
-          {/* 3. This onClick handler calls the function. */}
-          <div className="hamburger-menu" onClick={toggleMenu}>
-            <div className={`hamburger-bar ${isMenuOpen ? "open" : ""}`}></div>
-            <div className={`hamburger-bar ${isMenuOpen ? "open" : ""}`}></div>
-            <div className={`hamburger-bar ${isMenuOpen ? "open" : ""}`}></div>
-          </div>
+          <motion.button
+            type="button"
+            className="notification-icon"
+            aria-label="Notifications"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <img src={notificationIcon} alt="" className="notification-img" />
+          </motion.button>
+          <UserMenu />
+          <button
+            type="button"
+            className="hamburger-menu"
+            onClick={toggleMenu}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMenuOpen}
+          >
+            <div className={`hamburger-bar ${isMenuOpen ? "open" : ""}`} />
+            <div className={`hamburger-bar ${isMenuOpen ? "open" : ""}`} />
+            <div className={`hamburger-bar ${isMenuOpen ? "open" : ""}`} />
+          </button>
         </div>
       </div>
     </nav>

@@ -1,0 +1,78 @@
+.notifications-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+  color: #fff;
+}
+
+.notifications-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0 1.5rem;
+}
+
+.notifications-page__header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.notifications-page__empty {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.notifications-page__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.notifications-page__item {
+  display: flex;
+  gap: 0.85rem;
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: inherit;
+  cursor: pointer;
+}
+
+.notifications-page__item--unread {
+  border-color: rgba(147, 51, 234, 0.35);
+  background: rgba(147, 51, 234, 0.08);
+}
+
+.notifications-page__item:hover {
+  background: rgba(147, 51, 234, 0.12);
+}
+
+.notifications-page__icon {
+  font-size: 1.5rem;
+}
+
+.notifications-page__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notifications-page__content strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.notifications-page__content p {
+  margin: 0 0 0.35rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.notifications-page__content span {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.45);
+}

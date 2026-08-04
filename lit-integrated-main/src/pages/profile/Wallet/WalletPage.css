@@ -1,0 +1,100 @@
+.wallet-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+  color: #fff;
+}
+
+.wallet-page__title {
+  font-size: 1.75rem;
+  margin: 1rem 0 1.5rem;
+  background: linear-gradient(135deg, #fff, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.wallet-loading,
+.wallet-empty {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.wallet-balance-card {
+  background: linear-gradient(135deg, rgba(30, 16, 51, 0.95), rgba(124, 58, 237, 0.25));
+  border: 1px solid rgba(147, 51, 234, 0.35);
+  border-radius: 20px;
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(12px);
+}
+
+.wallet-balance-card__label {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wallet-balance-card__amount {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0.5rem 0 1rem;
+}
+
+.wallet-balance-card__meta {
+  display: flex;
+  gap: 1.5rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.wallet-section {
+  margin-bottom: 2rem;
+}
+
+.wallet-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.wallet-tx-list,
+.wallet-gc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.wallet-tx-list li,
+.wallet-gc-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+
+.wallet-tx-list li div,
+.wallet-gc-list li div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.wallet-tx-list li span,
+.wallet-gc-list li span {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.wallet-tx--credit { color: #4ade80; font-weight: 600; }
+.wallet-tx--debit { color: #f87171; font-weight: 600; }

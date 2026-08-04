@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   useLocation,
+  Navigate,
 } from "react-router-dom";
 
 // Contexts
@@ -12,6 +13,12 @@ import { WishlistProvider } from "./context/WishlistContext";
 import { AuthProvider } from "./context/context-admin/AuthContext";
 import { DataProvider } from "./context/context-admin/DataContext";
 import { ArticleProvider } from "./context/ArticleContext";
+import { UserAuthProvider } from "./context/UserAuthContext";
+import { AuthModalProvider } from "./context/AuthModalContext";
+import { ShoppingProvider } from "./context/ShoppingContext";
+import { ToastProvider } from "./context/ToastContext";
+import { NotificationProvider } from "./context/NotificationContext";
+import UserProtectedRoute from "./components/UserProtectedRoute";
 
 // Layout & UI
 import Background from "./components/Background/Background";
@@ -20,6 +27,7 @@ import LandingPageNavbar from "./components/Newsletter-components/Navbar/Navbar"
 import Navbar from "./components/Newsletter-components/Navbar/Navbar";
 import MainLayout from "./components/Newsletter-components/MainLayout/MainLayout";
 import ProtectedRoute from "./components/admin-components/ProtectedRoute";
+import EcomAdminProtectedRoute from "./components/admin-components/EcomAdminProtectedRoute";
 import AdminLayout from "./components/admin-components/AdminLayout";
 import Notification from "./components/Notification";
 import ScrollToTop from "./components/ScrollToTop";
@@ -27,18 +35,25 @@ import ScrollToTop from "./components/ScrollToTop";
 import EcomAdminDashboard from "./pages/admin/EcomAdminDashboard";
 import EcomDashboardView from "./components/EcommerceAdmin/EcomDashboardView";
 import EcomProductsView from "./components/EcommerceAdmin/EcomProductsView";
-import EcomProductForm from "./components/EcommerceAdmin/EcomProductForm";
+import AdminAddProductPage from "./components/EcommerceAdmin/AdminAddProductPage";
 import EditProductForm from "./components/EcommerceAdmin/EditProductForm";
 import ProductDetailPage from "./components/EcommerceAdmin/ProductDetailPage";
 
 // Dummy admin pages for sidebar
+import AdminInventoryView from "./components/EcommerceAdmin/AdminInventoryView";
+import AdminCustomersView from "./components/EcommerceAdmin/AdminCustomersView";
+import AdminOrdersView from "./components/EcommerceAdmin/AdminOrdersView";
+import AdminSupportView from "./components/EcommerceAdmin/AdminSupportView";
+import AdminWishlistCollectionsView from "./components/EcommerceAdmin/AdminWishlistCollectionsView";
+import AdminWishlistItemsView from "./components/EcommerceAdmin/AdminWishlistItemsView";
+import AdminCartsView from "./components/EcommerceAdmin/AdminCartsView";
+import AdminMarketplaceView from "./components/EcommerceAdmin/AdminMarketplaceView";
+import AdminNotificationsView from "./components/EcommerceAdmin/AdminNotificationsView";
+import AdminCategoriesView from "./components/EcommerceAdmin/AdminCategoriesView";
 import {
   Analytics,
   Offers,
-  Inventory,
-  Orders,
   Sales,
-  Customers,
   Newsletter,
   Settings as AdminSettings,
 } from "./components/EcommerceAdmin/AdminDummyPages";
@@ -48,23 +63,36 @@ import LandingPage from "./components/LandingPage";
 import Shop from "./pages/Shop";
 import ProductDetails from "./components/Shop/ProductDetails";
 import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage"; // keep both, for old/new usage
-import Cart from "./components/Shop/Cart";
+import ShoppingCartPage from "./pages/ShoppingCartPage";
 import Wishlist from "./pages/Wishlist";
 import GameModes from "./pages/GameModes";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import SupportCenter from "./pages/SupportCenter";
 import Profile from "./pages/profile/Profile/Profile";
 import PrivacyPolicy from "./pages/privacyPolicy";
 import ReturnPolicy from "./pages/returnPolicy";
 import TermsOfService from "./pages/termsOfService";
 import OrdersProfile from "./pages/profile/Orders";
-import SettingsProfile from "./pages/profile/Settings";
-import Settings from "./pages/profile/Settings"; // keep both if different
 import CheckoutPage from "./components/checkout/CheckoutPage";
 import OrderConfirmation from "./pages/OrderConfirmation";
 import NotFound from "./pages/NotFound";
-import ProductListPage from "./pages/productListPage";
 import ComingSoonPage from "./components/ComingSoonPage/ComingSoonPage";
+
+// Marketplace (Phase 3.5)
+import ShopHomePage from "./pages/marketplace/ShopHomePage";
+import CategoryPage from "./pages/marketplace/CategoryPage";
+import CatalogListingPage from "./pages/marketplace/CatalogListingPage";
+import CatalogProductPage from "./pages/marketplace/CatalogProductPage";
+import SearchPage from "./pages/marketplace/SearchPage";
+import MarketplaceCheckoutPage from "./pages/marketplace/MarketplaceCheckoutPage";
+import GiftCardsPage from "./pages/gift-cards/GiftCardsPage";
+import GiftCardRedeemPage from "./pages/gift-cards/GiftCardRedeemPage";
+import GiftCardReceivedPage from "./pages/gift-cards/GiftCardReceivedPage";
+import GiftCardClaimPage from "./pages/gift-cards/GiftCardClaimPage";
+import NotificationsPage from "./pages/notifications/NotificationsPage";
+import WalletPage from "./pages/profile/Wallet/WalletPage";
+import AdminGiftCardsView from "./components/EcommerceAdmin/AdminGiftCardsView";
 
 // Orders pages (new)
 import OrdersPage from "./pages/OrdersPage/OrdersPage";
@@ -81,6 +109,10 @@ import MailItemEditor from "./pages/admin/MailItemEditor/MailItemEditor";
 import AdminArticlePage from "./pages/admin/ArticlePage";
 import DeleteProductForm from "./components/DeleteProductForm";
 import AuthCallback from "./pages/AuthCallback";
+import SignIn from "./auth/SignIn";
+import SignUp from "./auth/SignUp";
+import SignUpDetails from "./auth/SignUpDetails";
+import VerifyOtp from "./auth/VerifyOtp";
 
 // Pages - Newsletter
 import NewsletterPage from "./pages/Newsletter/NewsletterPage/NewsletterPage";
@@ -99,7 +131,6 @@ const AppContent = () => {
 
   const comingSoonPaths = [
     "/game-modes",
-    "/shop",
     "/ir-icon",
     "/socials",
     "/avatar-store",
@@ -109,17 +140,25 @@ const AppContent = () => {
     comingSoonPaths.includes(location.pathname) ||
     location.pathname.startsWith("/newsletter");
 
+  const isMarketplacePath = location.pathname.startsWith("/shop") || location.pathname.startsWith("/gift-cards");
+  const isAuthPath =
+    location.pathname === "/sign-in" ||
+    location.pathname === "/sign-up" ||
+    location.pathname === "/sign-up/email" ||
+    location.pathname === "/auth/verify-otp";
   const showMainNavbar =
     !isAdminPath &&
     !isNewsletterPath &&
     !isNewsletterArticle &&
-    !isComingSoonPath;
+    !isComingSoonPath &&
+    !isMarketplacePath &&
+    !isAuthPath;
   const showNewsletterNavbar =
     (isNewsletterPath || isNewsletterArticle) && !isComingSoonPath;
-  const showFooter = !isAdminPath && !isComingSoonPath;
+  const showFooter = !isAdminPath && !isComingSoonPath && !isAuthPath;
 
   return (
-    <Background>
+    <Background className={isAuthPath ? "background-container--auth" : ""}>
       <ScrollToTop />
       <Notification />
       {showMainNavbar && <LandingPageNavbar />}
@@ -129,31 +168,88 @@ const AppContent = () => {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<LandingPage />} />
-          <Route path="/shop" element={<ComingSoonPage />} />
+          <Route path="/shop" element={<ShopHomePage />} />
+          <Route path="/shop/products" element={<CatalogListingPage />} />
+          <Route path="/shop/category/:slug" element={<CategoryPage />} />
+          <Route path="/shop/product/:slug" element={<CatalogProductPage />} />
+          <Route path="/shop/search" element={<SearchPage />} />
+          <Route path="/shop/gift-cards" element={<Navigate to="/gift-cards" replace />} />
+          <Route path="/gift-cards" element={<GiftCardsPage />} />
+          <Route path="/gift-cards/redeem" element={<GiftCardRedeemPage />} />
+          <Route path="/gift-cards/claim/:id" element={<UserProtectedRoute><GiftCardClaimPage /></UserProtectedRoute>} />
+          <Route path="/gift-cards/received/:giftCardId" element={<UserProtectedRoute><GiftCardReceivedPage /></UserProtectedRoute>} />
+          <Route path="/notifications" element={<UserProtectedRoute><NotificationsPage /></UserProtectedRoute>} />
+          <Route
+            path="/shop/checkout"
+            element={
+              <UserProtectedRoute>
+                <MarketplaceCheckoutPage />
+              </UserProtectedRoute>
+            }
+          />
           {/* keeping both old and new product details paths */}
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/product-page/:id" element={<ProductDetailsPage />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<ShoppingCartPage />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/game-modes" element={<ComingSoonPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/support" element={<SupportCenter />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
           <Route path="/returnpolicy" element={<ReturnPolicy />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/profile"
+            element={
+              <UserProtectedRoute>
+                <Profile />
+              </UserProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile/wallet"
+            element={
+              <UserProtectedRoute>
+                <WalletPage />
+              </UserProtectedRoute>
+            }
+          />
 
           {/* Orders routes */}
-          <Route path="/orders" element={<OrdersPage />} />
-          <Route path="/orders/:orderId" element={<OrderDetailsPage />} />
+          <Route
+            path="/orders"
+            element={
+              <UserProtectedRoute>
+                <OrdersPage />
+              </UserProtectedRoute>
+            }
+          />
+          <Route
+            path="/orders/:orderId"
+            element={
+              <UserProtectedRoute>
+                <OrderDetailsPage />
+              </UserProtectedRoute>
+            }
+          />
           <Route path="/orders-old" element={<OrdersProfile />} />
 
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/settings-old" element={<SettingsProfile />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route
+            path="/checkout"
+            element={
+              <UserProtectedRoute>
+                <CheckoutPage />
+              </UserProtectedRoute>
+            }
+          />
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
-          <Route path="/products" element={<ProductListPage />} />
+          <Route path="/products" element={<Navigate to="/shop/products" replace />} />
           <Route path="/auth/callback" element={<AuthCallback />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUpDetails />} />
+          <Route path="/sign-up/email" element={<SignUp />} />
+          <Route path="/auth/verify-otp" element={<VerifyOtp />} />
           <Route path="/ir-icon" element={<ComingSoonPage />} />
           <Route path="/socials" element={<ComingSoonPage />} />
           <Route path="/avatar-store" element={<ComingSoonPage />} />
@@ -169,22 +265,30 @@ const AppContent = () => {
           <Route
             path="/admin/ecomDashboard/*"
             element={
-              <ProtectedRoute>
+              <EcomAdminProtectedRoute>
                 <EcomAdminDashboard />
-              </ProtectedRoute>
+              </EcomAdminProtectedRoute>
             }
           >
             <Route index element={<EcomDashboardView />} />
             <Route path="products" element={<EcomProductsView />} />
-            <Route path="products/add" element={<EcomProductForm />} />
+            <Route path="products/add" element={<AdminAddProductPage />} />
             <Route path="products/edit/:id" element={<EditProductForm />} />
             <Route path="products/:id" element={<ProductDetailPage />} />
+            <Route path="categories" element={<AdminCategoriesView />} />
             <Route path="analytics" element={<Analytics />} />
             <Route path="offers" element={<Offers />} />
-            <Route path="inventory" element={<Inventory />} />
-            <Route path="orders" element={<Orders />} />
+            <Route path="inventory" element={<AdminInventoryView />} />
+            <Route path="orders" element={<AdminOrdersView />} />
+            <Route path="notifications" element={<AdminNotificationsView />} />
+            <Route path="support" element={<AdminSupportView />} />
+            <Route path="gift-cards" element={<AdminGiftCardsView />} />
+            <Route path="wishlists" element={<AdminWishlistCollectionsView />} />
+            <Route path="wishlist-items" element={<AdminWishlistItemsView />} />
+            <Route path="carts" element={<AdminCartsView />} />
+            <Route path="marketplace" element={<AdminMarketplaceView />} />
             <Route path="sales" element={<Sales />} />
-            <Route path="customers" element={<Customers />} />
+            <Route path="customers" element={<AdminCustomersView />} />
             <Route path="newsletter" element={<Newsletter />} />
             <Route path="settings" element={<AdminSettings />} />
           </Route>
@@ -232,35 +336,61 @@ const AppContent = () => {
         </Routes>
       </main>
 
-      {showFooter && <Footer />}
+      {showFooter && (
+        <Footer className={isMarketplacePath ? "footer--marketplace" : ""} />
+      )}
     </Background>
   );
 };
 
-const App = () => {
-  const paypalOptions = {
-    "client-id": "YOUR_SANDBOX_CLIENT_ID_PLACEHOLDER",
-    currency: "INR",
-    intent: "capture",
-  };
+const paypalClientId = import.meta.env.VITE_PAYPAL_CLIENT_ID ?? "";
+const paypalEnabled =
+  Boolean(paypalClientId) && !/placeholder/i.test(paypalClientId);
+
+const AppProviders = ({ children }) => {
+  if (!paypalEnabled) {
+    return children;
+  }
 
   return (
-    <PayPalScriptProvider options={paypalOptions}>
-      <CartProvider>
-        <WishlistProvider>
-          <AuthProvider>
-            <DataProvider>
-              <ArticleProvider>
-                <Router>
-                  <AppContent />
-                </Router>
-              </ArticleProvider>
-            </DataProvider>
-          </AuthProvider>
-        </WishlistProvider>
-      </CartProvider>
+    <PayPalScriptProvider
+      options={{
+        "client-id": paypalClientId,
+        currency: "INR",
+        intent: "capture",
+      }}
+    >
+      {children}
     </PayPalScriptProvider>
   );
 };
+
+const App = () => (
+  <AppProviders>
+    <CartProvider>
+      <WishlistProvider>
+        <AuthProvider>
+          <DataProvider>
+            <ArticleProvider>
+              <Router>
+                <UserAuthProvider>
+                  <NotificationProvider>
+                    <AuthModalProvider>
+                      <ShoppingProvider>
+                        <ToastProvider>
+                          <AppContent />
+                        </ToastProvider>
+                      </ShoppingProvider>
+                    </AuthModalProvider>
+                  </NotificationProvider>
+                </UserAuthProvider>
+              </Router>
+            </ArticleProvider>
+          </DataProvider>
+        </AuthProvider>
+      </WishlistProvider>
+    </CartProvider>
+  </AppProviders>
+);
 
 export default App;

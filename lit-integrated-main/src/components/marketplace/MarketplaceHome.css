@@ -1,0 +1,381 @@
+/* ─── LIT Marketplace Home — Template layout (black + white) ─── */
+
+.mp-template-home {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.75rem, 3.5vw, 2.5rem);
+  padding-bottom: 0.5rem;
+  background: transparent;
+}
+
+/* Let global body-bg.png show through homepage sections */
+.mp-page--home .mp-product-carousel__shell,
+.mp-page--home .mp-template-brands__shell {
+  background:
+    radial-gradient(circle at top, rgba(124, 58, 237, 0.1), transparent 42%),
+    radial-gradient(ellipse 55% 80% at 8% 40%, rgba(124, 58, 237, 0.06), transparent 55%),
+    radial-gradient(ellipse 45% 70% at 92% 60%, rgba(168, 85, 247, 0.05), transparent 50%),
+    transparent;
+}
+
+.mp-page--home .mp-product-carousel--skeleton .mp-product-carousel__shell {
+  background: transparent;
+}
+
+/* Shared section title */
+.mp-template-section-title {
+  margin: 0 0 clamp(1.25rem, 2.5vw, 1.75rem);
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+/* Category hero — 3 cards */
+.mp-template-categories {
+  padding-top: 0.5rem;
+}
+
+.mp-template-category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.85rem, 1.5vw, 1.25rem);
+}
+
+.mp-template-category-card {
+  position: relative;
+  height: clamp(260px, 32vw, 360px);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.mp-template-category-card__media {
+  position: absolute;
+  inset: 0;
+}
+
+.mp-template-category-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(100%);
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.mp-template-category-card:hover .mp-template-category-card__image {
+  transform: scale(1.04);
+  filter: grayscale(80%);
+}
+
+.mp-template-category-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 15%, rgba(0, 0, 0, 0.72) 100%);
+}
+
+.mp-template-category-card__content {
+  position: absolute;
+  left: 1.15rem;
+  right: 1.15rem;
+  bottom: 1.15rem;
+  z-index: 2;
+}
+
+.mp-template-category-card__content h2 {
+  margin: 0 0 0.55rem;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #fff;
+}
+
+.mp-template-category-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.85rem;
+}
+
+.mp-template-category-card__links a {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.78rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.mp-template-category-card__links a:hover {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mp-template-view-all {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.mp-template-view-all a {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.88rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.mp-template-view-all a:hover {
+  color: #fff;
+}
+
+/* White promo / delivery panels */
+.mp-template-sale,
+.mp-template-delivery {
+  width: calc(100% + 2 * var(--mp-page-gutter, 32px));
+  margin-left: calc(-1 * var(--mp-page-gutter, 32px));
+  margin-right: calc(-1 * var(--mp-page-gutter, 32px));
+}
+
+.mp-template-sale__panel,
+.mp-template-delivery__panel {
+  background: #fff;
+  padding: clamp(3rem, 6vw, 4.5rem) clamp(1.5rem, 4vw, 2rem) clamp(2rem, 4vw, 2.5rem);
+  text-align: center;
+}
+
+.mp-template-sale__title,
+.mp-template-delivery__title {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(1.35rem, 3.5vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.mp-template-sale__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.6rem;
+  border: 1px solid #111;
+  background: transparent;
+  color: #111;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.mp-template-sale__cta:hover {
+  background: #111;
+  color: #fff;
+}
+
+.mp-template-delivery__visual {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 1.75rem auto 1.25rem;
+}
+
+.mp-template-delivery__map {
+  width: 100%;
+  height: 100%;
+}
+
+.mp-template-delivery__pin {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  color: #111;
+}
+
+.mp-template-delivery__text {
+  margin: 0;
+  font-size: 0.92rem;
+  color: rgba(17, 17, 17, 0.72);
+}
+
+/* Carousel dots */
+.mp-template-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 1.5rem;
+}
+
+.mp-template-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(17, 17, 17, 0.35);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.mp-template-dot.is-active {
+  background: #111;
+  border-color: #111;
+}
+
+/* Brands — luxury dark glass cards */
+.mp-template-brands {
+  width: calc(100% + 2 * var(--mp-page-gutter, 32px));
+  margin-left: calc(-1 * var(--mp-page-gutter, 32px));
+  margin-right: calc(-1 * var(--mp-page-gutter, 32px));
+}
+
+.mp-template-brands__shell {
+  position: relative;
+  padding: clamp(2rem, 3.5vw, 2.75rem) var(--mp-page-gutter, 32px);
+  background:
+    radial-gradient(circle at top, rgba(124, 58, 237, 0.12), transparent 40%),
+    radial-gradient(ellipse 50% 70% at 90% 50%, rgba(168, 85, 247, 0.06), transparent 50%),
+    #050505;
+  border-block: 1px solid rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+.mp-template-brands__glow {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(240px, 40vw, 480px);
+  height: clamp(240px, 40vw, 480px);
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.12);
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+/* Shared luxury section header (brands + future sections) */
+.mp-luxury-section-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.mp-luxury-section-title {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-align: center;
+}
+
+.mp-luxury-section-title__line {
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, #7c3aed, #a855f7);
+  border-radius: 999px;
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.25);
+}
+
+.mp-template-brands__track {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: clamp(1rem, 1.5vw, 1.25rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0.75rem 0 0.5rem;
+  scrollbar-width: none;
+}
+
+.mp-template-brands__track::-webkit-scrollbar {
+  display: none;
+}
+
+.mp-template-brand-card {
+  flex: 0 0 clamp(150px, 17vw, 210px);
+  height: clamp(108px, 13vw, 138px);
+  scroll-snap-align: start;
+  background: rgba(21, 21, 21, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease;
+}
+
+.mp-template-brand-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(139, 92, 246, 0.45);
+  background: rgba(23, 19, 33, 0.92);
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.45),
+    0 0 36px rgba(124, 58, 237, 0.2);
+}
+
+.mp-template-brand-card img {
+  max-width: 62%;
+  max-height: 44px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.82;
+  transition: opacity 0.3s ease, transform 0.35s ease;
+}
+
+.mp-template-brand-card:hover img {
+  opacity: 1;
+  transform: scale(1.06);
+}
+
+.mp-template-brand-card__name {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #b8b8c5;
+  text-align: center;
+  padding: 0 0.85rem;
+  transition: color 0.3s ease;
+}
+
+.mp-template-brand-card:hover .mp-template-brand-card__name {
+  color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+  .mp-template-category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mp-template-category-card {
+    height: clamp(240px, 55vw, 320px);
+  }
+}
+
+@media (max-width: 768px) {
+  .mp-template-brand-card {
+    flex-basis: 42vw;
+  }
+}

@@ -1,5 +1,6 @@
-const BASE_URL =
-  "https://lit-backend-azajexa8e2a9g4az.canadacentral-01.azurewebsites.net/api";
+import { USER_API_BASE } from "../config/apiBase.js";
+
+const BASE_URL = USER_API_BASE;
 
 export const api = {
   subscribe: async (email) => {

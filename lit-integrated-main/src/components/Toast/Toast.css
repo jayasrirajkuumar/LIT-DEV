@@ -1,0 +1,14 @@
+.lit-toast {
+  position: fixed;
+  top: calc(var(--lit-nav-height) + var(--lit-space-4));
+  right: var(--lit-space-5);
+  z-index: 2500;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--lit-radius-pill);
+  background: rgba(14, 10, 22, 0.94);
+  border: 1px solid var(--lit-accent-border);
+  color: var(--lit-text);
+  font-family: var(--lit-font-display);
+  font-size: var(--lit-text-sm);
+  box-shadow: var(--lit-shadow-lg);
+}

@@ -30,11 +30,11 @@ const MailContentManager = () => {
     const fetchAll = async () => {
       try {
         const urls = {
-          "fast-fashion": "http://localhost:5000/api/fast-fashion",
-          "luxury-fashion": "http://localhost:5000/api/luxury-fashion",
+          "fast-fashion": "/api/fast-fashion",
+          "luxury-fashion": "/api/luxury-fashion",
           "sustainable-fashion":
-            "http://localhost:5000/api/sustainable-fashion",
-          "sneaker-world": "http://localhost:5000/api/sneaker-world",
+            "/api/sustainable-fashion",
+          "sneaker-world": "/api/sneaker-world",
         };
 
         const responses = await Promise.all(
@@ -205,7 +205,7 @@ const WebsiteArticleList = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/articles");
+        const response = await fetch("/api/articles");
         if (!response.ok) throw new Error("Failed to fetch articles");
         const data = await response.json();
         setArticles(data || []);
@@ -234,7 +234,7 @@ const WebsiteArticleList = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/articles/slug/${slug}`,
+        `/api/articles/slug/${slug}`,
         {
           method: "DELETE",
         },
