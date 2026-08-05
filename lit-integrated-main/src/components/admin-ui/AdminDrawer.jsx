@@ -26,15 +26,15 @@ export default function AdminDrawer({
   return (
     <>
       <div
-        className={`adm-drawer-overlay ${open ? "adm-drawer-overlay--open" : ""}`.trim()}
+        className={`adm-drawer-overlay fixed inset-0 z-[1500] bg-black/55 transition-opacity duration-200 ${open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`.trim()}
         onClick={onClose}
         aria-hidden={!open}
       />
       <aside
         className={[
-          "adm-drawer",
-          `adm-drawer--${width}`,
-          open ? "adm-drawer--open" : "",
+          "adm-drawer fixed inset-y-0 right-0 z-[1501] flex h-dvh w-full flex-col border-l border-[var(--adm-border-accent)] bg-[var(--adm-surface)] shadow-[var(--adm-shadow-lg)] transition-transform duration-300",
+          width === "lg" ? "max-w-[640px]" : "max-w-[480px]",
+          open ? "translate-x-0" : "translate-x-full",
           className,
         ]
           .filter(Boolean)
@@ -44,8 +44,8 @@ export default function AdminDrawer({
         aria-labelledby={title ? "adm-drawer-title" : undefined}
         aria-hidden={!open}
       >
-        <div className="adm-drawer__header">
-          <div>
+        <div className="adm-drawer__header flex shrink-0 justify-between gap-3 border-b border-[var(--adm-border)] px-6 py-4 max-sm:px-4">
+          <div className="min-w-0">
             {title && (
               <h2 id="adm-drawer-title" className="adm-drawer__title">
                 {title}
@@ -62,8 +62,8 @@ export default function AdminDrawer({
             ×
           </button>
         </div>
-        <div className="adm-drawer__body">{children}</div>
-        {footer && <div className="adm-drawer__footer">{footer}</div>}
+        <div className="adm-drawer__body min-h-0 flex-1 overflow-y-auto overscroll-contain p-6 max-sm:p-4">{children}</div>
+        {footer && <div className="adm-drawer__footer mt-auto flex shrink-0 flex-wrap gap-3 border-t border-[var(--adm-border)] px-6 py-4 max-sm:px-4">{footer}</div>}
       </aside>
     </>
   );

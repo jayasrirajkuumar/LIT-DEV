@@ -4,7 +4,6 @@ import {
   addToWishlist,
   removeFromWishlist,
 } from "../../../redux/reducers/cartReducer"; // Adjust path if needed
-import "./WishlistButton.css";
 
 const WishlistButton = ({ product }) => {
   const dispatch = useDispatch();
@@ -22,14 +21,15 @@ const WishlistButton = ({ product }) => {
 
   return (
     <button
-      className={`wishlist-btn ${isWishlisted ? "active" : ""}`}
+      className={`inline-flex min-h-11 max-w-full items-center justify-center gap-2 rounded-lg border border-transparent bg-transparent px-4 py-3 text-base font-semibold text-red-600 transition hover:border-red-200 hover:bg-red-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 ${isWishlisted ? "bg-red-50 text-red-600" : ""}`}
       onClick={handleWishlistClick}
       aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
+        width="20"
+        height="20"
+        className="shrink-0 transition-transform"
         viewBox="0 0 24 24"
         fill={isWishlisted ? "currentColor" : "none"}
         stroke="currentColor"

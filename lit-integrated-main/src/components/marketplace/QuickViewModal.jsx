@@ -28,7 +28,7 @@ const QuickViewModal = ({ product, open, onClose, onAddToCart, onToggleWishlist,
     <AnimatePresence>
       {open && (
         <motion.div
-          className="mp-quickview-backdrop"
+          className="mp-quickview-backdrop fixed inset-0 z-[2000] flex items-center justify-center overflow-y-auto bg-black/70 p-4 backdrop-blur-lg"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -36,7 +36,7 @@ const QuickViewModal = ({ product, open, onClose, onAddToCart, onToggleWishlist,
           role="presentation"
         >
           <motion.div
-            className="mp-quickview-modal"
+            className="mp-quickview-modal relative my-auto max-h-[90dvh] w-full max-w-[920px] overflow-y-auto overscroll-contain rounded-[var(--mp-radius-xl)] border border-[var(--mp-border)] bg-[var(--mp-glass)] p-6 shadow-[var(--mp-shadow-soft)] max-sm:p-4"
             initial={{ opacity: 0, scale: 0.96, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 24 }}
@@ -46,16 +46,16 @@ const QuickViewModal = ({ product, open, onClose, onAddToCart, onToggleWishlist,
             aria-modal="true"
             aria-label={`Quick view ${product.name}`}
           >
-            <button type="button" className="mp-quickview-close" onClick={onClose} aria-label="Close">
+            <button type="button" className="mp-quickview-close sticky top-0 z-10 ml-auto grid size-9 place-items-center rounded-full border border-[var(--mp-border)] bg-neutral-900/90 text-[1.4rem] leading-none text-white backdrop-blur" onClick={onClose} aria-label="Close">
               ×
             </button>
 
-            <div className="mp-quickview-grid">
-              <div className="mp-quickview-image">
+            <div className="mp-quickview-grid grid min-w-0 grid-cols-1 gap-6 md:grid-cols-2">
+              <div className="mp-quickview-image aspect-square min-w-0 overflow-hidden rounded-[var(--mp-radius-lg)] bg-white">
                 <LazyImage src={image} alt={product.name} />
               </div>
 
-              <div className="mp-quickview-info">
+              <div className="mp-quickview-info min-w-0 break-words">
                 <p className="mp-detail-brand">{product.brand}</p>
                 <h2>{product.name}</h2>
                 <p className="mp-detail-short">{product.shortDescription}</p>
@@ -77,7 +77,7 @@ const QuickViewModal = ({ product, open, onClose, onAddToCart, onToggleWishlist,
                   {inStock ? "In stock" : "Out of stock"}
                 </p>
 
-                <div className="mp-detail-actions">
+                <div className="mp-detail-actions flex flex-wrap gap-3 [&>*]:max-sm:w-full">
                   <Link to={`/shop/product/${product.slug}`} className="mp-buy-now" onClick={onClose}>
                     View Details
                   </Link>

@@ -15,17 +15,24 @@
 
 .newsletter-container {
   width: 100%;
-  padding: 4rem 2rem;
+  max-width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 4rem clamp(1rem, 10vw, 12rem);
   color: #ffffff;
-  margin-top: 2rem;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .newsletter-header {
   text-align: left;
   margin-bottom: 3rem;
-  max-width: 1200px;
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0;
 }
 
 .newsletter-header h2 {
@@ -132,7 +139,7 @@
   position: relative;
   width: 100%;
   margin-top: 3rem;
-  max-width: 1200px;
+  max-width: none;
   margin: 3rem auto 0;
   padding: 0 3rem;
 }
@@ -473,7 +480,8 @@
 
 @media (max-width: 768px) {
   .newsletter-container {
-    padding: 3rem 1rem;
+    min-height: 100dvh;
+    padding: 4rem clamp(1rem, 6vw, 3rem);
   }
 
   .newsletter-header {

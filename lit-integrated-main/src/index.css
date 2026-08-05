@@ -1,14 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Krona+One&family=Poppins:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
 @import "./styles/design-system.css";
-@import "./components/layout/BackNavigation.css";
-@import "./components/layout/PageShell.css";
 @import "./styles/lit-global-overrides.css";
 
 :root {
   font-family: var(--lit-font-body);
   line-height: var(--lit-leading-normal);
   font-weight: 400;
-  color-scheme: dark;
+  color-scheme: light;
   color: var(--lit-text);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,7 +16,7 @@
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
   scroll-behavior: smooth;
   min-height: 100%;
   background-color: var(--lit-bg, #121212);
@@ -32,11 +31,15 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   background: transparent;
 }
 
 #root {
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -51,7 +54,7 @@ body {
 
 html,
 body {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 main {
@@ -61,16 +64,29 @@ main {
 
 a {
   font-weight: 500;
-  color: #f3f3f7;
+  color: var(--lit-accent);
   text-decoration: inherit;
 }
 a:hover {
-  color: #f0f0f5;
+  color: var(--lit-accent-hover);
 }
 
 img {
   max-width: 100%;
   height: auto;
+}
+
+input,
+select,
+textarea,
+button {
+  max-width: 100%;
+}
+
+svg,
+video,
+canvas {
+  max-width: 100%;
 }
 
 h1 {

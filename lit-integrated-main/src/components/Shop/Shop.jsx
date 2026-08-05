@@ -15,20 +15,20 @@ const Shop = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="shop-container">
-      <div className="shop-header">
-        <h1>Shop Luxury & Sustainable Fashion</h1>
+    <section className="shop-container flex min-h-dvh w-full max-w-full flex-col justify-center px-[clamp(1rem,10vw,12rem)] py-16 max-sm:px-4" aria-labelledby="landing-shop-title">
+      <div className="shop-header w-full max-w-none px-0">
+        <h1 id="landing-shop-title">Shop Luxury & Sustainable Fashion</h1>
         <p>
           Explore New Sustainable Products, Brands, and Enjoy Exclusive
           Discounts on Luxury Goods, and Much More only on Our Platform.
         </p>
       </div>
 
-      <div className="shop-cards">
+      <div className="shop-cards w-full max-w-none px-0">
         <div className="shop-card">
           <div className="card-text">
             <h2>SUSTAINABLE</h2>
-            <div className="card-description">
+            <div className="card-description !mb-0 !flex-none">
               <div
                 className={showSustainableText ? "full-text" : "truncated-text"}
               >
@@ -37,14 +37,14 @@ const Shop = () => {
                   : "Our sustainable e-commerce platform offers a curated selection of eco-friendly products from fashion to..."}
               </div>
               <button
-                className="read-more-btn"
+                className="read-more-btn box-border !h-11 !min-h-11 !w-full !max-w-48 min-w-0 shrink whitespace-nowrap !px-3 sm:!px-5"
                 onClick={() => setShowSustainableText(!showSustainableText)}
               >
                 {showSustainableText ? "Read Less ↑" : "Read More ↓"}
               </button>
             </div>
             <button
-              className="coming-soon-btn"
+              className="coming-soon-btn !mt-2 box-border !h-11 !min-h-11 !w-full !max-w-48 min-w-0 shrink whitespace-nowrap !px-3 sm:!px-5"
               onClick={() => navigate("/shop")}
             >
               Shop Now
@@ -63,14 +63,14 @@ const Shop = () => {
         <div className="shop-card">
           <div className="card-text">
             <h2>LUXURY</h2>
-            <div className="card-description">
+            <div className="card-description !mb-0 !flex-none">
               <div className={showLuxuryText ? "full-text" : "truncated-text"}>
                 {showLuxuryText
                   ? luxuryText
                   : "Our luxury e-commerce platform offers a curated selection of the finest luxury products..."}
               </div>
               <button
-                className="read-more-btn"
+                className="read-more-btn box-border !h-11 !min-h-11 !w-full !max-w-48 min-w-0 shrink whitespace-nowrap !px-3 sm:!px-5"
                 onClick={() => setShowLuxuryText(!showLuxuryText)}
               >
                 {showLuxuryText ? "Read Less ↑" : "Read More ↓"}
@@ -78,7 +78,7 @@ const Shop = () => {
             </div>
 
             <button
-              className="coming-soon-btn"
+              className="coming-soon-btn !mt-2 box-border !h-11 !min-h-11 !w-full !max-w-48 min-w-0 shrink whitespace-nowrap !px-3 sm:!px-5"
               onClick={() => navigate("/shop")}
             >
               Shop Now

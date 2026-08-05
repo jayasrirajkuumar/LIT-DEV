@@ -10,9 +10,9 @@ const RegisterInterest = () => {
   };
 
   return (
-    <section className="register-interest-container">
-      <div className="register-interest-card">
-        <h3 className="register-interest-small-heading">
+    <section className="register-interest-container flex min-h-dvh w-full max-w-full items-center justify-center px-[clamp(1rem,10vw,12rem)] py-16 max-sm:px-4" aria-labelledby="register-interest-title">
+      <div className="register-interest-card w-full max-w-[900px]">
+        <h3 id="register-interest-title" className="register-interest-small-heading">
           Register your interest for LIT!
         </h3>
         <h2 className="register-interest-main-heading">

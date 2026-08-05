@@ -7,11 +7,11 @@ import irIcon from "../../assets/ir-icon.svg";
 const UnfoldingSoonSection = () => {
   return (
     <section
-      className="unfolding-soon-container"
+      className="unfolding-soon-container flex min-h-dvh w-full max-w-full flex-col justify-center px-[clamp(1rem,10vw,12rem)] py-16 max-sm:px-4"
       aria-label="Upcoming Features"
     >
       {/* Changed h2 to h1 to match V2 styles */}
-      <h1>Unfolding Other Verticals Soon</h1>
+      <h1 id="upcoming-features-title">Unfolding Other Verticals Soon</h1>
 
       <div className="icons-container">
         <div className="section-wrapper">

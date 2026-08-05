@@ -79,27 +79,27 @@ const EcomSidebar = () => {
   }, [location.pathname]);
 
   return (
-    <aside className="adm-sidebar ecom-sidebar" aria-label="Admin navigation">
-      <div className="adm-sidebar__brand">
-        <div className="adm-sidebar__logo">
-          <img src={LIT_LOGO} alt="LIT" className="adm-sidebar__logo-img" />
+    <aside className="adm-sidebar ecom-sidebar fixed inset-y-0 left-0 z-[1000] flex h-dvh w-[var(--sidebar-width,var(--adm-sidebar-width))] max-w-[calc(100vw-2rem)] flex-col overflow-hidden border-r border-[var(--adm-border-accent)] bg-[var(--adm-glass-strong)] p-4 shadow-[var(--adm-shadow-md)] backdrop-blur-xl transition-[width,transform] duration-300 max-md:w-[var(--adm-sidebar-expanded)] max-md:-translate-x-full [.adm-layout--mobile-open_&]:max-md:translate-x-0" aria-label="Admin navigation">
+      <div className="adm-sidebar__brand mb-3 flex min-h-14 shrink-0 items-center gap-3 p-3">
+        <div className="adm-sidebar__logo grid size-11 shrink-0 place-items-center overflow-hidden rounded-[var(--adm-radius-md)] border border-purple-600/20 bg-gradient-to-br from-purple-600/20 to-[#d4af37]/10">
+          <img src={LIT_LOGO} alt="LIT" className="adm-sidebar__logo-img block size-[30px] object-contain" />
         </div>
         {!sidebarCollapsed && (
-          <div className="adm-sidebar__brand-text">
+          <div className="adm-sidebar__brand-text min-w-0 overflow-hidden whitespace-nowrap">
             <p className="adm-sidebar__brand-title">LIT Admin</p>
             <p className="adm-sidebar__brand-sub">Marketplace</p>
           </div>
         )}
       </div>
 
-      <nav className="adm-sidebar__nav">
+      <nav className="adm-sidebar__nav flex min-h-0 flex-1 flex-col gap-1.5 overflow-x-hidden overflow-y-auto pr-1">
         {NAV_ITEMS.map(({ to, end, icon: Icon, label, showBadge, showSupportBadge }) => (
           <NavLink
             key={label}
             to={to}
             end={end}
             className={({ isActive }) =>
-              `adm-sidebar__link${isActive ? " active" : ""}`
+              `adm-sidebar__link relative flex min-w-0 items-center gap-3 rounded-[var(--adm-radius-md)] border border-transparent px-3.5 py-[11px] text-[0.92rem] font-medium text-[var(--adm-text-muted)] no-underline transition hover:translate-x-0.5 hover:bg-purple-600/10 hover:text-[var(--adm-text)] [&>svg]:size-[18px] [&>svg]:shrink-0 [&>span]:min-w-0 [&>span]:truncate ${isActive ? "active border-[var(--adm-border-accent)] bg-purple-600/20 text-white shadow-[0_0_20px_rgba(147,51,234,0.2)]" : ""}`
             }
             title={sidebarCollapsed ? label : undefined}
           >
@@ -115,20 +115,20 @@ const EcomSidebar = () => {
         ))}
       </nav>
 
-      <div className="adm-sidebar__footer">
-        <div className="adm-sidebar__profile">
-          <div className="adm-sidebar__avatar" aria-hidden="true">
+      <div className="adm-sidebar__footer mt-auto flex shrink-0 flex-col gap-3 border-t border-[var(--adm-border)] pt-4">
+        <div className="adm-sidebar__profile flex min-w-0 items-center gap-3 rounded-[var(--adm-radius-md)] border border-[var(--adm-border)] bg-white/[0.03] p-3">
+          <div className="adm-sidebar__avatar grid size-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#9333ea] to-[#d4af37] text-[0.85rem] font-semibold text-white" aria-hidden="true">
             {getInitials(displayName, displayEmail)}
           </div>
           {!sidebarCollapsed && (
-            <div className="adm-sidebar__profile-text">
+            <div className="adm-sidebar__profile-text min-w-0 flex-1 overflow-hidden">
               <p className="adm-sidebar__profile-name">{displayName || "Admin"}</p>
               <p className="adm-sidebar__profile-email">{displayEmail}</p>
             </div>
           )}
         </div>
 
-        <div className="adm-sidebar__footer-actions">
+        <div className="adm-sidebar__footer-actions flex items-center justify-between gap-2">
           <AdminButton
             variant="ghost"
             size="sm"
@@ -140,7 +140,7 @@ const EcomSidebar = () => {
           </AdminButton>
           <button
             type="button"
-            className="adm-sidebar__collapse"
+            className="adm-sidebar__collapse grid size-9 shrink-0 place-items-center rounded-[var(--adm-radius-md)] border border-[var(--adm-border)] bg-white/[0.04] text-[var(--adm-text-muted)] transition hover:border-[var(--adm-border-accent)] hover:bg-purple-600/10 hover:text-[var(--adm-text)] max-md:hidden"
             onClick={toggleSidebar}
             aria-label={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
           >

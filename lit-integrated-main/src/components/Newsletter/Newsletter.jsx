@@ -58,9 +58,9 @@ const Newsletter = ({ onSubscribeClick }) => {
   };
 
   return (
-    <div className="newsletter-container">
-      <div className="newsletter-header">
-        <h2>Newsletter</h2>
+    <section className="newsletter-container flex min-h-dvh w-full max-w-full flex-col justify-center px-[clamp(1rem,10vw,12rem)] py-16 max-sm:px-4" aria-labelledby="landing-newsletter-title">
+      <div className="newsletter-header w-full max-w-none px-0">
+        <h2 id="landing-newsletter-title">Newsletter</h2>
         <p>
           Subscribe now to receive weekly short updates on fast fashion, luxury
           fashion, sustainable fashion, and the sneaker market to stay ahead of
@@ -76,7 +76,7 @@ const Newsletter = ({ onSubscribeClick }) => {
         </div>
       </div>
 
-      <div className="newsletter-slider">
+      <div className="newsletter-slider w-full max-w-none px-0 sm:px-12">
         <button className="scroll-btn left" onClick={scrollLeft}>
           ‹
         </button>
@@ -100,7 +100,7 @@ const Newsletter = ({ onSubscribeClick }) => {
           ›
         </button>
       </div>
-    </div>
+    </section>
   );
 };
 

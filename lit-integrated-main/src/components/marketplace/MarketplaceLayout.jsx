@@ -18,7 +18,7 @@ const MarketplaceLayout = ({
   showMarketplaceNav = true,
   isHome = false,
 }) => (
-  <div className={`mp-page mp-page--luxury${isHome ? " mp-page--home" : ""}`}>
+  <div className={`mp-page mp-page--luxury min-h-screen w-full min-w-0 max-w-full overflow-x-clip${isHome ? " mp-page--home" : ""}`}>
     {showMarketplaceNav && (
       <header className="mp-marketplace-header">
         <MarketplaceAnnouncementBar />
@@ -26,7 +26,7 @@ const MarketplaceLayout = ({
       </header>
     )}
     <motion.main
-      className="mp-main"
+      className="mp-main mx-auto w-full min-w-0 max-w-full"
       variants={pageVariants}
       initial="hidden"
       animate="visible"

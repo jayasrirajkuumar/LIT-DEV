@@ -18,19 +18,31 @@ const GiftCardPaymentModal = ({
     if (open) setMethod(walletBalance >= total ? "WALLET" : "RAZORPAY");
   }, [open, walletBalance, total]);
 
+  useEffect(() => {
+    if (!open) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event) => event.key === "Escape" && onClose?.();
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open, onClose]);
+
   if (!open) return null;
 
   return (
     <AnimatePresence>
       <motion.div
-        className="gc-modal-overlay"
+        className="gc-modal-overlay fixed inset-0 z-[2000] flex items-center justify-center overflow-y-auto bg-black/75 p-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
       >
         <motion.div
-          className="gc-modal gc-card"
+          className="gc-modal gc-card my-auto max-h-[90dvh] w-full max-w-[420px] overflow-y-auto overscroll-contain"
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}
@@ -65,7 +77,7 @@ const GiftCardPaymentModal = ({
             </p>
           )}
 
-          <div className="gc-modal-actions">
+          <div className="gc-modal-actions mt-6 flex flex-wrap justify-end gap-3 [&>button]:max-sm:flex-1">
             <button type="button" className="lit-btn lit-btn--outline" onClick={onClose} disabled={loading}>
               Cancel
             </button>

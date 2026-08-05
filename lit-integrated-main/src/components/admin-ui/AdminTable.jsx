@@ -20,7 +20,7 @@ export default function AdminTable({
 }) {
   if (loading) {
     return (
-      <div className={`adm-table-wrap ${className}`.trim()}>
+      <div className={`adm-table-wrap w-full min-w-0 max-w-full overflow-hidden ${className}`.trim()}>
         {toolbar}
         <AdminSkeletonTable columns={columns.length || 5} rows={6} />
       </div>
@@ -28,10 +28,10 @@ export default function AdminTable({
   }
 
   return (
-    <div className={`adm-table-wrap ${className}`.trim()}>
+    <div className={`adm-table-wrap w-full min-w-0 max-w-full overflow-hidden ${className}`.trim()}>
       {toolbar}
-      <div className="adm-table-scroll">
-        <table className={`adm-table ${stickyHeader ? "adm-table--sticky" : ""}`.trim()}>
+      <div className="adm-table-scroll w-full max-w-full overflow-x-auto overscroll-x-contain">
+        <table className={`adm-table min-w-full w-max border-collapse text-sm ${stickyHeader ? "adm-table--sticky [&_thead_th]:sticky [&_thead_th]:top-0 [&_thead_th]:z-[2]" : ""}`.trim()}>
           <thead>
             <tr>
               {columns.map((column) => (

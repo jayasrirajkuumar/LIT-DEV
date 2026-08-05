@@ -61,10 +61,10 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="testimonials-container">
-      <h1>What Our Users Say</h1>
+    <section className="testimonials-container flex min-h-dvh w-full max-w-full flex-col justify-center px-[clamp(1rem,10vw,12rem)] py-16 max-sm:px-4" aria-labelledby="testimonials-title">
+      <h1 id="testimonials-title" className="!mx-0 !w-full !max-w-none !px-0">What Our Users Say</h1>
 
-      <div className="testimonials-slider-container">
+      <div className="testimonials-slider-container w-full max-w-none">
         <button
           className="testimonial-nav-btn left"
           onClick={() => scroll("left")}

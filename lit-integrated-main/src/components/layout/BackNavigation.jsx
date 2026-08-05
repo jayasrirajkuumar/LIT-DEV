@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./BackNavigation.css";
 
 const BackNavigation = ({ label = "Back", fallbackTo = "/shop" }) => {
   const navigate = useNavigate();
@@ -15,7 +14,7 @@ const BackNavigation = ({ label = "Back", fallbackTo = "/shop" }) => {
   };
 
   return (
-    <button type="button" className="lit-back-nav" onClick={handleBack} aria-label={label}>
+    <button type="button" className="mb-4 inline-flex min-h-10 max-w-full items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-600 shadow-sm transition hover:-translate-x-0.5 hover:border-blue-300 hover:bg-blue-50 hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" onClick={handleBack} aria-label={label}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="18"
@@ -31,7 +30,7 @@ const BackNavigation = ({ label = "Back", fallbackTo = "/shop" }) => {
         <path d="M19 12H5" />
         <path d="m12 19-7-7 7-7" />
       </svg>
-      <span>{label}</span>
+      <span className="truncate">{label}</span>
     </button>
   );
 };

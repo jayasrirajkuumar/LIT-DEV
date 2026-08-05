@@ -23,6 +23,7 @@ export default function AdminButton({
       type={type}
       className={[
         "adm-btn",
+        "min-h-10 max-w-full shrink-0 select-none gap-2 whitespace-nowrap rounded-lg px-4 text-sm font-semibold transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:pointer-events-none disabled:opacity-50 max-sm:min-h-11",
         `adm-btn--${safeVariant}`,
         `adm-btn--${safeSize}`,
         iconOnly ? "adm-btn--icon" : "",
@@ -36,8 +37,8 @@ export default function AdminButton({
       {...props}
     >
       {loading && <span className="adm-btn__spinner" aria-hidden="true" />}
-      {icon && <span className="adm-btn__icon">{icon}</span>}
-      {!iconOnly && <span className="adm-btn__label">{children}</span>}
+      {icon && <span className="adm-btn__icon inline-flex shrink-0 items-center justify-center [&>svg]:size-[18px]">{icon}</span>}
+      {!iconOnly && <span className="adm-btn__label truncate">{children}</span>}
     </button>
   );
 }

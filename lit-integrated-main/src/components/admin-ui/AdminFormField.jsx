@@ -10,9 +10,9 @@ export function AdminFormField({
   htmlFor,
 }) {
   return (
-    <label className={`adm-field ${error ? "adm-field--error" : ""} ${className}`.trim()} htmlFor={htmlFor}>
+    <label className={`adm-field flex min-w-0 max-w-full flex-col gap-1.5 ${error ? "adm-field--error" : ""} ${className}`.trim()} htmlFor={htmlFor}>
       {label && (
-        <span className="adm-field__label">
+        <span className="adm-field__label text-[13px] font-semibold text-[var(--adm-text)] sm:text-sm">
           {label}
           {required && <span className="adm-field__required" aria-hidden="true">*</span>}
         </span>
@@ -25,19 +25,19 @@ export function AdminFormField({
 }
 
 export function AdminInput({ className = "", ...props }) {
-  return <input className={`adm-input ${className}`.trim()} {...props} />;
+  return <input className={`adm-input min-h-11 w-full min-w-0 rounded-lg border border-[var(--adm-border)] bg-white px-3.5 text-sm text-[var(--adm-text)] outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 ${className}`.trim()} {...props} />;
 }
 
 export function AdminSelect({ className = "", children, ...props }) {
   return (
-    <select className={`adm-select ${className}`.trim()} {...props}>
+    <select className={`adm-select min-h-11 w-full min-w-0 rounded-lg border border-[var(--adm-border)] bg-white px-3.5 text-sm text-[var(--adm-text)] outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 ${className}`.trim()} {...props}>
       {children}
     </select>
   );
 }
 
 export function AdminTextarea({ className = "", ...props }) {
-  return <textarea className={`adm-textarea ${className}`.trim()} {...props} />;
+  return <textarea className={`adm-textarea min-h-28 w-full min-w-0 resize-y rounded-lg border border-[var(--adm-border)] bg-white px-3.5 py-3 text-sm text-[var(--adm-text)] outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 ${className}`.trim()} {...props} />;
 }
 
 export function AdminSwitch({ checked, onChange, label, id, className = "" }) {

@@ -9,7 +9,7 @@ const JoinCommunity = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="join-community">
+    <section className="join-community min-h-dvh w-full max-w-full px-[clamp(1rem,10vw,12rem)]">
       <div className="video-container">
         <video autoPlay muted loop playsInline className="background-video">
           <source src={joinCommunityBg} type="video/mp4" />
@@ -18,8 +18,8 @@ const JoinCommunity = () => {
         <div className="overlay"></div>
       </div>
 
-      <div className="content">
-        <h1>Join our Community</h1>
+      <div className="content !ml-0 !max-w-[600px] !px-0">
+        <h1 id="join-community-title">Join our Community</h1>
         <p>
           Join our exclusive community! Be the first to know about the latest
           releases, market trends, exciting launches, and special offers. Stay

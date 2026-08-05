@@ -5,48 +5,48 @@
 
 :root {
   /* ─── Color palette (LIT Official) ─── */
-  --lit-bg: #121212;
-  --lit-bg-secondary: #1a1a1f;
-  --lit-bg-elevated: rgba(255, 255, 255, 0.04);
-  --lit-surface: #202026;
-  --lit-surface-soft: #1a1a1f;
-  --lit-glass: rgba(32, 32, 38, 0.72);
-  --lit-glass-border: rgba(139, 92, 246, 0.25);
+  --lit-bg: #f6f8fb;
+  --lit-bg-secondary: #eef2f6;
+  --lit-bg-elevated: #ffffff;
+  --lit-surface: #ffffff;
+  --lit-surface-soft: #f8fafc;
+  --lit-glass: rgba(255, 255, 255, 0.94);
+  --lit-glass-border: #dbe3ec;
 
-  --lit-text: #ffffff;
-  --lit-text-secondary: #b8b8c2;
-  --lit-text-muted: #b8b8c2;
-  --lit-text-subtle: #8c8c99;
+  --lit-text: #172033;
+  --lit-text-secondary: #475569;
+  --lit-text-muted: #64748b;
+  --lit-text-subtle: #7c899b;
 
-  --lit-accent: #6d28d9;
-  --lit-accent-hover: #7c3aed;
-  --lit-accent-light: #8b5cf6;
-  --lit-accent-soft: rgba(109, 40, 217, 0.16);
-  --lit-accent-border: rgba(139, 92, 246, 0.45);
-  --lit-accent-glow: rgba(124, 58, 237, 0.35);
+  --lit-accent: #2563eb;
+  --lit-accent-hover: #1d4ed8;
+  --lit-accent-light: #3b82f6;
+  --lit-accent-soft: rgba(37, 99, 235, 0.1);
+  --lit-accent-border: rgba(37, 99, 235, 0.3);
+  --lit-accent-glow: rgba(37, 99, 235, 0.18);
 
-  --lit-primary-gradient: linear-gradient(
-    180deg,
-    #7c3aed 0%,
-    #6d28d9 32%,
-    #5b21b6 62%,
-    #3b0764 100%
+  --lit-primary-gradient: radial-gradient(
+    ellipse at center,
+    #24102f 0%,
+    #35154b 40%,
+    #582a85 78%,
+    #8b55d5 100%
   );
-  --lit-primary-gradient-hover: linear-gradient(
-    180deg,
-    #8b5cf6 0%,
-    #7c3aed 32%,
-    #6d28d9 62%,
-    #4c1d95 100%
+  --lit-primary-gradient-hover: radial-gradient(
+    ellipse at center,
+    #24102f 0%,
+    #35154b 40%,
+    #582a85 78%,
+    #8b55d5 100%
   );
-  --lit-btn-primary-border: 1px solid rgba(196, 181, 253, 0.42);
+  --lit-btn-primary-border: 1px solid rgba(139, 85, 213, 0.35);
   --lit-btn-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.14),
-    0 6px 22px rgba(46, 16, 101, 0.48);
+    0 0 6px rgba(139, 85, 213, 0.45),
+    0 0 18px rgba(139, 85, 213, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.08);
   --lit-btn-shadow-hover:
-    inset 0 1px 0 rgba(255, 255, 255, 0.16),
-    0 10px 28px rgba(76, 29, 149, 0.55),
-    0 0 24px rgba(124, 58, 237, 0.22);
+    0 0 12px rgba(139, 85, 213, 0.6),
+    0 0 24px rgba(139, 85, 213, 0.35);
 
   --lit-btn-height: 44px;
   --lit-btn-padding-x: 28px;
@@ -56,10 +56,10 @@
   --lit-btn-cart-width: 170px;
   --lit-btn-gap: 16px;
   --lit-btn-secondary-bg: transparent;
-  --lit-btn-secondary-border: 1.5px solid rgba(139, 92, 246, 0.88);
-  --lit-btn-secondary-hover-bg: rgba(109, 40, 217, 0.1);
-  --lit-btn-secondary-hover-border: rgba(167, 139, 250, 0.95);
-  --lit-btn-secondary-hover-shadow: 0 0 20px rgba(124, 58, 237, 0.28);
+  --lit-btn-secondary-border: 1px solid #b7c4d4;
+  --lit-btn-secondary-hover-bg: #f1f5f9;
+  --lit-btn-secondary-hover-border: #2563eb;
+  --lit-btn-secondary-hover-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
 
   --lit-gold: #c9b896;
   --lit-gold-soft: rgba(201, 184, 150, 0.18);
@@ -70,24 +70,24 @@
   --lit-secondary-soft: rgba(196, 181, 253, 0.16);
 
   /* Global page background (body-bg.png — purple silk on black) */
-  --lit-page-bg-image: url("../assets/body-bg.png");
-  --lit-success: #22c55e;
-  --lit-error: #ef4444;
-  --lit-warning: #f59e0b;
+  --lit-page-bg-image: none;
+  --lit-success: #15803d;
+  --lit-error: #dc2626;
+  --lit-warning: #d97706;
 
   /* ─── Typography ─── */
   --lit-font-display: "Poppins", "Inter", system-ui, sans-serif;
   --lit-font-body: "Inter", "Poppins", system-ui, sans-serif;
   --lit-font-brand: "Krona One", "Poppins", sans-serif;
 
-  --lit-text-xs: 0.72rem;
-  --lit-text-sm: 0.875rem;
-  --lit-text-base: 1rem;
-  --lit-text-lg: 1.125rem;
-  --lit-text-xl: 1.35rem;
-  --lit-text-2xl: 1.75rem;
-  --lit-text-3xl: clamp(1.75rem, 3vw, 2.25rem);
-  --lit-text-4xl: clamp(2rem, 4vw, 2.75rem);
+  --lit-text-xs: clamp(0.75rem, 0.72rem + 0.1vw, 0.875rem);
+  --lit-text-sm: clamp(0.8125rem, 0.78rem + 0.12vw, 0.925rem);
+  --lit-text-base: clamp(0.875rem, 0.82rem + 0.18vw, 1.125rem);
+  --lit-text-lg: clamp(1rem, 0.94rem + 0.22vw, 1.25rem);
+  --lit-text-xl: clamp(1.125rem, 1rem + 0.38vw, 1.5rem);
+  --lit-text-2xl: clamp(1.375rem, 1.15rem + 0.65vw, 2rem);
+  --lit-text-3xl: clamp(1.5rem, 1.15rem + 1vw, 2.5rem);
+  --lit-text-4xl: clamp(1.75rem, 1.25rem + 1.5vw, 3rem);
 
   --lit-leading-tight: 1.25;
   --lit-leading-normal: 1.55;
@@ -123,8 +123,8 @@
   /* ─── Layout ─── */
   --lit-nav-height: 73px;
   --lit-max-width: 1120px;
-  --lit-max-width-wide: 1200px;
-  --lit-page-gutter: clamp(1rem, 3vw, 1.5rem);
+  --lit-max-width-wide: 1600px;
+  --lit-page-gutter: clamp(1rem, 2.5vw, 3rem);
 
   /* ─── Radius ─── */
   --lit-radius-sm: 10px;
@@ -137,9 +137,9 @@
   --lit-radius-pill: 999px;
 
   /* ─── Shadows ─── */
-  --lit-shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.22);
-  --lit-shadow-md: 0 8px 32px rgba(0, 0, 0, 0.28);
-  --lit-shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.35);
+  --lit-shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --lit-shadow-md: 0 8px 24px rgba(15, 23, 42, 0.09);
+  --lit-shadow-lg: 0 18px 45px rgba(15, 23, 42, 0.14);
   --lit-shadow-accent: 0 8px 24px var(--lit-accent-glow);
 
   /* ─── Motion ─── */

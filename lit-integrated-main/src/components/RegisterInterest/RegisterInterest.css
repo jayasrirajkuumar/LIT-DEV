@@ -1,8 +1,11 @@
 .register-interest-container {
   width: 100%;
-  padding: 6rem 2rem;
+  max-width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 4rem clamp(1rem, 10vw, 12rem);
   color: #ffffff;
-  margin-top: 2rem;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -99,7 +102,7 @@
 
 @media (max-width: 992px) {
   .register-interest-container {
-    padding: 5rem 1.25rem;
+    padding: 4rem clamp(1rem, 6vw, 3rem);
   }
 
   .register-interest-card {
@@ -120,7 +123,7 @@
 
 @media (max-width: 768px) {
   .register-interest-container {
-    padding: 4rem 1rem;
+    padding: 4rem clamp(1rem, 6vw, 3rem);
   }
 
   .register-interest-card {
@@ -154,7 +157,7 @@
 
 @media (max-width: 576px) {
   .register-interest-container {
-    padding: 3.5rem 0.875rem;
+    padding: 3rem 1rem;
   }
 
   .register-interest-card {
@@ -183,7 +186,7 @@
 
 @media (max-width: 480px) {
   .register-interest-container {
-    padding: 3rem 0.75rem;
+    padding: 3rem 1rem;
   }
 
   .register-interest-card {
@@ -213,7 +216,7 @@
 
 @media (max-width: 375px) {
   .register-interest-container {
-    padding: 2.5rem 0.625rem;
+    padding: 3rem 1rem;
   }
 
   .register-interest-card {
