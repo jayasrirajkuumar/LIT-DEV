@@ -1,12 +1,12 @@
 /* --- Base Styles --- */
 .unfolding-soon-container {
   width: 100%;
-  max-width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
   min-height: 100vh;
   min-height: 100dvh;
-  padding: 4rem clamp(1rem, 10vw, 12rem);
+  padding: 4rem clamp(1.5rem, 5vw, 6rem);
   color: #ffffff;
-  margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,24 +14,28 @@
 
 .unfolding-soon-container h1 {
   font-family: "Poppins", sans-serif;
-  font-size: 4.5rem;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
   font-weight: 600;
   text-align: left;
-  margin-bottom: 4rem;
+  margin-bottom: 3.5rem;
   color: #ffffff;
   line-height: 1.2;
   padding: 0;
   width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .icons-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: flex-start;
-  gap: 6rem;
-  max-width: 1200px;
+  gap: clamp(2rem, 4vw, 4.5rem);
+  max-width: 1250px;
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem 0;
   flex-wrap: wrap;
 }
 
@@ -39,9 +43,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 6rem;
+  margin-bottom: 3rem;
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
 }
 
 /* --- Flipping Card Styles --- */

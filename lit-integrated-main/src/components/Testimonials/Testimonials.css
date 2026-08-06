@@ -1,11 +1,11 @@
 .testimonials-container {
   width: 100%;
-  max-width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
   min-height: 100vh;
   min-height: 100dvh;
-  padding: 4rem clamp(1rem, 10vw, 12rem);
+  padding: 4rem clamp(1.5rem, 5vw, 6rem);
   color: #ffffff;
-  margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,14 +13,14 @@
 
 .testimonials-container h1 {
   font-family: "Poppins", sans-serif;
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   text-align: left;
-  margin-bottom: 4rem;
+  margin-bottom: 3.5rem;
   color: #ffffff;
   line-height: 1.2;
   width: 100%;
-  max-width: none;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   padding: 0;
@@ -29,9 +29,9 @@
 .testimonials-slider-container {
   position: relative;
   width: 100%;
-  max-width: none;
+  max-width: 1250px;
   margin: 0 auto;
-  padding: 1rem 3rem;
+  padding: 1rem 2.5rem;
 }
 
 .testimonials-scroll {

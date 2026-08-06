@@ -23,8 +23,8 @@
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  padding: 0 var(--lit-space-5);
-  max-width: 100%;
+  padding: 0 clamp(1rem, 4vw, 3rem);
+  max-width: 1380px;
   width: 100%;
   margin: 0 auto;
   gap: var(--lit-space-4);

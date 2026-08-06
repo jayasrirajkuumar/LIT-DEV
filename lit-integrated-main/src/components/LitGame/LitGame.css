@@ -1,31 +1,33 @@
 .lit-game-container {
   width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   min-height: 100vh;
   min-height: 100dvh;
-  padding: 3rem clamp(1rem, 10vw, 12rem);
+  padding: 4rem clamp(1.5rem, 5vw, 6rem);
   position: relative;
 }
 
 .game-section {
   position: relative;
   width: 100%;
-  max-width: none;
-  min-height: calc(100dvh - 6rem);
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: auto;
   display: flex;
   align-items: center;
-  padding-top: 3rem;
+  padding-top: 3.5rem;
 }
 
 .lit-game-header {
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translateX(-141%) translateY(5%);
-  z-index: 2;
-  padding: 0.75rem 3rem;
-  border: 3px solid #ffffff;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  padding: 0.6rem 2.5rem;
   border-radius: 12px;
   background: linear-gradient(
     334.55deg,
@@ -34,12 +36,13 @@
   );
   border: 4px solid rgba(255, 255, 255, 1);
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
 }
 
 .lit-game-header span {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
-  font-size: 2.4rem;
+  font-size: 2rem;
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -50,7 +53,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: 6rem;
+  gap: clamp(2.5rem, 5vw, 5rem);
   min-width: 0;
 }
 
@@ -265,9 +268,6 @@
   .card {
     margin: 0 5.5rem;
   }
-  .lit-game-header {
-    transform: translateX(-119%) translateY(5%);
-  }
   .game-info h2 {
     font-size: 3.2rem;
   }
@@ -289,9 +289,6 @@
   }
   .card {
     margin: 0 5rem;
-  }
-  .lit-game-header {
-    transform: translateX(-95%) translateY(39%);
   }
   .game-info h2 {
     font-size: 3rem;
@@ -320,7 +317,6 @@
     gap: 4rem;
   }
   .lit-game-header {
-    transform: translateX(-50%) translateY(10%);
     padding: 0.6rem 2.5rem;
   }
   .lit-game-header span {

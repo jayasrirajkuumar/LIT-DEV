@@ -9,12 +9,11 @@ const LitGame = () => {
   return (
     <section className="lit-game-container flex min-h-dvh w-full max-w-full items-center px-[clamp(1rem,10vw,12rem)] py-12 max-lg:py-16 max-sm:px-4" aria-labelledby="lit-game-title">
       <div className="game-section mx-auto flex min-h-[calc(100dvh-6rem)] w-full max-w-none items-center">
-        <div className="lit-game-header">
-          <span>LIT GAME</span>
-        </div>
-
         <div className="lit-game-content">
           <div className="game-preview">
+            <div className="lit-game-header">
+              <span>LIT GAME</span>
+            </div>
             <div className="game-cards">
               <div className="card left-card">
                 <div className="image-container">

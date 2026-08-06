@@ -1,20 +1,20 @@
 .register-interest-container {
   width: 100%;
-  max-width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
   min-height: 100vh;
   min-height: 100dvh;
-  padding: 4rem clamp(1rem, 10vw, 12rem);
+  padding: 4rem clamp(1.5rem, 5vw, 6rem);
   color: #ffffff;
-  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .register-interest-card {
-  max-width: 900px;
+  max-width: 950px;
   margin: 0 auto;
-  padding: 3rem 1.5rem;
+  padding: 4rem 2.5rem;
   background: linear-gradient(
     264.04deg,
     rgba(0, 0, 0, 0.3) 13.3%,
@@ -30,7 +30,7 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   overflow: hidden;
-  width: 90%;
+  width: 100%;
 }
 
 .register-interest-small-heading {
