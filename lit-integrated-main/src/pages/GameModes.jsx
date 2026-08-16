@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./GameModesPage.css";
-import bodyBg from "../assets/body-bg.png";
 
 const GameModes = () => {
   const [activeTab, setActiveTab] = useState("clothing");
@@ -55,14 +54,7 @@ const GameModes = () => {
   ];
 
   return (
-    <div
-      className="game-modes-page"
-      style={{
-        backgroundImage: `url(${bodyBg})`,
-        backgroundSize: "cover",
-        backgroundAttachment: "fixed",
-      }}
-    >
+    <div className="game-modes-page">
       <div className="game-modes-container">
         {/* Left Sidebar */}
         <div className="sidebar">

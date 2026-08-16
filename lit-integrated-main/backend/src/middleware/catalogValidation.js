@@ -80,7 +80,20 @@ export const productListQuerySchema = z.object({
   minPrice: z.coerce.number().min(0).optional(),
   maxPrice: z.coerce.number().min(0).optional(),
   availability: z.enum(["all", "in_stock", "out_of_stock", "low_stock"]).optional().default("all"),
-  sort: z.enum(["newest", "price_asc", "price_desc", "popularity"]).optional().default("newest"),
+  sort: z
+    .enum([
+      "newest",
+      "price_asc",
+      "price_desc",
+      "popularity",
+      "discount",
+      "featured",
+      "rating",
+      "name_asc",
+      "name_desc",
+    ])
+    .optional()
+    .default("newest"),
 });
 
 export const productSearchQuerySchema = z.object({
@@ -92,7 +105,20 @@ export const productSearchQuerySchema = z.object({
   minPrice: z.coerce.number().min(0).optional(),
   maxPrice: z.coerce.number().min(0).optional(),
   availability: z.enum(["all", "in_stock", "out_of_stock", "low_stock"]).optional().default("all"),
-  sort: z.enum(["newest", "price_asc", "price_desc", "popularity"]).optional().default("newest"),
+  sort: z
+    .enum([
+      "newest",
+      "price_asc",
+      "price_desc",
+      "popularity",
+      "discount",
+      "featured",
+      "rating",
+      "name_asc",
+      "name_desc",
+    ])
+    .optional()
+    .default("newest"),
 });
 
 export const listLimitQuerySchema = z.object({

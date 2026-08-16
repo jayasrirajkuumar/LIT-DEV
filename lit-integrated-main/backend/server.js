@@ -1,7 +1,7 @@
 import http from "http";
 import app from "./src/app.js";
 import config from "./src/config/env.js";
-import { connectDatabase, disconnectDatabase, recreatePrismaClient } from "./src/database/prismaClient.js";
+import { connectDatabase, disconnectDatabase } from "./src/database/prismaClient.js";
 import { startDatabaseReconnectLoop, stopDatabaseReconnectLoop } from "./src/database/connectionManager.js";
 import { databaseState } from "./src/database/connectionState.js";
 import { logger } from "./src/utils/logger.js";
@@ -48,16 +48,7 @@ async function startServer() {
   startupOk("Environment loaded", `NODE_ENV=${config.nodeEnv}`);
   startupOk("Prisma initialized", `host=${config.databaseHost}`);
 
-  let dbResult = await connectDatabase();
-  if (
-    !dbResult.connected &&
-    config.localDatabaseUrl &&
-    config.databaseHost?.includes(".postgres.database.azure.com")
-  ) {
-    startupWarn("Database failover", "Azure unreachable — trying local PostgreSQL from .env.local");
-    recreatePrismaClient(config.localDatabaseUrl);
-    dbResult = await connectDatabase();
-  }
+  const dbResult = await connectDatabase();
 
   if (dbResult.connected) {
     startupOk("Database connected", config.databaseHost);
@@ -65,12 +56,7 @@ async function startServer() {
     const reason = dbResult.error?.message ?? "Unable to reach PostgreSQL";
     startupFail("Database connected", reason);
 
-    if (config.databaseHost === "localhost" || config.databaseHost === "127.0.0.1") {
-      startupWarn(
-        "Local PostgreSQL",
-        "DATABASE_URL points to localhost. Start it with: docker compose up -d (in backend/)",
-      );
-    } else if (config.databaseHost.includes(".postgres.database.azure.com")) {
+    if (config.databaseHost?.includes(".postgres.database.azure.com")) {
       startupWarn(
         "Azure PostgreSQL",
         "Check VPN, firewall rules, and that your IP is allowed in Azure Portal",
@@ -79,7 +65,7 @@ async function startServer() {
 
     startupWarn(
       "Degraded mode",
-      "API will return 503 for database routes until PostgreSQL is reachable",
+      "API will return 503 for database routes until Azure PostgreSQL is reachable",
     );
     startDatabaseReconnectLoop();
   }

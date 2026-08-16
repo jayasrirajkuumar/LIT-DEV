@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import JoinCommunity from "./JoinCommunity/JoinCommunity";
-import Background from "./Background/Background";
 import LitGame from "./LitGame/LitGame";
 import Newsletter from "./Newsletter/Newsletter";
 import Shop from "./Shop/Shop";
@@ -28,19 +27,17 @@ const LandingPage = () => {
       <NewsletterPopup isOpen={isPopupOpen} onClose={closeNewsletterPopup} />
 
       <JoinCommunity />
-      <Background>
-        <LitGame />
-        <Newsletter onSubscribeClick={openNewsletterPopup} />
-        <Shop />
-        <UnfoldingSoonSection />
-        <Testimonials />
+      <LitGame />
+      <Newsletter onSubscribeClick={openNewsletterPopup} />
+      <Shop />
+      <UnfoldingSoonSection />
+      <Testimonials />
 
-        {/* 👇 Show "RegisterInterest" only if user is not logged in */}
-        {!isAuthenticated && <RegisterInterest />}
+      {/* 👇 Show "RegisterInterest" only if user is not logged in */}
+      {!isAuthenticated && <RegisterInterest />}
 
-        {/* Uncomment if you want to show footer */}
-        {/* <Footer /> */}
-      </Background>
+      {/* Uncomment if you want to show footer */}
+      {/* <Footer /> */}
     </div>
   );
 };

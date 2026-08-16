@@ -2,7 +2,7 @@ import { validateAzureIdToken } from "../config/azureAuth.js";
 import { AppError } from "../utils/AppError.js";
 import { userRepository } from "../repositories/userRepository.js";
 import { withTimeout } from "../utils/withTimeout.js";
-
+import { ensureDatabaseReady } from "../database/connectionManager.js";
 function extractBearerToken(req) {
   const header = req.headers.authorization;
 
@@ -42,22 +42,16 @@ export async function attachDbUser(req, _res, next) {
       throw new AppError("Authentication context is missing.", 401, "TOKEN_MISSING");
     }
 
-    const { databaseState } = await import("../database/connectionState.js");
-
-    if (!databaseState.connected) {
-      req.dbUser = {
-        id: "mock-user-id",
-        azureUserId: req.auth.azureUserId,
-        email: req.auth.email || "mock@example.com",
-        displayName: req.auth.displayName || "Mock User",
-        role: "CUSTOMER",
-        isActive: true,
-      };
-      return next();
+    const ready = await ensureDatabaseReady();
+    if (!ready) {
+      throw new AppError(
+        "Database is temporarily unavailable. Connect to Azure PostgreSQL and retry.",
+        503,
+        "DATABASE_UNAVAILABLE",
+      );
     }
 
-    const user = await withTimeout(
-      userRepository.findByAzureUserId(req.auth.azureUserId),
+    const user = await withTimeout(      userRepository.findByAzureUserId(req.auth.azureUserId),
       10_000,
       "User lookup timed out. Database may be unreachable — check VPN/network and retry.",
       "DATABASE_TIMEOUT",

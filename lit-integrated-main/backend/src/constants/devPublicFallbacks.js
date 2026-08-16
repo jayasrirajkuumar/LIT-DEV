@@ -3,8 +3,11 @@ export const MARKETPLACE_CONFIG_FALLBACK = {
   brands: [],
   sortOptions: [
     { id: "newest", key: "newest", label: "Newest", isActive: true },
-    { id: "price-asc", key: "price-asc", label: "Price: Low to High", isActive: true },
-    { id: "price-desc", key: "price-desc", label: "Price: High to Low", isActive: true },
+    { id: "popularity", key: "popularity", label: "Popularity", isActive: true },
+    { id: "price-asc", key: "price_asc", label: "Price Low to High", isActive: true },
+    { id: "price-desc", key: "price_desc", label: "Price High to Low", isActive: true },
+    { id: "discount", key: "discount", label: "Discount", isActive: true },
+    { id: "featured", key: "featured", label: "Featured", isActive: true },
   ],
   filterOptions: [],
 };

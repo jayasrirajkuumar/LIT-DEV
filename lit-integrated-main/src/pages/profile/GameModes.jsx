@@ -5,7 +5,6 @@ import tournamentModeImage from "../assets/tournament-mode.png";
 import teamBattleImage from "../assets/team-battle.png";
 import fashionShowdownImage from "../assets/fashion-showdown.png";
 import "./GameModesPage.css";
-import bodyBg from "../assets/body-bg.png";
 import starImg from "../assets/star.png";
 import profileAvatar from "../assets/profile-avatar.png";
 import userIcon from "../assets/user.svg";

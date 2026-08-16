@@ -141,24 +141,23 @@ const AppContent = () => {
     location.pathname.startsWith("/newsletter");
 
   const isMarketplacePath = location.pathname.startsWith("/shop") || location.pathname.startsWith("/gift-cards");
-  const isAuthPath =
-    location.pathname === "/sign-in" ||
-    location.pathname === "/sign-up" ||
-    location.pathname === "/sign-up/email" ||
-    location.pathname === "/auth/verify-otp";
   const showMainNavbar =
     !isAdminPath &&
     !isNewsletterPath &&
     !isNewsletterArticle &&
     !isComingSoonPath &&
-    !isMarketplacePath &&
-    !isAuthPath;
+    !isMarketplacePath;
+  const isAuthPath =
+    location.pathname === "/sign-in" ||
+    location.pathname === "/sign-up" ||
+    location.pathname === "/sign-up/email" ||
+    location.pathname === "/auth/verify-otp";
   const showNewsletterNavbar =
     (isNewsletterPath || isNewsletterArticle) && !isComingSoonPath;
-  const showFooter = !isAdminPath && !isComingSoonPath && !isAuthPath;
+  const showFooter = !isAdminPath && !isComingSoonPath && !isAuthPath && !location.pathname.startsWith("/shop");
 
   return (
-    <Background className={isAuthPath ? "background-container--auth" : ""}>
+    <Background>
       <ScrollToTop />
       <Notification />
       {showMainNavbar && <LandingPageNavbar />}

@@ -9,7 +9,7 @@
 }
 
 .game-modes-page {
-  background: url("../assets/body-bg.png") no-repeat center center fixed;
+  background: transparent;
   background-size: cover;
   color: white;
   font-family: "Poppins", sans-serif;

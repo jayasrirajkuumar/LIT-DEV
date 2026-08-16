@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
 import { GripVertical, Star, Trash2, Upload, ZoomIn, Replace } from "lucide-react";
 import { uploadAdminImage, deleteAdminImage } from "../../services/adminApiService";
+import { normalizeMediaUrl } from "../../utils/mediaUrl";
 import { AdminButton, AdminCheckbox, AdminInput, AdminModal } from "../admin-ui";
 
 const ProductImageGallery = ({ entries = [], onChange, productName = "" }) => {
@@ -149,7 +150,7 @@ const ProductImageGallery = ({ entries = [], onChange, productName = "" }) => {
               onClick={() => setPreviewUrl(entry.imageUrl)}
               aria-label="Preview fullscreen"
             >
-              <img src={entry.imageUrl} alt={entry.altText || ""} loading="lazy" />
+              <img src={normalizeMediaUrl(entry.imageUrl)} alt={entry.altText || ""} loading="lazy" />
               <ZoomIn size={16} />
             </button>
             <div className="adm-gallery__item-meta">
@@ -218,7 +219,7 @@ const ProductImageGallery = ({ entries = [], onChange, productName = "" }) => {
         size="lg"
       >
         {previewUrl && (
-          <img src={previewUrl} alt="Preview" className="adm-gallery__fullscreen" loading="lazy" />
+          <img src={normalizeMediaUrl(previewUrl)} alt="Preview" className="adm-gallery__fullscreen" loading="lazy" />
         )}
       </AdminModal>
     </div>

@@ -25,8 +25,19 @@ function getLocalUploadDir() {
 }
 
 function getLocalPublicUrl(filename) {
+  // Relative URLs load through the Vite /uploads proxy in local dev.
+  if (!config.storage.connectionString && config.nodeEnv !== "production") {
+    return `/uploads/products/${filename}`;
+  }
+
   const base = config.publicApiUrl.replace(/\/$/, "");
   return `${base}/uploads/products/${filename}`;
+}
+
+function extractLocalFilename(imageUrl) {
+  if (!imageUrl) return null;
+  const match = String(imageUrl).match(/\/uploads\/products\/([^/?#]+)$/);
+  return match?.[1] ?? null;
 }
 
 async function uploadToAzure(buffer, blobName, contentType) {
@@ -62,9 +73,8 @@ async function uploadToLocal(buffer, filename, contentType) {
 }
 
 async function deleteFromLocal(blobUrl) {
-  const prefix = getLocalPublicUrl("");
-  if (!blobUrl.startsWith(prefix)) return;
-  const filename = blobUrl.slice(prefix.length);
+  const filename = extractLocalFilename(blobUrl);
+  if (!filename) return;
   try {
     await fs.unlink(path.join(getLocalUploadDir(), filename));
   } catch {

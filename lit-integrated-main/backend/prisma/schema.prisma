@@ -763,6 +763,7 @@ enum PaymentProvider {
   RAZORPAY
   STRIPE
   MOCK
+  WALLET
 }
 
 enum DeliveryMethod {

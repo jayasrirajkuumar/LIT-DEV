@@ -27,10 +27,21 @@ async function parseApiResponse(response, scope, label) {
   const payload = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    const message =
+    let message =
       payload?.error?.message ||
       payload?.message ||
       `Request failed with status ${response.status}`;
+
+    const fieldErrors = payload?.error?.details?.fieldErrors;
+    if (fieldErrors && typeof fieldErrors === "object") {
+      const detailMessages = Object.entries(fieldErrors).flatMap(([field, errors]) =>
+        (Array.isArray(errors) ? errors : []).map((entry) => `${field}: ${entry}`),
+      );
+      if (detailMessages.length > 0) {
+        message = detailMessages.join(" ");
+      }
+    }
+
     logPersistenceError(scope, `${label} failed`, { status: response.status, message });
     throw new Error(message);
   }
@@ -84,7 +95,8 @@ export async function fetchAdminCategories(filters = {}) {
     headers: buildHeaders(),
   });
   const data = await parseApiResponse(response, "admin", `GET ${label}`);
-  return data.categories ? data : data;
+  if (Array.isArray(data)) return data;
+  return data.categories ?? [];
 }
 
 export async function fetchAdminCustomers(filters = {}) {

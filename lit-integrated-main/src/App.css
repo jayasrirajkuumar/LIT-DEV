@@ -50,7 +50,7 @@ body::before {
 .admin-dashboard {
   padding: 2rem;
   min-height: 100vh;
-  background: #121212;
+  background: var(--lit-bg);
   color: #fff;
 }
 
@@ -241,7 +241,7 @@ body::before {
 }
 
 .centered-admin-welcome {
-  color: #a78bfa;
+  color: var(--lit-purple-soft);
   font-size: 1.3rem;
   margin-bottom: 2.5rem;
   text-align: center;

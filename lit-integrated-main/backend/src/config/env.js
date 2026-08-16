@@ -22,13 +22,24 @@ function getDatabaseHost(url) {
 }
 
 const baseHost = getDatabaseHost(baseEnvFile.DATABASE_URL);
-const wantsLocal = process.env.DATABASE_PROFILE === "local";
-const wantsAzure = process.env.DATABASE_PROFILE === "azure";
 
-if (wantsAzure && baseEnvFile.DATABASE_URL) {
+// Azure PostgreSQL only — always use DATABASE_URL from .env (never localhost fallback).
+process.env.DATABASE_PROFILE = "azure";
+if (baseEnvFile.DATABASE_URL) {
   process.env.DATABASE_URL = baseEnvFile.DATABASE_URL;
-} else if (wantsLocal && localEnvFile.DATABASE_URL) {
-  process.env.DATABASE_URL = localEnvFile.DATABASE_URL;
+}
+
+const resolvedHost = getDatabaseHost(process.env.DATABASE_URL);
+const isLocalHost = resolvedHost === "localhost" || resolvedHost === "127.0.0.1";
+if (isLocalHost) {
+  console.error("DATABASE_URL must point to Azure PostgreSQL, not localhost.");
+  console.error("Update backend/.env with your Azure connection string.");
+  process.exit(1);
+}
+if (!resolvedHost?.includes(".postgres.database.azure.com")) {
+  console.warn(
+    "Warning: DATABASE_URL host is not *.postgres.database.azure.com — ensure this is intentional.",
+  );
 }
 
 function validateDatabaseUrl(url) {
@@ -131,10 +142,6 @@ export const config = {
   corsOrigins: env.CORS_ORIGIN.split(",").map((origin) => origin.trim()),
   databaseUrl: env.DATABASE_URL,
   databaseHost: getDatabaseHost(env.DATABASE_URL),
-  localDatabaseUrl: (() => {
-    const host = getDatabaseHost(localEnvFile.DATABASE_URL);
-    return host === "localhost" || host === "127.0.0.1" ? localEnvFile.DATABASE_URL : null;
-  })(),
   azureDatabaseUrl: baseHost?.includes(".postgres.database.azure.com")
     ? baseEnvFile.DATABASE_URL
     : null,

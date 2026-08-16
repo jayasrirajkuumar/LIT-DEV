@@ -1,10 +1,12 @@
 import { AppError } from "../utils/AppError.js";
 import { categoryRepository } from "../repositories/categoryRepository.js";
 import { productRepository } from "../repositories/productRepository.js";
+import { normalizeSortKey } from "../utils/catalogSort.js";
 import slugify from "../utils/slugify.js";
 import { isInStock } from "../utils/inventoryHelpers.js";
 
 function mapListFilters(query) {
+  const sort = normalizeSortKey(query.sort);
   return {
     page: query.page,
     limit: query.limit,
@@ -13,11 +15,9 @@ function mapListFilters(query) {
     minPrice: query.minPrice,
     maxPrice: query.maxPrice,
     availability: query.availability,
-    sort: query.sort,
+    sort,
     isFeatured:
-      query.featured === "true" || query.featured === true || query.sort === "featured"
-        ? true
-        : undefined,
+      query.featured === "true" || query.featured === true ? true : undefined,
     status: "ACTIVE",
   };
 }

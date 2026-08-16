@@ -10,10 +10,8 @@ Backend service for user management and Azure External ID Just-In-Time provision
 # Terminal 1 — API (port 3001)
 cd backend
 cp .env.example .env
-# Set DATABASE_URL in .env (Azure) or .env.local (local Docker Postgres)
-# Local dev: add DATABASE_PROFILE=local and DATABASE_URL=postgresql://postgres:postgres@localhost:5432/lit_dev?schema=public to .env.local
+# Set DATABASE_URL in .env to your Azure PostgreSQL connection string
 npm install
-npm run db:up          # starts local Postgres via Docker (optional)
 npm run prisma:migrate:deploy
 npm run dev
 
@@ -24,7 +22,8 @@ npm run dev
 ```
 
 Open http://localhost:5173/shop — the Vite dev server proxies `/api/*` to the backend.
-If you see **"Failed to fetch"**, the backend is not running or `DATABASE_URL` is misconfigured.
+If you see **"Failed to fetch"**, the backend is not running or Azure `DATABASE_URL` is misconfigured.
+Ensure your IP is allowed in the Azure PostgreSQL firewall (or connect via VPN).
 
 ## Key Endpoints
 

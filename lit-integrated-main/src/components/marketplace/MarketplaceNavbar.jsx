@@ -12,8 +12,9 @@ const CATEGORIES = [
   { label: "Men", to: "/shop/products?gender=men" },
   { label: "Women", to: "/shop/products?gender=women" },
   { label: "Kids", to: "/shop/products?kids=true" },
-  { label: "Brands", to: "/shop#brands" },
-  { label: "Gift Cards", to: "/gift-cards" },
+  { label: "New Arrivals", to: "/shop/products?sort=newest" },
+  { label: "Clearance", to: "/shop/products?discount=1" },
+  { label: "Gift Cards", to: "/gift-cards", highlight: true },
 ];
 
 const MarketplaceNavbar = () => {
@@ -61,7 +62,7 @@ const MarketplaceNavbar = () => {
         <Link
           key={item.label}
           to={item.to}
-          className={isActive(item.to) ? "active" : ""}
+          className={`${isActive(item.to) ? "active" : ""}${item.highlight ? " mp-navbar__link--highlight" : ""}`}
           onClick={() => setMobileOpen(false)}
         >
           {item.label}

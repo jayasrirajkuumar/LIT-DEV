@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getProductById, updateProduct } from "./productService";
 import { fetchAdminCategories } from "../../services/adminApiService";
-import { mapApiProductToForm } from "./productFormMapper";
+import { mapApiProductToForm, validateProductForm } from "./productFormMapper";
 import ProductImageGallery from "./ProductImageGallery";
 import {
   AdminButton,
@@ -28,7 +28,7 @@ const EditProductForm = () => {
   useEffect(() => {
     Promise.all([getProductById(id), fetchAdminCategories()])
       .then(([product, categoryList]) => {
-        setCategories(Array.isArray(categoryList) ? categoryList : []);
+        setCategories(Array.isArray(categoryList) ? categoryList : categoryList?.categories ?? []);
         if (product) setFormData(mapApiProductToForm(product));
         else setError("Product not found.");
       })
@@ -43,6 +43,12 @@ const EditProductForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const validationError = validateProductForm(formData);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
     setIsSubmitting(true);
     setError("");
     try {

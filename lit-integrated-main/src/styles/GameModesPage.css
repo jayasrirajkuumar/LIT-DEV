@@ -10,8 +10,7 @@
 
 .game-modes-page {
   min-height: 100vh;
-  background: url("../assets/body-bg.png") no-repeat center center fixed;
-  background-size: cover;
+  background: transparent;
   color: white;
   font-family: "Poppins", sans-serif;
   display: flex;

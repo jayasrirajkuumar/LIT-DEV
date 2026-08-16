@@ -9,36 +9,20 @@
 }
 
 .user-menu-signin-btn {
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: transparent;
-  color: #fff;
-  border-radius: 999px;
+  border-radius: 8px;
   padding: 0.45rem 1rem;
   font-family: "Poppins", sans-serif;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.user-menu-signin-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
 }
 
 .user-menu-signup-btn {
-  border: none;
-  background: #fff;
-  color: #1a1028;
-  border-radius: 999px;
+  border-radius: 8px;
   padding: 0.45rem 1rem;
   font-family: "Poppins", sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.user-menu-signup-btn:hover {
-  background: #f2edf8;
 }
 
 .user-menu-trigger {

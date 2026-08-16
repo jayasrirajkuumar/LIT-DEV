@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import React, { forwardRef, useState } from "react";
+import { ChevronDown, X } from "lucide-react";
 
 const AVAILABILITY_OPTIONS = [
   { value: "all", label: "All" },
@@ -43,15 +43,19 @@ function FilterAccordion({ label, children, defaultOpen = false }) {
   );
 }
 
-const CatalogFilters = ({
-  categories = [],
-  filters,
-  onChange,
-  onApply,
-  onReset,
-  lockedCategorySlug = "",
-  filterOptions = [],
-}) => {
+const CatalogFilters = forwardRef(function CatalogFilters(
+  {
+    categories = [],
+    filters,
+    onChange,
+    onApply,
+    onReset,
+    onClose,
+    lockedCategorySlug = "",
+    filterOptions = [],
+  },
+  ref,
+) {
   const handleChange = (field, value) => {
     onChange({ ...filters, [field]: value });
   };
@@ -65,12 +69,29 @@ const CatalogFilters = ({
   const show = (key) => activeKeys.has(key);
 
   return (
-    <aside className="mp-filters mp-filters--luxury">
+    <aside
+      ref={ref}
+      className="mp-filters mp-filters--luxury"
+      id="mp-filters-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="mp-filters-title"
+    >
       <div className="mp-filters-header">
-        <h3>Filter by</h3>
-        <button type="button" className="mp-link-btn" onClick={onReset}>
-          Reset
-        </button>
+        <h3 id="mp-filters-title">Filter by</h3>
+        <div className="mp-filters-header__actions">
+          <button type="button" className="mp-link-btn" onClick={onReset}>
+            Reset
+          </button>
+          <button
+            type="button"
+            className="mp-filters-close"
+            onClick={onClose}
+            aria-label="Close filters"
+          >
+            <X size={18} aria-hidden="true" />
+          </button>
+        </div>
       </div>
 
       {!lockedCategorySlug && show("category") && (
@@ -238,6 +259,8 @@ const CatalogFilters = ({
       </button>
     </aside>
   );
-};
+});
+
+CatalogFilters.displayName = "CatalogFilters";
 
 export default CatalogFilters;

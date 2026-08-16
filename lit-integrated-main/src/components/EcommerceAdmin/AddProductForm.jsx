@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createProduct } from "./productService";
 import { fetchAdminCategories } from "../../services/adminApiService";
+import { validateProductForm } from "./productFormMapper";
 import {
   AdminModal,
   AdminButton,
@@ -38,7 +39,7 @@ const AddProductForm = ({ isOpen, onClose, onProductAdd }) => {
   useEffect(() => {
     if (!isOpen) return;
     fetchAdminCategories()
-      .then((data) => setCategories(Array.isArray(data) ? data : []))
+      .then((data) => setCategories(Array.isArray(data) ? data : data?.categories ?? []))
       .catch(() => setCategories([]));
     setFormData(INITIAL_FORM);
     setError("");
@@ -51,6 +52,12 @@ const AddProductForm = ({ isOpen, onClose, onProductAdd }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const validationError = validateProductForm(formData);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
     setIsSubmitting(true);
     setError("");
     try {
@@ -76,14 +83,14 @@ const AddProductForm = ({ isOpen, onClose, onProductAdd }) => {
           <AdminButton variant="ghost" onClick={onClose} disabled={isSubmitting}>
             Cancel
           </AdminButton>
-          <AdminButton loading={isSubmitting} onClick={handleSubmit}>
+          <AdminButton type="submit" form="adm-add-product-form" loading={isSubmitting}>
             Create Product
           </AdminButton>
         </>
       }
     >
       {error && <div className="adm-alert">{error}</div>}
-      <form className="adm-grid adm-grid--form-split" onSubmit={handleSubmit}>
+      <form id="adm-add-product-form" className="adm-grid adm-grid--form-split" onSubmit={handleSubmit}>
         <div className="adm-page" style={{ gap: 16 }}>
           <AdminFormSection title="Basic Information" description="Core product details">
             <div className="adm-form-row">

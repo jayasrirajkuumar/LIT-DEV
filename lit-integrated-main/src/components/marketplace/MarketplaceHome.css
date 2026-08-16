@@ -8,14 +8,10 @@
   background: transparent;
 }
 
-/* Let global body-bg.png show through homepage sections */
+/* Homepage sections — solid charcoal, no purple wash */
 .mp-page--home .mp-product-carousel__shell,
 .mp-page--home .mp-template-brands__shell {
-  background:
-    radial-gradient(circle at top, rgba(124, 58, 237, 0.1), transparent 42%),
-    radial-gradient(ellipse 55% 80% at 8% 40%, rgba(124, 58, 237, 0.06), transparent 55%),
-    radial-gradient(ellipse 45% 70% at 92% 60%, rgba(168, 85, 247, 0.05), transparent 50%),
-    transparent;
+  background: var(--lit-bg-secondary, #1d1d1d);
 }
 
 .mp-page--home .mp-product-carousel--skeleton .mp-product-carousel__shell {
@@ -238,25 +234,13 @@
 .mp-template-brands__shell {
   position: relative;
   padding: clamp(2rem, 3.5vw, 2.75rem) var(--mp-page-gutter, 32px);
-  background:
-    radial-gradient(circle at top, rgba(124, 58, 237, 0.12), transparent 40%),
-    radial-gradient(ellipse 50% 70% at 90% 50%, rgba(168, 85, 247, 0.06), transparent 50%),
-    #050505;
+  background: var(--lit-bg-secondary, #1d1d1d);
   border-block: 1px solid rgba(255, 255, 255, 0.04);
   overflow: hidden;
 }
 
 .mp-template-brands__glow {
-  position: absolute;
-  top: -20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(240px, 40vw, 480px);
-  height: clamp(240px, 40vw, 480px);
-  border-radius: 50%;
-  background: rgba(124, 58, 237, 0.12);
-  filter: blur(90px);
-  pointer-events: none;
+  display: none;
 }
 
 /* Shared luxury section header (brands + future sections) */

@@ -1,5 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { clearCatalogCache } from "../../hooks/useCatalogQuery";
+import { normalizeSortKey } from "../../utils/catalogSort";
 
 const DEFAULT_FILTERS = {
   category: "",
@@ -43,7 +45,7 @@ export function useCatalogFilters(defaults = {}) {
       maxPrice: searchParams.get("maxPrice") || defaults.maxPrice || DEFAULT_FILTERS.maxPrice,
       availability:
         searchParams.get("availability") || defaults.availability || DEFAULT_FILTERS.availability,
-      sort: searchParams.get("sort") || defaults.sort || DEFAULT_FILTERS.sort,
+      sort: normalizeSortKey(searchParams.get("sort") || defaults.sort || DEFAULT_FILTERS.sort),
       page: Number.isNaN(page) ? 1 : page,
       limit: Number.isNaN(limit) ? 12 : limit,
     };
@@ -58,9 +60,14 @@ export function useCatalogFilters(defaults = {}) {
   }, [filters]);
 
   const applyFilters = useCallback(
-    (nextDraft = draft) => {
+    (nextDraft = draft, { closeFilters = true } = {}) => {
       const params = new URLSearchParams();
-      Object.entries(nextDraft).forEach(([key, value]) => {
+      const normalizedDraft = {
+        ...nextDraft,
+        sort: normalizeSortKey(nextDraft.sort),
+      };
+
+      Object.entries(normalizedDraft).forEach(([key, value]) => {
         if (value !== "" && value !== null && value !== undefined) {
           if (key === "page" && Number(value) === 1) return;
           if (key === "limit" && Number(value) === 12) return;
@@ -70,7 +77,9 @@ export function useCatalogFilters(defaults = {}) {
         }
       });
       setSearchParams(params);
-      setShowFilters(false);
+      if (closeFilters) {
+        setShowFilters(false);
+      }
     },
     [draft, setSearchParams],
   );
@@ -87,23 +96,25 @@ export function useCatalogFilters(defaults = {}) {
 
   const setPage = useCallback(
     (page) => {
-      applyFilters({ ...filters, page });
+      applyFilters({ ...filters, page }, { closeFilters: false });
     },
     [applyFilters, filters],
   );
 
   const setSort = useCallback(
     (sort) => {
-      applyFilters({ ...filters, sort, page: 1 });
+      clearCatalogCache("products:");
+      applyFilters({ ...filters, sort: normalizeSortKey(sort), page: 1 }, { closeFilters: false });
     },
     [applyFilters, filters],
   );
 
   const apiParams = useMemo(() => {
+    const sort = normalizeSortKey(filters.sort);
     const params = {
       page: filters.page,
       limit: filters.limit,
-      sort: filters.sort === "featured" ? "featured" : filters.sort,
+      sort,
       availability: filters.availability,
     };
 
@@ -111,13 +122,12 @@ export function useCatalogFilters(defaults = {}) {
     if (filters.brand) params.brand = filters.brand;
     if (filters.minPrice) params.minPrice = filters.minPrice;
     if (filters.maxPrice) params.maxPrice = filters.maxPrice;
-    if (filters.collections === "featured" || filters.sort === "featured") {
+    if (filters.collections === "featured") {
       params.featured = "true";
     }
 
     return params;
   }, [filters]);
-
   const queryKey = JSON.stringify(apiParams);
 
   return {

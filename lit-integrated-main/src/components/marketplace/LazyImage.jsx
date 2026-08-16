@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { normalizeMediaUrl } from "../../utils/mediaUrl";
 
 const LazyImage = ({ src, alt, className = "", fit = "contain", ...props }) => {
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
+  const resolvedSrc = normalizeMediaUrl(src);
 
   return (
     <div
@@ -11,7 +13,7 @@ const LazyImage = ({ src, alt, className = "", fit = "contain", ...props }) => {
       {!loaded && !failed && <div className="catalog-image-skeleton" aria-hidden="true" />}
       {!failed ? (
         <img
-          src={src}
+          src={resolvedSrc}
           alt={alt}
           loading="lazy"
           decoding="async"

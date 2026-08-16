@@ -9,6 +9,16 @@ import { giftCardEmailService } from "./giftCardEmailService.js";
 import { createUserNotification } from "./customerNotificationService.js";
 import { logger } from "../utils/logger.js";
 
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+function isValidUuid(value) {
+  return typeof value === "string" && UUID_REGEX.test(value);
+}
+
+function normalizePhone(value) {
+  return String(value || "").replace(/\D/g, "");
+}
+
 function decimalToNumber(value) {
   return Number(value?.toString?.() ?? value ?? 0);
 }
@@ -83,16 +93,33 @@ export async function searchLitUsers(query, { excludeUserId, limit = 10 } = {}) 
   const q = String(query || "").trim();
   if (q.length < 2) return [];
 
+  const phoneQuery = normalizePhone(q);
+  const orConditions = [
+    { displayName: { contains: q, mode: "insensitive" } },
+    { email: { contains: q, mode: "insensitive" } },
+    { username: { contains: q, mode: "insensitive" } },
+  ];
+
+  if (phoneQuery.length >= 2) {
+    orConditions.push({ phoneNumber: { contains: phoneQuery } });
+  }
+
+  q.split(/\s+/)
+    .map((word) => word.trim())
+    .filter((word) => word.length >= 2)
+    .forEach((word) => {
+      orConditions.push({ displayName: { contains: word, mode: "insensitive" } });
+    });
+
+  const where = {
+    isActive: true,
+    OR: orConditions,
+  };
+
   const users = await prisma.user.findMany({
     where: {
-      isActive: true,
-      ...(excludeUserId ? { id: { not: excludeUserId } } : {}),
-      OR: [
-        { displayName: { contains: q, mode: "insensitive" } },
-        { email: { contains: q, mode: "insensitive" } },
-        { phoneNumber: { contains: q } },
-        { username: { contains: q, mode: "insensitive" } },
-      ],
+      ...where,
+      ...(isValidUuid(excludeUserId) ? { id: { not: excludeUserId } } : {}),
     },
     select: {
       id: true,
@@ -114,6 +141,65 @@ export async function searchLitUsers(query, { excludeUserId, limit = 10 } = {}) 
     profilePicture: u.profilePicture,
     username: u.username,
   }));
+}
+
+export async function describeUserSearch(query, excludeUserId) {
+  const q = String(query || "").trim();
+  if (q.length < 2) {
+    return { users: [], hint: null, matchedSelf: false };
+  }
+
+  const users = await searchLitUsers(q, { excludeUserId, limit: 10 });
+
+  if (users.length > 0) {
+    return { users, hint: null, matchedSelf: false };
+  }
+
+  if (!isValidUuid(excludeUserId)) {
+    return { users, hint: null, matchedSelf: false };
+  }
+
+  const selfMatch = await prisma.user.findFirst({
+    where: {
+      id: excludeUserId,
+      isActive: true,
+      OR: [
+        { displayName: { contains: q, mode: "insensitive" } },
+        { email: { contains: q, mode: "insensitive" } },
+        { username: { contains: q, mode: "insensitive" } },
+        ...(normalizePhone(q).length >= 2
+          ? [{ phoneNumber: { contains: normalizePhone(q) } }]
+          : []),
+      ],
+    },
+    select: { id: true },
+  });
+
+  if (selfMatch) {
+    return {
+      users,
+      matchedSelf: true,
+      hint: "You can't send a gift card to yourself. Search for another registered LIT member by name, email, or phone.",
+    };
+  }
+
+  const otherUsers = await prisma.user.count({
+    where: { isActive: true, id: { not: excludeUserId } },
+  });
+
+  if (otherUsers === 0) {
+    return {
+      users,
+      matchedSelf: false,
+      hint: "No other LIT members are registered yet. The recipient must sign up before you can send them a gift card.",
+    };
+  }
+
+  return {
+    users,
+    matchedSelf: false,
+    hint: "No members matched that search. Try a full name, email, or phone number.",
+  };
 }
 
 async function validateRecipient(recipientId, senderId) {
@@ -464,6 +550,7 @@ export async function getInternalGiftCard(userId, giftCardId) {
 }
 
 export default {
+  describeUserSearch,
   searchLitUsers,
   purchaseInternalGiftCard,
   claimInternalGiftCard,

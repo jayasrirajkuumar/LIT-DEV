@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./FriendListPage.css";
-import bodyBg from "../assets/body-bg.png";
 import starIcon from "../assets/star.png";
 import userIcon from "../assets/user.svg";
 import gameIcon from "../assets/game-controller.png";
@@ -180,14 +179,7 @@ const FriendListPage = () => {
   };
 
   return (
-    <div
-      className="friend-list-page"
-      style={{
-        backgroundImage: `url(${bodyBg})`,
-        backgroundSize: "cover",
-        backgroundAttachment: "fixed",
-      }}
-    >
+    <div className="friend-list-page">
       {/* Modal Popup */}
       {modalOpen &&
         (isStrictMobile() ? (

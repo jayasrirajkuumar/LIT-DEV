@@ -2,28 +2,29 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
+    mode: "dark",
     primary: {
-      main: "#1a1a1a",
-      light: "#333333",
-      dark: "#000000",
+      main: "#6F2DBD",
+      light: "#8E44D9",
+      dark: "#35145C",
       contrastText: "#ffffff",
     },
     secondary: {
-      main: "#c4a77d",
-      light: "#d4b78d",
-      dark: "#b4976d",
+      main: "#A66CFF",
+      light: "#C4A0FF",
+      dark: "#6F2DBD",
       contrastText: "#ffffff",
     },
     error: {
-      main: "#d32f2f",
-      light: "#ef5350",
-      dark: "#c62828",
+      main: "#ef4444",
+      light: "#f87171",
+      dark: "#dc2626",
       contrastText: "#ffffff",
     },
     warning: {
-      main: "#ed6c02",
-      light: "#ff9800",
-      dark: "#e65100",
+      main: "#f59e0b",
+      light: "#fbbf24",
+      dark: "#d97706",
       contrastText: "#ffffff",
     },
     info: {
@@ -33,19 +34,21 @@ const theme = createTheme({
       contrastText: "#ffffff",
     },
     success: {
-      main: "#2e7d32",
-      light: "#4caf50",
-      dark: "#1b5e20",
+      main: "#22c55e",
+      light: "#4ade80",
+      dark: "#16a34a",
       contrastText: "#ffffff",
     },
     background: {
-      default: "#ffffff",
-      paper: "#f5f5f5",
+      default: "#171717",
+      paper: "#202020",
     },
     text: {
-      primary: "#1a1a1a",
-      secondary: "#666666",
+      primary: "#FFFFFF",
+      secondary: "#B8B8B8",
+      disabled: "#777777",
     },
+    divider: "rgba(255, 255, 255, 0.08)",
   },
   typography: {
     fontFamily: '"Poppins", "Helvetica", "Arial", sans-serif',
@@ -103,11 +106,24 @@ const theme = createTheme({
         root: {
           borderRadius: 8,
           padding: "8px 16px",
+          transition: "all 0.3s ease",
         },
         contained: {
-          boxShadow: "none",
+          background: "linear-gradient(135deg, #4A1975, #6F2DBD)",
+          border: "1px solid rgba(166, 108, 255, 0.45)",
+          boxShadow: "0 4px 15px rgba(111, 45, 189, 0.15)",
           "&:hover": {
-            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+            background: "linear-gradient(135deg, #35145C, #4A1975)",
+            boxShadow: "0 6px 20px rgba(111, 45, 189, 0.22)",
+            transform: "translateY(-1px)",
+          },
+        },
+        outlined: {
+          borderColor: "rgba(142, 68, 217, 0.65)",
+          color: "#FFFFFF",
+          "&:hover": {
+            background: "rgba(111, 45, 189, 0.12)",
+            borderColor: "#8E44D9",
           },
         },
       },
@@ -116,7 +132,8 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 12,
-          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.05)",
+          backgroundColor: "#202020",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
         },
       },
     },
@@ -124,6 +141,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 12,
+          backgroundColor: "#202020",
         },
       },
     },
@@ -132,6 +150,17 @@ const theme = createTheme({
         root: {
           "& .MuiOutlinedInput-root": {
             borderRadius: 8,
+            backgroundColor: "#1A1A1A",
+            "& fieldset": {
+              borderColor: "rgba(255, 255, 255, 0.10)",
+            },
+            "&:hover fieldset": {
+              borderColor: "rgba(142, 68, 217, 0.35)",
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: "#8E44D9",
+              boxShadow: "0 0 0 2px rgba(142, 68, 217, 0.12)",
+            },
           },
         },
       },

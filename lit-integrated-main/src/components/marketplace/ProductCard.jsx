@@ -129,20 +129,23 @@ const ProductCard = memo(({ product, variant = "default" }) => {
 
           {isPremium && (
             <div className="mp-product-meta">
-              <div className="mp-product-rating" aria-label="Premium curated product">
-                <span className="mp-product-rating__stars" aria-hidden="true">★★★★★</span>
-                <span className="mp-product-rating__label">Premium · Curated</span>
-              </div>
               <div className="mp-price-row mp-price-row--premium">
-                <span className="mp-current-price">
-                  {formatCatalogPrice(product.price, product.currency)}
-                </span>
                 {product.comparePrice && (
                   <span className="mp-original-price">
                     {formatCatalogPrice(product.comparePrice, product.currency)}
                   </span>
                 )}
+                <span className="mp-current-price">
+                  {formatCatalogPrice(product.price, product.currency)}
+                </span>
                 {discount && <span className="mp-discount-percent">{discount}% off</span>}
+              </div>
+              <div className="mp-authenticated-badge" aria-label="Authenticated product">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                AUTHENTICATED
               </div>
             </div>
           )}

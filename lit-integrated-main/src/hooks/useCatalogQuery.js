@@ -60,7 +60,7 @@ export function useCatalogQuery(key, fetcher, options = {}) {
     return () => {
       cancelled = true;
     };
-  }, [key, enabled, staleMs, refetchToken]);
+  }, [key, enabled, staleMs, refetchToken, fetcher]);
 
   return { ...state, refetch };
 }

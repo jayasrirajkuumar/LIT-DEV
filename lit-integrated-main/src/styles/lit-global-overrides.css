@@ -40,7 +40,6 @@
 .success-popup-btn,
 .profile-save-btn,
 .profile-primary-btn,
-.user-menu-signin-btn,
 .adder-add-item-btn,
 .home-button,
 .step-navigation button,
@@ -66,8 +65,8 @@ button[type="submit"]:not(.adm-btn--ghost):not(.adm-btn--danger):not(.unstyled):
   box-shadow: var(--lit-btn-shadow) !important;
   filter: none !important;
   transition:
-    transform 0.3s var(--lit-ease, cubic-bezier(0.22, 1, 0.36, 1)),
-    box-shadow 0.3s var(--lit-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
     background 0.3s ease,
     border-color 0.3s ease,
     opacity 0.2s ease;
@@ -108,13 +107,12 @@ button[type="submit"]:not(.adm-btn--ghost):not(.adm-btn--danger):not(.unstyled):
 .success-popup-btn:hover:not(:disabled),
 .profile-save-btn:hover:not(:disabled),
 .profile-primary-btn:hover:not(:disabled),
-.user-menu-signin-btn:hover:not(:disabled),
 .adder-add-item-btn:hover:not(:disabled),
 .home-button:hover:not(:disabled),
 .step-navigation button:hover:not(:disabled),
 button[type="submit"]:not(.adm-btn--ghost):not(.adm-btn--danger):not(.unstyled):not(.lit-btn-unstyled):hover:not(:disabled) {
   background: var(--lit-primary-gradient-hover) !important;
-  border-color: rgba(216, 180, 254, 0.55) !important;
+  border-color: rgba(166, 108, 255, 0.45) !important;
   transform: translateY(-1px);
   box-shadow: var(--lit-btn-shadow-hover) !important;
   filter: none !important;
@@ -155,7 +153,10 @@ button[type="submit"]:not(.unstyled):not(.lit-btn-unstyled):active:not(:disabled
 .play-now-btn:disabled,
 .profile-primary-btn:disabled,
 button[type="submit"]:disabled {
-  opacity: 0.5 !important;
+  background: var(--lit-btn-disabled-bg) !important;
+  color: var(--lit-btn-disabled-color) !important;
+  border-color: var(--lit-btn-disabled-border) !important;
+  opacity: 1 !important;
   cursor: not-allowed;
   transform: none;
   box-shadow: none !important;
@@ -185,7 +186,6 @@ button[type="submit"]:disabled {
 .profile-cancel-btn,
 .profile-secondary-btn,
 .profile-edit-btn,
-.user-menu-signup-btn,
 .view-all-btn,
 .coming-soon-btn,
 .auth-modal-btn.secondary,
@@ -198,7 +198,7 @@ button[type="submit"]:disabled {
   height: var(--lit-btn-height, 44px) !important;
   min-height: var(--lit-btn-height, 44px) !important;
   padding: 0 var(--lit-btn-padding-x, 28px) !important;
-  border: var(--lit-btn-secondary-border, 1.5px solid rgba(139, 92, 246, 0.88)) !important;
+  border: var(--lit-btn-secondary-border, 1px solid rgba(142, 68, 217, 0.65)) !important;
   border-radius: var(--lit-btn-radius, 999px) !important;
   background: var(--lit-btn-secondary-bg, transparent) !important;
   color: #ffffff !important;
@@ -234,7 +234,6 @@ button[type="submit"]:disabled {
 .profile-cancel-btn:hover:not(:disabled),
 .profile-secondary-btn:hover:not(:disabled),
 .profile-edit-btn:hover:not(:disabled),
-.user-menu-signup-btn:hover:not(:disabled),
 .view-all-btn:hover:not(:disabled),
 .coming-soon-btn:hover:not(:disabled),
 .auth-modal-btn.secondary:hover:not(:disabled),
@@ -244,7 +243,7 @@ button[type="submit"]:disabled {
   border-color: var(--lit-btn-secondary-hover-border, rgba(167, 139, 250, 0.95)) !important;
   color: #ffffff !important;
   transform: translateY(-1px);
-  box-shadow: var(--lit-btn-secondary-hover-shadow, 0 0 20px rgba(124, 58, 237, 0.28)) !important;
+  box-shadow: var(--lit-btn-secondary-hover-shadow, none) !important;
   filter: none !important;
 }
 
@@ -269,7 +268,10 @@ button[type="submit"]:disabled {
 .mp-lux-btn--ghost:disabled,
 .secondary-button:disabled,
 .add-to-cart-btn:disabled {
-  opacity: 0.5 !important;
+  background: var(--lit-btn-disabled-bg) !important;
+  color: var(--lit-btn-disabled-color) !important;
+  border-color: var(--lit-btn-disabled-border) !important;
+  opacity: 1 !important;
   cursor: not-allowed;
   transform: none;
   box-shadow: none !important;
@@ -318,7 +320,17 @@ textarea,
 select,
 .footer-email-input,
 .mp-search-input {
+  background: var(--lit-input-bg, #1a1a1a);
+  border: 1px solid var(--lit-input-border, rgba(255, 255, 255, 0.1));
+  color: var(--lit-text);
   border-radius: var(--lit-radius-md, 14px);
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="hidden"]):not([type="file"])::placeholder,
+textarea::placeholder,
+.footer-email-input::placeholder,
+.mp-search-input::placeholder {
+  color: var(--lit-text-muted);
 }
 
 input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="hidden"]):not([type="file"]):focus,
@@ -327,14 +339,14 @@ select:focus,
 .footer-email-input:focus,
 .mp-search-input:focus {
   outline: none;
-  border-color: var(--lit-accent-light, #8b5cf6) !important;
-  box-shadow: 0 0 0 3px var(--lit-accent-glow) !important;
+  border-color: var(--lit-purple-light) !important;
+  box-shadow: 0 0 0 2px var(--lit-accent-glow) !important;
 }
 
 input[type="checkbox"],
 input[type="radio"],
 input[type="range"] {
-  accent-color: var(--lit-accent-hover, #7c3aed);
+  accent-color: var(--lit-purple);
 }
 
 /* ─── Badges ─── */
@@ -342,8 +354,9 @@ input[type="range"] {
 .lit-badge,
 .mp-flash-deals__chip {
   border-radius: var(--lit-radius-pill, 999px);
-  background: var(--lit-primary-gradient) !important;
-  color: #fff !important;
+  background: var(--lit-accent-soft) !important;
+  color: var(--lit-purple-soft) !important;
+  border: 1px solid var(--lit-purple-border-subtle) !important;
   box-shadow: none !important;
 }
 
@@ -382,11 +395,67 @@ input[type="range"] {
 /* Ghost / link buttons keep their own styles — not listed in primary/secondary selectors above. */
 
 .lit-link-btn {
-  color: var(--lit-accent-light, #8b5cf6) !important;
+  color: var(--lit-text-secondary) !important;
 }
 
 .lit-link-btn:hover {
-  color: #c4b5fd !important;
+  color: var(--lit-purple-soft) !important;
+}
+
+.lit-link-btn:active {
+  color: var(--lit-purple-light) !important;
+}
+
+/* ─── Auth nav buttons (Sign In = deep gradient, Sign Up = outline) ─── */
+.user-menu-signin-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, #4a1975, #6f2dbd) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(166, 108, 255, 0.45) !important;
+  border-radius: var(--lit-btn-radius, 8px) !important;
+  box-shadow: 0 4px 15px rgba(111, 45, 189, 0.15) !important;
+  font-family: var(--lit-font-display);
+  font-weight: 600 !important;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.user-menu-signin-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #35145c, #4a1975) !important;
+  border-color: rgba(166, 108, 255, 0.55) !important;
+  box-shadow: 0 6px 20px rgba(111, 45, 189, 0.22) !important;
+  transform: translateY(-1px);
+}
+
+.user-menu-signup-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(142, 68, 217, 0.65) !important;
+  border-radius: var(--lit-btn-radius, 8px) !important;
+  box-shadow: none !important;
+  font-family: var(--lit-font-display);
+  font-weight: 600 !important;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.user-menu-signup-btn:hover:not(:disabled) {
+  background: rgba(111, 45, 189, 0.12) !important;
+  border-color: #8e44d9 !important;
+  box-shadow: none !important;
+  transform: translateY(-1px);
 }
 
 @media (prefers-reduced-motion: reduce) {

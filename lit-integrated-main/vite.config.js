@@ -25,6 +25,11 @@ export default defineConfig({
         timeout: 30_000,
         proxyTimeout: 30_000,
       },
+      "/uploads": {
+        target: "http://localhost:3001",
+        changeOrigin: true,
+        secure: false,
+      },
       "/socket.io": {
         target: "http://localhost:3001",
         changeOrigin: true,

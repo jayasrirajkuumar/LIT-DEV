@@ -15,14 +15,14 @@
   --adm-shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.25);
   --adm-shadow-md: 0 12px 32px rgba(0, 0, 0, 0.35);
   --adm-shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.45);
-  --adm-glass: rgba(14, 10, 28, 0.72);
-  --adm-glass-strong: rgba(10, 8, 20, 0.88);
-  --adm-surface: #12121a;
-  --adm-border: rgba(255, 255, 255, 0.08);
-  --adm-border-accent: rgba(147, 51, 234, 0.35);
+  --adm-glass: rgba(23, 23, 23, 0.72);
+  --adm-glass-strong: rgba(29, 29, 29, 0.88);
+  --adm-surface: var(--lit-card, #202020);
+  --adm-border: var(--lit-border, rgba(255, 255, 255, 0.08));
+  --adm-border-accent: var(--lit-purple-border-subtle, rgba(142, 68, 217, 0.35));
   --adm-text: var(--lit-text, #fff);
-  --adm-text-muted: var(--lit-text-muted, rgba(255, 255, 255, 0.62));
-  --adm-accent: var(--lit-accent, #9333ea);
+  --adm-text-muted: var(--lit-text-secondary, #b8b8b8);
+  --adm-accent: var(--lit-purple, #6f2dbd);
   --adm-gold: var(--lit-gold, #d4af37);
   --adm-success: var(--lit-success, #34d399);
   --adm-warning: var(--lit-warning, #fcd34d);
@@ -38,10 +38,7 @@
 .ecom-admin-layout {
   --sidebar-width: var(--adm-sidebar-width);
   min-height: 100vh;
-  background:
-    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(147, 51, 234, 0.12), transparent),
-    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(212, 175, 55, 0.06), transparent),
-    var(--lit-bg, #08080c);
+  background: var(--lit-bg, #171717);
 }
 
 .ecom-admin-content {
@@ -76,7 +73,7 @@
   height: 40px;
   border-radius: var(--adm-radius-md);
   background: var(--lit-accent-soft, rgba(147, 51, 234, 0.18));
-  color: #c4b5fd;
+  color: var(--lit-purple-soft);
   font-size: 1.1rem;
 }
 
@@ -729,7 +726,7 @@
   display: grid;
   place-items: center;
   background: rgba(147, 51, 234, 0.15);
-  color: #c4b5fd;
+  color: var(--lit-purple-soft);
 }
 .adm-kpi__label { font-size: 0.8125rem; color: var(--adm-text-muted); font-weight: 500; }
 .adm-kpi__value { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
@@ -972,7 +969,7 @@
   display: grid;
   place-items: center;
   background: rgba(147, 51, 234, 0.15);
-  color: #c4b5fd;
+  color: var(--lit-purple-soft);
 }
 .adm-quick-action__title { font-weight: 600; font-size: 0.875rem; }
 .adm-quick-action__desc { font-size: 0.75rem; color: var(--adm-text-muted); margin-top: 4px; }

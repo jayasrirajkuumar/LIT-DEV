@@ -2,7 +2,7 @@
 
 .mp-navbar {
   width: 100%;
-  background: rgba(10, 8, 18, 0.88);
+  background: rgba(23, 23, 23, 0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -12,7 +12,7 @@
 }
 
 .mp-navbar--scrolled {
-  background: rgba(10, 8, 18, 0.94);
+  background: rgba(23, 23, 23, 0.98);
   backdrop-filter: blur(22px);
   -webkit-backdrop-filter: blur(22px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
@@ -107,7 +107,7 @@
   right: 0;
   bottom: 0;
   height: 2px;
-  background: linear-gradient(90deg, #7c3aed, #a855f7);
+  background: linear-gradient(90deg, var(--lit-purple), var(--lit-purple-light));
   border-radius: 999px;
   transform: scaleX(0);
   transform-origin: center;
@@ -116,12 +116,22 @@
 
 .mp-navbar__center a:hover,
 .mp-navbar__center a.active {
-  color: #c4b5fd;
+  color: var(--lit-purple-soft);
 }
 
 .mp-navbar__center a:hover::after,
 .mp-navbar__center a.active::after {
   transform: scaleX(1);
+}
+
+.mp-navbar__center a.mp-navbar__link--highlight {
+  color: var(--lit-purple-soft);
+  font-weight: 600;
+}
+
+.mp-navbar__center a.mp-navbar__link--highlight::after {
+  transform: scaleX(1);
+  opacity: 0.85;
 }
 
 /* ─── Right — Search, icons, profile ─── */
@@ -151,7 +161,7 @@
 .mp-navbar__search-icon {
   position: absolute;
   left: 14px;
-  color: rgba(255, 255, 255, 0.35);
+  color: #b8b8b8;
   pointer-events: none;
   transition: color 0.3s ease;
 }
@@ -160,12 +170,12 @@
   box-sizing: border-box;
   width: 100%;
   height: 40px;
-  border: 1px solid rgba(139, 92, 246, 0.28);
-  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
   padding: 0 14px 0 40px;
   font-size: 0.8125rem;
   font-family: "Poppins", sans-serif;
-  background: rgba(15, 12, 24, 0.72);
+  background: #1d1d1d;
   color: #ffffff;
   outline: none;
   transition:
@@ -175,19 +185,17 @@
 }
 
 .mp-navbar__search input::placeholder {
-  color: rgba(255, 255, 255, 0.32);
+  color: #777777;
 }
 
 .mp-navbar__search input:focus {
-  border-color: rgba(139, 92, 246, 0.65);
-  background: rgba(18, 14, 30, 0.9);
-  box-shadow:
-    0 0 0 3px rgba(124, 58, 237, 0.16),
-    0 0 20px rgba(124, 58, 237, 0.12);
+  border-color: rgba(142, 68, 217, 0.6);
+  background: #1d1d1d;
+  box-shadow: 0 0 0 2px rgba(142, 68, 217, 0.12);
 }
 
 .mp-navbar__search:focus-within .mp-navbar__search-icon {
-  color: #a855f7;
+  color: var(--lit-purple-light);
 }
 
 /* ─── Icon buttons ─── */
@@ -198,16 +206,15 @@
   display: grid;
   place-items: center;
   border: none;
-  border-radius: 50%;
+  border-radius: 8px;
   background: transparent;
-  color: rgba(255, 255, 255, 0.88);
+  color: #b8b8b8;
   text-decoration: none;
   cursor: pointer;
   flex-shrink: 0;
   transition:
     color 0.3s ease,
-    background 0.3s ease,
-    box-shadow 0.3s ease;
+    background 0.3s ease;
 }
 
 .mp-navbar__icon-btn svg {
@@ -215,11 +222,14 @@
   height: 20px;
 }
 
-.mp-navbar__icon-btn:hover,
+.mp-navbar__icon-btn:hover {
+  color: #a66cff;
+  background: rgba(255, 255, 255, 0.04);
+}
+
 .mp-navbar__icon-btn.is-active {
-  color: #e9d5ff;
-  background: rgba(124, 58, 237, 0.14);
-  box-shadow: 0 0 18px rgba(124, 58, 237, 0.28);
+  color: #8e44d9;
+  background: rgba(111, 45, 189, 0.08);
 }
 
 .mp-navbar__badge {
@@ -230,7 +240,7 @@
   height: 16px;
   padding: 0 4px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  background: var(--lit-primary-gradient);
   color: #fff;
   font-size: 0.5625rem;
   font-weight: 700;
@@ -254,20 +264,22 @@
   height: 40px;
   min-width: 100px;
   padding: 0 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(139, 92, 246, 0.45);
-  background: transparent;
-  color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid rgba(166, 108, 255, 0.45) !important;
+  background: linear-gradient(135deg, #4a1975, #6f2dbd) !important;
+  color: #ffffff !important;
   font-family: "Poppins", sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   white-space: nowrap;
   cursor: pointer;
+  box-shadow: 0 4px 15px rgba(111, 45, 189, 0.15) !important;
   transition:
     border-color 0.3s ease,
     background 0.3s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 .mp-navbar .user-menu-signup-btn {
@@ -275,27 +287,35 @@
   height: 40px;
   min-width: 100px;
   padding: 0 18px;
-  border-radius: 999px;
-  border: none;
-  background: linear-gradient(180deg, #7c3aed 0%, #5b21b6 100%);
-  color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid rgba(142, 68, 217, 0.65) !important;
+  background: transparent !important;
+  color: #ffffff !important;
   font-family: "Poppins", sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   white-space: nowrap;
   cursor: pointer;
-  transition: box-shadow 0.3s ease;
+  box-shadow: none !important;
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .mp-navbar .user-menu-signin-btn:hover {
-  border-color: rgba(167, 139, 250, 0.75);
-  background: rgba(124, 58, 237, 0.12);
-  box-shadow: 0 0 16px rgba(124, 58, 237, 0.22);
+  background: linear-gradient(135deg, #35145c, #4a1975) !important;
+  border-color: rgba(166, 108, 255, 0.55) !important;
+  box-shadow: 0 6px 20px rgba(111, 45, 189, 0.22) !important;
+  transform: translateY(-1px);
 }
 
 .mp-navbar .user-menu-signup-btn:hover {
-  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.42);
+  background: rgba(111, 45, 189, 0.12) !important;
+  border-color: #8e44d9 !important;
+  box-shadow: none !important;
+  transform: translateY(-1px);
 }
 
 /* ─── Authenticated profile ─── */
@@ -350,7 +370,7 @@
 .mp-navbar .user-menu-trigger:hover .user-menu-avatar-fallback,
 .mp-navbar .user-menu-trigger:hover .user-menu-avatar-image {
   box-shadow:
-    0 0 0 2px #a855f7,
+    0 0 0 2px var(--lit-purple-light),
     0 0 26px rgba(124, 58, 237, 0.45);
   transform: translateY(-1px);
 }
@@ -524,7 +544,7 @@
 
 .mp-navbar__mobile-nav a:hover,
 .mp-navbar__mobile-nav a.active {
-  color: #c4b5fd;
+  color: var(--lit-purple-soft);
 }
 
 .mp-navbar__mobile-actions {
@@ -545,7 +565,7 @@
   margin-left: 0.5rem;
   padding: 2px 8px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  background: var(--lit-primary-gradient);
   font-size: 0.65rem;
 }
 

@@ -1,5 +1,5 @@
 import {
-  searchLitUsers,
+  describeUserSearch,
   purchaseInternalGiftCard,
   claimInternalGiftCard,
   declineInternalGiftCard,
@@ -13,8 +13,16 @@ import { logger } from "../utils/logger.js";
 
 export async function getUserSearch(req, res) {
   const q = String(req.query.q || "").trim();
-  const users = await searchLitUsers(q, { excludeUserId: req.dbUser.id });
-  res.json({ success: true, message: "Users found.", data: { users } });
+  const result = await describeUserSearch(q, req.dbUser.id);
+  res.json({
+    success: true,
+    message: "Users found.",
+    data: {
+      users: result.users,
+      hint: result.hint,
+      matchedSelf: result.matchedSelf,
+    },
+  });
 }
 
 export async function postInternalPurchase(req, res) {

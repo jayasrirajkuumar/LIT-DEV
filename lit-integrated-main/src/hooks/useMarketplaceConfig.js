@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { fetchMarketplaceConfig } from "../services/marketplaceApiService";
+import { normalizeSortKey } from "../utils/catalogSort";
 
 let cachedConfig = null;
 let inflight = null;
 
-export function useMarketplaceConfig() {
+function useMarketplaceConfig() {
   const [config, setConfig] = useState(cachedConfig);
   const [loading, setLoading] = useState(!cachedConfig);
   const [error, setError] = useState(null);
@@ -34,11 +35,15 @@ export function useMarketplaceConfig() {
 
   return {
     config,
-    sortOptions: config?.sortOptions ?? [],
+    sortOptions: (config?.sortOptions ?? []).map((option) => ({
+      ...option,
+      key: normalizeSortKey(option.key),
+    })),
     filterOptions: config?.filterOptions ?? [],
     loading,
     error,
   };
 }
 
+export { useMarketplaceConfig };
 export default useMarketplaceConfig;

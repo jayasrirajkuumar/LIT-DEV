@@ -1,4 +1,5 @@
 import React from "react";
+import { normalizeMediaUrl } from "../../utils/mediaUrl";
 import AdminBadge, { AdminStatusBadge } from "./AdminBadge";
 import AdminCard, { AdminCardHeader, AdminCardBody } from "./AdminCard";
 
@@ -20,7 +21,7 @@ export default function ProductPreviewPanel({ formData, categories = [] }) {
         <div className="adm-product-preview__frame">
           <div className="adm-product-preview__image-wrap">
             {primaryImage ? (
-              <img src={primaryImage} alt={formData?.productName || "Product preview"} />
+              <img src={normalizeMediaUrl(primaryImage)} alt={formData?.productName || "Product preview"} />
             ) : (
               <div className="adm-product-preview__placeholder">Image preview</div>
             )}
@@ -47,7 +48,7 @@ export default function ProductPreviewPanel({ formData, categories = [] }) {
             {formData.imageEntries.map((entry, index) => (
               <div key={`${entry.imageUrl}-${index}`} className="adm-product-preview__thumb">
                 {entry.imageUrl ? (
-                  <img src={entry.imageUrl} alt={entry.altText || `Image ${index + 1}`} />
+                  <img src={normalizeMediaUrl(entry.imageUrl)} alt={entry.altText || `Image ${index + 1}`} />
                 ) : (
                   <div className="adm-product-preview__placeholder">—</div>
                 )}

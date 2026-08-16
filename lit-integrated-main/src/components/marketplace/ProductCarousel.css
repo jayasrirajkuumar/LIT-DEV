@@ -1,18 +1,18 @@
 /* ─── LIT Luxury Product Carousel — Fresh Arrivals / Trending Now ─── */
 
 .mp-product-carousel {
-  --lit-bg: var(--lit-bg, #121212);
-  --lit-card: var(--lit-surface, #202026);
-  --lit-surface: var(--lit-bg-secondary, #1a1a1f);
-  --lit-image-bg: #1a1625;
-  --lit-accent: var(--lit-accent, #6d28d9);
-  --lit-accent-mid: var(--lit-accent-hover, #7c3aed);
-  --lit-accent-light: var(--lit-accent-light, #8b5cf6);
+  --lit-bg: var(--lit-bg, #171717);
+  --lit-card: var(--lit-card, #202020);
+  --lit-surface: var(--lit-bg-secondary, #1d1d1d);
+  --lit-image-bg: #1a1a1a;
+  --lit-accent: var(--lit-purple, #6f2dbd);
+  --lit-accent-mid: var(--lit-purple-light, #8e44d9);
+  --lit-accent-light: var(--lit-purple-soft, #a66cff);
   --lit-text: #ffffff;
-  --lit-text-secondary: #b8b8c5;
-  --lit-text-muted: #8e8e99;
+  --lit-text-secondary: #b8b8b8;
+  --lit-text-muted: #777777;
   --lit-border: rgba(255, 255, 255, 0.08);
-  --lit-glow: rgba(124, 58, 237, 0.25);
+  --lit-glow: rgba(111, 45, 189, 0.25);
 
   width: calc(100% + 2 * var(--mp-page-gutter, 32px));
   margin-left: calc(-1 * var(--mp-page-gutter, 32px));
@@ -23,35 +23,13 @@
 .mp-product-carousel__shell {
   position: relative;
   padding: clamp(2rem, 3.5vw, 2.75rem) var(--mp-page-gutter, 32px);
-  background:
-    radial-gradient(circle at top, rgba(124, 58, 237, 0.12), transparent 40%),
-    radial-gradient(ellipse 55% 80% at 8% 40%, rgba(124, 58, 237, 0.08), transparent 55%),
-    radial-gradient(ellipse 45% 70% at 92% 60%, rgba(168, 85, 247, 0.06), transparent 50%),
-    var(--lit-bg);
+  background: var(--lit-bg);
   border-block: 1px solid rgba(255, 255, 255, 0.04);
   overflow: hidden;
 }
 
 .mp-product-carousel__glow {
-  position: absolute;
-  width: clamp(200px, 24vw, 360px);
-  height: clamp(200px, 24vw, 360px);
-  border-radius: 50%;
-  filter: blur(90px);
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-.mp-product-carousel__glow--left {
-  top: 8%;
-  left: -6%;
-  background: rgba(124, 58, 237, 0.2);
-}
-
-.mp-product-carousel__glow--right {
-  bottom: 4%;
-  right: -5%;
-  background: rgba(168, 85, 247, 0.14);
+  display: none;
 }
 
 /* Header */
@@ -316,21 +294,19 @@
 }
 
 .mp-product-carousel .mp-product-image-wrap .catalog-image-fallback {
-  background:
-    radial-gradient(circle at 50% 35%, rgba(124, 58, 237, 0.1), transparent 55%),
-    var(--lit-image-bg);
+  background: var(--lit-image-bg);
 }
 
 /* Badges */
 .mp-product-carousel .mp-discount-pill {
-  background: linear-gradient(135deg, var(--lit-accent) 0%, var(--lit-accent-light) 100%);
-  border: none;
+  background: linear-gradient(135deg, #35145c, #4a1975);
+  border: 1px solid rgba(166, 108, 255, 0.35);
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   padding: 0.32rem 0.65rem;
   color: var(--lit-text);
-  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.35);
+  box-shadow: none;
 }
 
 /* Wishlist */
@@ -351,7 +327,8 @@
 }
 
 .mp-product-carousel .mp-product-card--premium:hover .mp-wishlist-btn {
-  box-shadow: 0 0 16px rgba(124, 58, 237, 0.2);
+  box-shadow: none;
+  border-color: rgba(142, 68, 217, 0.35);
 }
 
 .mp-product-carousel .mp-wishlist-btn:hover,
@@ -473,7 +450,7 @@
 .mp-product-carousel .mp-current-price {
   font-size: 1.12rem;
   font-weight: 700;
-  color: var(--lit-text);
+  color: #d4a853;
   letter-spacing: 0.01em;
 }
 
@@ -490,6 +467,30 @@
   letter-spacing: 0.04em;
 }
 
+.mp-product-carousel .mp-authenticated-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 0.15rem;
+}
+
+.mp-product-carousel .mp-authenticated-badge svg {
+  color: #4ade80;
+  flex-shrink: 0;
+}
+
+.mp-product-carousel .mp-product-card--premium .mp-button-row {
+  display: none;
+}
+
+.mp-product-carousel .mp-product-card--premium .mp-product-category {
+  display: none;
+}
+
 /* Product card buttons — layout; visuals from lit-global-overrides.css */
 .mp-product-carousel .mp-button-row {
   display: flex;
@@ -503,9 +504,7 @@
 
 /* Skeleton */
 .mp-product-carousel--skeleton .mp-product-carousel__shell {
-  background:
-    radial-gradient(circle at top, rgba(124, 58, 237, 0.08), transparent 40%),
-    var(--lit-bg);
+  background: var(--lit-bg);
 }
 
 .mp-product-carousel--skeleton .mp-product-carousel__title {

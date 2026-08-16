@@ -54,19 +54,44 @@ function buildWhereClause(filters = {}) {
 function buildOrderBy(sort) {
   switch (sort) {
     case "price_asc":
-      return [{ price: "asc" }];
+      return [{ price: "asc" }, { createdAt: "desc" }];
     case "price_desc":
-      return [{ price: "desc" }];
+      return [{ price: "desc" }, { createdAt: "desc" }];
     case "popularity":
       return [{ viewCount: "desc" }, { createdAt: "desc" }];
     case "discount":
-      return [{ comparePrice: "desc" }, { price: "asc" }];
+      return [
+        { comparePrice: { sort: "desc", nulls: "last" } },
+        { price: "asc" },
+        { createdAt: "desc" },
+      ];
     case "featured":
       return [{ isFeatured: "desc" }, { viewCount: "desc" }, { createdAt: "desc" }];
+    case "rating":
+      return [{ viewCount: "desc" }, { isFeatured: "desc" }, { createdAt: "desc" }];
+    case "name_asc":
+      return [{ name: "asc" }];
+    case "name_desc":
+      return [{ name: "desc" }];
     case "newest":
     default:
       return [{ createdAt: "desc" }];
   }
+}
+
+function discountAmount(product) {
+  const comparePrice = product.comparePrice != null ? Number(product.comparePrice) : null;
+  const price = Number(product.price);
+  if (comparePrice == null || comparePrice <= price) return 0;
+  return comparePrice - price;
+}
+
+function sortProductsByDiscount(products) {
+  return [...products].sort((a, b) => {
+    const diff = discountAmount(b) - discountAmount(a);
+    if (diff !== 0) return diff;
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
 }
 
 function filterByAvailability(products, availability) {
@@ -100,7 +125,10 @@ export const productRepository = {
         orderBy,
       });
 
-      const filtered = filterByAvailability(products, availability);
+      let filtered = filterByAvailability(products, availability);
+      if (rest.sort === "discount") {
+        filtered = sortProductsByDiscount(filtered);
+      }
       const start = (page - 1) * limit;
       const paginated = filtered.slice(start, start + limit);
 
@@ -111,6 +139,26 @@ export const productRepository = {
           limit,
           total: filtered.length,
           totalPages: Math.ceil(filtered.length / limit) || 1,
+        },
+      };
+    }
+
+    if (rest.sort === "discount") {
+      const products = await prisma.product.findMany({
+        where,
+        include: productInclude,
+      });
+      const sorted = sortProductsByDiscount(products);
+      const start = (page - 1) * limit;
+      const paginated = sorted.slice(start, start + limit);
+
+      return {
+        products: paginated.map((product) => toPublicProduct(product)),
+        pagination: {
+          page,
+          limit,
+          total: sorted.length,
+          totalPages: Math.ceil(sorted.length / limit) || 1,
         },
       };
     }

@@ -11,9 +11,7 @@
 }
 
 .checkout-page-background {
-  background-image: url("/path-to-your-purple-abstract-background.jpg");
-  background-size: cover;
-  background-position: center;
+  background: transparent;
   min-height: 100vh;
   padding: 60px 40px 40px;
   color: var(--text-light);

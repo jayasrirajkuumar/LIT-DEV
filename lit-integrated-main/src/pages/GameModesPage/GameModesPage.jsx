@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./GameModesPage.css";
-import bodyBg from "../assets/body-bg.png"; // Import the background image
 
 const GameModes = () => {
   const [activeTab, setActiveTab] = useState("clothing");
@@ -56,14 +55,7 @@ const GameModes = () => {
   ];
 
   return (
-    <div
-      className="game-modes-page"
-      style={{
-        backgroundImage: `url(${bodyBg})`,
-        backgroundSize: "cover",
-        backgroundAttachment: "fixed",
-      }}
-    >
+    <div className="game-modes-page">
       {/* Assuming Navbar is handled separately as per your request */}
       <div className="game-modes-container">
         {/* Left Sidebar */}

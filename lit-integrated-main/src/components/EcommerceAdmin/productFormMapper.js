@@ -94,3 +94,22 @@ export function mapFormToApiProduct(formData) {
 }
 
 export { slugifyName, generateSku };
+
+export function validateProductForm(formData) {
+  const name = String(formData.productName || formData.name || "").trim();
+  const brand = String(formData.brand || formData.productLine || "").trim();
+  const categoryId = String(formData.categoryId || "").trim();
+  const price = Number(formData.originalPrice ?? formData.price);
+  const stock = formData.stock === "" || formData.stock === undefined ? NaN : Number(formData.stock);
+  const description = String(formData.description || "").trim();
+
+  if (!name) return "Product name is required.";
+  if (!brand) return "Brand is required.";
+  if (!categoryId) return "Please select a category.";
+  if (!/^[0-9a-f-]{36}$/i.test(categoryId)) return "Please select a valid category.";
+  if (!Number.isFinite(price) || price <= 0) return "Enter a valid price greater than 0.";
+  if (!Number.isFinite(stock) || stock < 0) return "Enter a valid stock quantity (0 or more).";
+  if (!description) return "Description is required.";
+
+  return null;
+}

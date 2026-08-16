@@ -44,7 +44,7 @@ const AdminCategoriesView = () => {
       setLoading(true);
       setError("");
       const data = await fetchAdminCategories();
-      setCategories(Array.isArray(data) ? data : []);
+      setCategories(Array.isArray(data) ? data : data?.categories ?? []);
     } catch (err) {
       setError(err.message || "Failed to load categories.");
     } finally {
