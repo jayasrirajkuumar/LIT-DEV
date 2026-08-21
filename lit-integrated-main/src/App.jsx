@@ -31,6 +31,7 @@ import EcomAdminProtectedRoute from "./components/admin-components/EcomAdminProt
 import AdminLayout from "./components/admin-components/AdminLayout";
 import Notification from "./components/Notification";
 import ScrollToTop from "./components/ScrollToTop";
+import MarketplaceRouteProgress from "./components/marketplace/MarketplaceRouteProgress";
 
 import EcomAdminDashboard from "./pages/admin/EcomAdminDashboard";
 import EcomDashboardView from "./components/EcommerceAdmin/EcomDashboardView";
@@ -178,6 +179,7 @@ const AppContent = () => {
   return (
     <Background className={isAuthPath ? "background-container--auth" : ""}>
       <ScrollToTop />
+      {isMarketplacePath && <MarketplaceRouteProgress />}
       <Notification />
       {showMainNavbar && <LandingPageNavbar />}
       {showNewsletterNavbar && <Navbar />}

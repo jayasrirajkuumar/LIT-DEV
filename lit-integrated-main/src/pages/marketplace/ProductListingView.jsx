@@ -47,6 +47,7 @@ const ProductListingView = ({
     productsQuery.refetch();
   };
 
+  const categories = Array.isArray(categoriesQuery.data) ? categoriesQuery.data : [];
   const rawProducts = productsQuery.data?.products || [];
   const products = rawProducts.length > 0 ? rawProducts : LUXURY_PRODUCTS.map((p) => ({
     id: p.id,
@@ -62,7 +63,9 @@ const ProductListingView = ({
     inventory: { isInStock: true, quantity: p.stock },
   }));
   const pagination = productsQuery.data?.pagination || { page: 1, total: products.length, totalPages: 1 };
-  const loading = productsQuery.loading && rawProducts.length === 0 && false;
+  // Local luxury products keep the page useful while the API warms up. The
+  // toolbar and route progress indicator still communicate navigation state.
+  const loading = productsQuery.loading && products.length === 0;
   const error = productsQuery.error && products.length === 0 ? productsQuery.error : null;
 
   return (

@@ -6,12 +6,17 @@ import ProductSkeleton from "../../components/marketplace/ProductSkeleton";
 import { useCatalogQuery } from "../../hooks/useCatalogQuery";
 import { getCategoryBySlug, getProductsByCategory } from "../../services/catalogApiService";
 import ProductListingView from "./ProductListingView";
+import { CATEGORY_SPLIT_DATA } from "../../data/marketplace/luxuryData";
 
 const CategoryPage = () => {
   const { slug } = useParams();
   const categoryQuery = useCatalogQuery(`category:${slug}`, () => getCategoryBySlug(slug));
 
-  if (categoryQuery.loading) {
+  const fallbackCategory = CATEGORY_SPLIT_DATA[slug]
+    ? { name: slug.charAt(0).toUpperCase() + slug.slice(1), slug }
+    : null;
+
+  if (categoryQuery.loading && !fallbackCategory) {
     return (
       <MarketplaceLayout pageTitle="Loading..." backLabel="Back to Marketplace" backTo="/shop/products">
         <ProductSkeleton count={6} />
@@ -19,7 +24,7 @@ const CategoryPage = () => {
     );
   }
 
-  if (categoryQuery.error) {
+  if (categoryQuery.error && !fallbackCategory) {
     return (
       <MarketplaceLayout backLabel="Back to Marketplace" backTo="/shop/products">
         <ErrorState
@@ -30,7 +35,15 @@ const CategoryPage = () => {
     );
   }
 
-  const category = categoryQuery.data;
+  const category = categoryQuery.data || fallbackCategory;
+
+  if (!category) {
+    return (
+      <MarketplaceLayout backLabel="Back to Marketplace" backTo="/shop/products">
+        <ErrorState message="This collection is not available yet." onRetry={categoryQuery.refetch} />
+      </MarketplaceLayout>
+    );
+  }
 
   return (
     <MarketplaceLayout pageTitle={category.name} backLabel="Back to Marketplace" backTo="/shop/products">

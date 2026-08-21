@@ -29,6 +29,35 @@
   --lux-font-sans: "Inter", "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+.lux-route-progress {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-content: center;
+  gap: 12px;
+  color: var(--lux-ivory);
+  background: rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 150ms ease, visibility 150ms ease;
+}
+
+.lux-route-progress.is-visible { opacity: 1; visibility: visible; }
+.lux-route-progress span {
+  width: 34px;
+  height: 34px;
+  margin: auto;
+  border: 2px solid rgba(216, 184, 122, .25);
+  border-top-color: var(--lux-gold-soft);
+  border-radius: 50%;
+  animation: lux-route-spin .7s linear infinite;
+}
+.lux-route-progress p { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; }
+@keyframes lux-route-spin { to { transform: rotate(360deg); } }
+
 /* Global marketplace page wrapper */
 .lux-marketplace {
   background-color: var(--lux-black);
@@ -39,6 +68,15 @@
   overflow-x: hidden;
   position: relative;
   -webkit-font-smoothing: antialiased;
+}
+
+.lux-marketplace::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(circle at 50% 18%, rgba(197, 160, 89, .055), transparent 32%);
 }
 
 .lux-marketplace-content {
@@ -354,6 +392,9 @@
   transform: translateX(3px);
 }
 
+.lux-link-arrow::first-letter { transition: color .25s ease; }
+.lux-link-arrow:hover { text-shadow: 0 0 18px rgba(216, 184, 122, .3); }
+
 /* 1. TOP ANNOUNCEMENT BAR */
 .lux-top-announcement {
   background-color: #050505;
@@ -506,6 +547,9 @@
   transform: scale(1.035);
 }
 
+.lux-hero-panel .lux-hero-overlay { transition: opacity .5s ease, background .5s ease; }
+.lux-hero-panel:hover .lux-hero-overlay { opacity: .78; }
+
 /* 5. TRUST / SERVICE BENEFITS */
 .lux-trust-bar {
   background-color: #030303;
@@ -519,6 +563,9 @@
   gap: 1.1rem;
   padding: 1.6rem 1.4rem;
 }
+
+.lux-trust-item svg { transition: transform .35s cubic-bezier(.22,1,.36,1), filter .35s ease; }
+.lux-trust-item:hover svg { transform: translateY(-3px) scale(1.08); filter: drop-shadow(0 0 8px rgba(197,160,89,.4)); }
 
 /* 6. FLASH SALE BANNER */
 .lux-flash-sale {
@@ -597,7 +644,10 @@
   padding: .8rem .65rem;
   min-width: clamp(62px, 5.2vw, 88px);
   text-align: center;
+  transition: transform .3s ease, border-color .3s ease, background-color .3s ease;
 }
+
+.lux-countdown-box:hover { transform: translateY(-3px); border-color: var(--lux-gold-soft); background-color: rgba(10,10,10,.52); }
 
 @media (min-width: 640px) {
   .lux-countdown-box {
@@ -725,8 +775,10 @@
   flex-direction: column;
   height: 100%;
   position: relative;
-  transition: transform 0.35s ease;
+  transition: transform 0.4s cubic-bezier(.22,1,.36,1), filter .4s ease;
 }
+
+.lux-product-card:hover { transform: translateY(-7px); filter: drop-shadow(0 18px 20px rgba(0,0,0,.45)); }
 
 .lux-product-image-box {
   background-color: var(--lux-cream);
@@ -852,6 +904,9 @@
   transform: scale(1.04);
 }
 
+.lux-discover-copy { transition: transform .45s cubic-bezier(.22,1,.36,1); }
+.lux-discover-card:hover .lux-discover-copy { transform: translateY(-8px); }
+
 .lux-discover-overlay {
   background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.1) 100%);
 }
@@ -910,6 +965,9 @@
   background-color: #0e0d0b;
   box-shadow: 0 0 20px rgba(197, 160, 89, 0.15);
 }
+
+.lux-authenticity-wrap .grid > div:not(:last-child) { transition: transform .35s ease, background-color .35s ease; }
+.lux-authenticity-wrap .grid > div:not(:last-child):hover { transform: translateY(-4px); background-color: rgba(197,160,89,.035); }
 
 /* 12. LIT GAME INTERACTIVE */
 .lux-game-section {

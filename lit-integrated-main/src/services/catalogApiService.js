@@ -62,8 +62,10 @@ async function parseApiResponse(response) {
 
 async function catalogFetch(url, options = {}, { allowDegraded = false } = {}) {
   let response;
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), 6500);
   try {
-    response = await fetch(url, options);
+    response = await fetch(url, { ...options, signal: options.signal || controller.signal });
   } catch {
     if (allowDegraded) return { ...EMPTY_PRODUCT_LIST, degraded: true };
     const error = new Error(
@@ -71,6 +73,8 @@ async function catalogFetch(url, options = {}, { allowDegraded = false } = {}) {
     );
     error.code = "network_error";
     throw error;
+  } finally {
+    window.clearTimeout(timeoutId);
   }
 
   const payload = await response.json().catch(() => ({}));
