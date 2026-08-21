@@ -1,13 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 import BackNavigation from "../layout/BackNavigation";
-import MarketplaceAnnouncementBar from "./MarketplaceAnnouncementBar";
 import MarketplaceNavbar from "./MarketplaceNavbar";
-import "../../styles/marketplace.css";
+import MarketplaceLuxuryFooter from "./MarketplaceLuxuryFooter";
+import { LuxuryShoppingProvider } from "../../context/LuxuryShoppingContext";
+import "../../styles/marketplace-luxury.css";
 
 const pageVariants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const MarketplaceLayout = ({
@@ -16,34 +17,43 @@ const MarketplaceLayout = ({
   backLabel,
   backTo = "/shop",
   showMarketplaceNav = true,
+  showFooter = true,
   isHome = false,
 }) => (
-  <div className={`mp-page mp-page--luxury min-h-screen w-full min-w-0 max-w-full overflow-x-clip${isHome ? " mp-page--home" : ""}`}>
-    {showMarketplaceNav && (
-      <header className="mp-marketplace-header">
-        <MarketplaceAnnouncementBar />
-        <MarketplaceNavbar />
-      </header>
-    )}
-    <motion.main
-      className="mp-main mx-auto w-full min-w-0 max-w-full"
-      variants={pageVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      {pageTitle && (
-        <header className="mp-page-title-header">
-          <h1>{pageTitle}</h1>
+  <LuxuryShoppingProvider>
+    <div className={`lux-marketplace min-h-screen w-full flex flex-col ${isHome ? "lux-marketplace--home" : ""}`}>
+      {showMarketplaceNav && (
+        <header className="w-full sticky top-0 z-50">
+          <MarketplaceNavbar />
         </header>
       )}
-      {backLabel && (
-        <div className="mp-back-nav-wrap">
-          <BackNavigation label={backLabel} fallbackTo={backTo} />
-        </div>
-      )}
-      {children}
-    </motion.main>
-  </div>
+
+      <motion.main
+        className="flex-1 w-full"
+        variants={pageVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {pageTitle && (
+          <header className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 py-6 border-b border-[#1c1a17]">
+            <h1 className="lux-serif text-2xl sm:text-3xl lg:text-4xl text-[#faf8f5] tracking-wide">
+              {pageTitle}
+            </h1>
+          </header>
+        )}
+
+        {backLabel && (
+          <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 py-4">
+            <BackNavigation label={backLabel} fallbackTo={backTo} />
+          </div>
+        )}
+
+        {children}
+      </motion.main>
+
+      {showFooter && <MarketplaceLuxuryFooter />}
+    </div>
+  </LuxuryShoppingProvider>
 );
 
 export default MarketplaceLayout;

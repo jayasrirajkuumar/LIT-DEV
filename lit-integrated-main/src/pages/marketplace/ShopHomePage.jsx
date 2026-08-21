@@ -1,164 +1,41 @@
 import React from "react";
-
+import { motion, useReducedMotion } from "framer-motion";
 import MarketplaceLayout from "../../components/marketplace/MarketplaceLayout";
-
-import MarketplaceLuxuryHero from "../../components/marketplace/MarketplaceLuxuryHero";
-
+import MarketplaceHeroPanels from "../../components/marketplace/MarketplaceHeroPanels";
 import MarketplaceTrustBar from "../../components/marketplace/MarketplaceTrustBar";
+import MarketplaceFlashSale from "../../components/marketplace/MarketplaceFlashSale";
+import MarketplaceCategorySplit from "../../components/marketplace/MarketplaceCategorySplit";
+import MarketplaceMaisonEdit from "../../components/marketplace/MarketplaceMaisonEdit";
+import MarketplaceProductCarousel from "../../components/marketplace/MarketplaceProductCarousel";
+import MarketplaceDiscoverMore from "../../components/marketplace/MarketplaceDiscoverMore";
+import MarketplaceAuthenticity from "../../components/marketplace/MarketplaceAuthenticity";
+import "../../styles/marketplace-luxury.css";
 
-import MarketplaceLuxuryCategories from "../../components/marketplace/MarketplaceLuxuryCategories";
-
-import MarketplaceFeaturedCollections from "../../components/marketplace/MarketplaceFeaturedCollections";
-
-import MarketplaceBrandsSection from "../../components/marketplace/MarketplaceBrandsSection";
-
-import MarketplaceFlashDeals from "../../components/marketplace/MarketplaceFlashDeals";
-
-import MarketplaceWhyChoose from "../../components/marketplace/MarketplaceWhyChoose";
-
-import MarketplaceTestimonials from "../../components/marketplace/MarketplaceTestimonials";
-
-import MarketplaceLookbook from "../../components/marketplace/MarketplaceLookbook";
-
-import EmptyState from "../../components/marketplace/EmptyState";
-
-import ErrorState from "../../components/marketplace/ErrorState";
-
-import ProductCarousel, { ProductCarouselSkeleton } from "../../components/marketplace/ProductCarousel";
-
-import ProductGrid from "../../components/marketplace/ProductGrid";
-
-import { useCatalogQuery } from "../../hooks/useCatalogQuery";
-
-import { getFeaturedProducts, getNewArrivalProducts } from "../../services/catalogApiService";
-
-import "../../components/marketplace/MarketplaceHome.css";
-
-import "../../components/marketplace/MarketplaceLuxuryHome.css";
-
-
+const MotionDiv = motion.div;
 
 const ShopHomePage = () => {
-
-  const newArrivalsQuery = useCatalogQuery("new-arrivals:9", () => getNewArrivalProducts(9));
-
-  const trendingQuery = useCatalogQuery("featured:8", () => getFeaturedProducts(8));
-
-  const products = newArrivalsQuery.data?.products || [];
-
-  const trendingProducts = trendingQuery.data?.products || [];
-
-
+  const reduceMotion = useReducedMotion();
+  const reveal = {
+    initial: reduceMotion ? false : { opacity: 0, y: 42 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.12 },
+    transition: { duration: reduceMotion ? 0 : 0.75, ease: [0.22, 1, 0.36, 1] },
+  };
 
   return (
-
-    <MarketplaceLayout isHome>
-
-      <div className="mp-luxury-home">
-
-        <MarketplaceLuxuryHero />
-
-        <MarketplaceTrustBar />
-
-        <MarketplaceLuxuryCategories />
-
-        <MarketplaceFeaturedCollections />
-
-
-
-        {newArrivalsQuery.loading && <ProductCarouselSkeleton title="Fresh Arrivals" count={5} />}
-
-        {!newArrivalsQuery.loading && newArrivalsQuery.error && (
-          <ErrorState
-            message={newArrivalsQuery.error.message}
-            onRetry={newArrivalsQuery.refetch}
-          />
-        )}
-
-
-
-        {!newArrivalsQuery.loading && !newArrivalsQuery.error && products.length > 0 && (
-
-          <ProductCarousel
-
-            products={products}
-
-            title="Fresh Arrivals"
-
-            className="mp-fresh-arrivals"
-
-            viewAllTo="/shop/products"
-
-          />
-
-        )}
-
-
-
-        {!newArrivalsQuery.loading && !newArrivalsQuery.error && products.length === 0 && (
-
-          <EmptyState
-
-            title="No products yet"
-
-            message="Run the database seed to populate the luxury catalog."
-
-          />
-
-        )}
-
-
-
-        {trendingQuery.loading && (
-
-          <div className="mp-luxury-trending">
-
-            <ProductCarouselSkeleton title="Trending Products" count={4} />
-
-          </div>
-
-        )}
-
-        {!trendingQuery.loading && !trendingQuery.error && trendingProducts.length > 0 && (
-
-          <div className="mp-luxury-trending">
-
-            <ProductGrid
-
-              products={trendingProducts}
-
-              title="Trending Products"
-
-              titleClassName="mp-section-title"
-
-              variant="premium"
-
-            />
-
-          </div>
-
-        )}
-
-
-
-        <MarketplaceBrandsSection />
-
-        <MarketplaceFlashDeals />
-
-        <MarketplaceWhyChoose />
-
-        <MarketplaceTestimonials />
-
-        <MarketplaceLookbook />
+    <MarketplaceLayout isHome showMarketplaceNav showFooter>
+      <div className="lux-marketplace-content">
+        <MotionDiv {...reveal}><MarketplaceHeroPanels /></MotionDiv>
+        <MotionDiv {...reveal}><MarketplaceTrustBar /></MotionDiv>
+        <MotionDiv {...reveal}><MarketplaceFlashSale /></MotionDiv>
+        <MotionDiv {...reveal}><MarketplaceCategorySplit /></MotionDiv>
+        <MotionDiv {...reveal}><MarketplaceMaisonEdit /></MotionDiv>
+        <MotionDiv {...reveal}><MarketplaceProductCarousel /></MotionDiv>
+        <MotionDiv {...reveal}><MarketplaceDiscoverMore /></MotionDiv>
+        <MotionDiv {...reveal}><MarketplaceAuthenticity /></MotionDiv>
       </div>
-
     </MarketplaceLayout>
-
   );
-
 };
 
-
-
 export default ShopHomePage;
-

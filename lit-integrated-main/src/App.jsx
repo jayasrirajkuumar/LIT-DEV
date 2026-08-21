@@ -140,7 +140,25 @@ const AppContent = () => {
     comingSoonPaths.includes(location.pathname) ||
     location.pathname.startsWith("/newsletter");
 
-  const isMarketplacePath = location.pathname.startsWith("/shop") || location.pathname.startsWith("/gift-cards");
+  const marketplaceRoutesList = [
+    "/shop",
+    "/marketplace",
+    "/gift-cards",
+    "/men",
+    "/women",
+    "/kids",
+    "/bags",
+    "/shoes",
+    "/clothing",
+    "/accessories",
+    "/new-arrivals",
+    "/clearance",
+    "/designers",
+    "/authentication",
+  ];
+  const isMarketplacePath = marketplaceRoutesList.some((path) =>
+    location.pathname.startsWith(path),
+  );
   const isAuthPath =
     location.pathname === "/sign-in" ||
     location.pathname === "/sign-up" ||
@@ -155,7 +173,7 @@ const AppContent = () => {
     !isAuthPath;
   const showNewsletterNavbar =
     (isNewsletterPath || isNewsletterArticle) && !isComingSoonPath;
-  const showFooter = !isAdminPath && !isComingSoonPath && !isAuthPath;
+  const showFooter = !isAdminPath && !isComingSoonPath && !isAuthPath && !isMarketplacePath;
 
   return (
     <Background className={isAuthPath ? "background-container--auth" : ""}>
@@ -169,6 +187,18 @@ const AppContent = () => {
           {/* Public Routes */}
           <Route path="/" element={<LandingPage />} />
           <Route path="/shop" element={<ShopHomePage />} />
+          <Route path="/marketplace" element={<ShopHomePage />} />
+          <Route path="/men" element={<Navigate to="/shop/products?gender=men" replace />} />
+          <Route path="/women" element={<Navigate to="/shop/products?gender=women" replace />} />
+          <Route path="/kids" element={<Navigate to="/shop/products?kids=true" replace />} />
+          <Route path="/bags" element={<Navigate to="/shop/products?category=bags" replace />} />
+          <Route path="/shoes" element={<Navigate to="/shop/products?category=shoes" replace />} />
+          <Route path="/clothing" element={<Navigate to="/shop/products?category=clothing" replace />} />
+          <Route path="/accessories" element={<Navigate to="/shop/products?category=accessories" replace />} />
+          <Route path="/new-arrivals" element={<Navigate to="/shop/products?sort=newest" replace />} />
+          <Route path="/clearance" element={<Navigate to="/shop/products?clearance=true" replace />} />
+          <Route path="/designers" element={<Navigate to="/shop/products" replace />} />
+          <Route path="/authentication" element={<Navigate to="/about" replace />} />
           <Route path="/shop/products" element={<CatalogListingPage />} />
           <Route path="/shop/category/:slug" element={<CategoryPage />} />
           <Route path="/shop/product/:slug" element={<CatalogProductPage />} />

@@ -1,40 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { fetchMarketplaceConfig } from "../../services/marketplaceApiService";
-import "./MarketplaceAnnouncementBar.css";
-
-const DEFAULT_MESSAGES = [
-  "New Luxury Collection",
-  "Free Shipping Above ₹2999",
-  "Flat 10% OFF for New Users",
-  "Secure Payments",
-  "Easy Returns",
-];
+import React from "react";
+import { ShieldCheck } from "lucide-react";
+import "../../styles/marketplace-luxury.css";
 
 const MarketplaceAnnouncementBar = () => {
-  const [messages, setMessages] = useState(DEFAULT_MESSAGES);
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    fetchMarketplaceConfig()
-      .then((data) => {
-        const active = (data.announcements ?? []).map((item) => item.message).filter(Boolean);
-        if (active.length) setMessages(active);
-      })
-      .catch(() => setMessages(DEFAULT_MESSAGES));
-  }, []);
-
-  useEffect(() => {
-    if (messages.length <= 1) return undefined;
-    const timer = setInterval(() => setIndex((prev) => (prev + 1) % messages.length), 4000);
-    return () => clearInterval(timer);
-  }, [messages.length]);
-
   return (
-    <div className="mp-announcement-bar" aria-live="polite">
-      <div className="mp-announcement-bar__track">
-        <span key={messages[index]} className="mp-announcement-bar__message">
-          {messages[index]}
-        </span>
+    <div className="w-full select-none">
+      {/* 1. Top Announcement Bar */}
+      <div className="lux-top-announcement px-4">
+        <p className="m-0 text-center truncate">
+          AUTHENTIC LUXURY. CURATED DIFFERENTLY. UP TO 60% OFF.
+        </p>
+      </div>
+
+      {/* 2. Secured Payments Strip */}
+      <div className="lux-secured-strip px-4">
+        <div className="flex items-center justify-center gap-1.5 opacity-90">
+          <ShieldCheck size={12} strokeWidth={2} className="text-[#a09a8f]" aria-hidden="true" />
+          <span className="font-semibold">SECURED PAYMENTS</span>
+        </div>
       </div>
     </div>
   );

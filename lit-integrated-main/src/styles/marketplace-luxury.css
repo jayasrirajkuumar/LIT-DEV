@@ -1,0 +1,1121 @@
+/* ==========================================================================
+   LIT LUXURY MARKETPLACE — HIGH-FASHION DESIGN SYSTEM & EXACT UI STYLES
+   ========================================================================== */
+
+:root {
+  --lux-black: #000000;
+  --lux-surface: #0a0a0a;
+  --lux-surface-2: #111111;
+  --lux-surface-3: #181716;
+  --lux-card-dark: #0d0c0b;
+
+  --lux-ivory: #f4efe6;
+  --lux-white: #faf8f5;
+  --lux-cream: #ece7df;
+  --lux-muted: #a09a8f;
+  --lux-subtle: #6e685f;
+
+  --lux-border: #22201d;
+  --lux-border-light: #33302b;
+  --lux-border-gold: #735a2b;
+
+  --lux-gold: #c5a059;
+  --lux-gold-soft: #d8b87a;
+  --lux-gold-accent: #e5c378;
+  --lux-gold-muted: #8c7343;
+
+  --lux-font-serif: "Bodoni Moda", "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  --lux-font-display: "Cinzel", "Bodoni Moda", Georgia, serif;
+  --lux-font-sans: "Inter", "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Global marketplace page wrapper */
+.lux-marketplace {
+  background-color: var(--lux-black);
+  color: var(--lux-ivory);
+  font-family: var(--lux-font-sans);
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+.lux-marketplace-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+
+/* Start with a 5px safe edge, then grow the gutter with the viewport. The
+   generous cap keeps zoomed-out/ultrawide layouts broad instead of narrow. */
+.lux-marketplace .lux-page-container {
+  width: 100%;
+  max-width: 2560px;
+  min-width: 0;
+  margin-inline: auto;
+  padding-inline: clamp(5px, 1.5vw, 48px);
+}
+
+.lux-marketplace-content,
+.lux-marketplace-content > div,
+.lux-marketplace-content section {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Every homepage block owns its breathing room, while this divider gives the
+   long page a clear editorial rhythm without adding heavy visual boxes. */
+.lux-marketplace-content > div {
+  width: 100%;
+  position: relative;
+}
+
+.lux-marketplace-content > div + div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: clamp(1rem, 4vw, 4rem);
+  right: clamp(1rem, 4vw, 4rem);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #201d19 18%, #201d19 82%, transparent);
+  opacity: 0.72;
+}
+
+/* Bulletproof mx-auto guarantee for centered alignment across all zoom levels (50% to 200%) & ultrawide screens */
+.lux-marketplace .mx-auto,
+.lux-marketplace [class*="mx-auto"] {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Scoped resets to override generic HTML tags */
+.lux-marketplace a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.lux-marketplace a:hover {
+  color: inherit;
+}
+
+.lux-marketplace img {
+  max-width: none;
+}
+
+.lux-marketplace img.w-full {
+  width: 100%;
+}
+
+.lux-marketplace img.h-full {
+  height: 100%;
+}
+
+.lux-marketplace img.object-cover {
+  object-fit: cover;
+}
+
+.lux-marketplace img.object-contain {
+  object-fit: contain;
+}
+
+/* Hero Panels — natural full-height fashion display */
+.lux-hero-panel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  min-height: 480px;
+  overflow: hidden;
+  background-color: #0d0c0b;
+}
+
+.lux-hero-panel::after,
+.lux-category-card::after,
+.lux-discover-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+  transition: border-color 350ms ease;
+  z-index: 12;
+}
+
+.lux-hero-panel:hover::after,
+.lux-category-card:hover::after,
+.lux-discover-card:hover::after {
+  border-color: rgba(216, 184, 122, 0.5);
+}
+
+@media (min-width: 640px) {
+  .lux-hero-panel {
+    aspect-ratio: 4 / 5;
+    min-height: 540px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lux-hero-panel {
+    aspect-ratio: 3 / 4;
+    min-height: 600px;
+  }
+}
+
+.lux-hero-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0.1) 100%);
+}
+
+/* Category Cards — natural full-height display */
+.lux-category-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: auto;
+  height: clamp(360px, 32vw, 520px);
+  min-height: 0;
+  overflow: hidden;
+  background-color: #0d0c0b;
+}
+
+@media (min-width: 640px) {
+  .lux-category-card {
+    aspect-ratio: auto;
+    min-height: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lux-category-card {
+    aspect-ratio: auto;
+    min-height: 0;
+  }
+}
+
+/* Discover More Cards — full-height editorial portrait display */
+.lux-discover-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: auto;
+  height: clamp(330px, 27vw, 440px);
+  min-height: 0;
+  overflow: hidden;
+  background-color: #0d0c0b;
+}
+
+@media (min-width: 640px) {
+  .lux-discover-card {
+    aspect-ratio: auto;
+    min-height: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lux-discover-card {
+    aspect-ratio: auto;
+    min-height: 0;
+  }
+}
+
+.lux-discover-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.45) 45%, rgba(0, 0, 0, 0.05) 100%);
+}
+
+.lux-category-link {
+  color: #ece7df !important;
+  display: block;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.lux-category-link:hover {
+  color: #d8b87a !important;
+}
+
+.lux-category-link::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 1px;
+  margin-top: 0.22rem;
+  background: var(--lux-gold-soft);
+  transition: width 300ms ease;
+}
+
+.lux-category-link:hover::after { width: 2.5rem; }
+
+/* Typography Helpers */
+.lux-serif {
+  font-family: var(--lux-font-serif);
+  font-weight: 400;
+}
+
+.lux-heading {
+  font-family: var(--lux-font-serif);
+  letter-spacing: -0.01em;
+  color: var(--lux-white);
+}
+
+.lux-tracking-wide {
+  letter-spacing: 0.18em;
+}
+
+.lux-tracking-widest {
+  letter-spacing: 0.28em;
+}
+
+/* Section Title */
+.lux-section-heading {
+  font-family: var(--lux-font-serif);
+  font-size: 1.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lux-white);
+  font-weight: 400;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .lux-section-heading {
+    font-size: 2.125rem;
+  }
+}
+
+/* Custom buttons */
+.lux-btn-primary,
+.lux-marketplace a.lux-btn-primary,
+.lux-marketplace button.lux-btn-primary {
+  background-color: var(--lux-ivory);
+  color: #000000 !important;
+  font-family: var(--lux-font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.85rem 2.2rem;
+  border: 1px solid var(--lux-ivory);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+.lux-btn-primary:hover,
+.lux-marketplace a.lux-btn-primary:hover,
+.lux-marketplace button.lux-btn-primary:hover {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #000000 !important;
+  box-shadow: 0 0 25px rgba(244, 239, 230, 0.25);
+  transform: translateY(-1px);
+}
+
+.lux-btn-outline {
+  background-color: transparent;
+  color: var(--lux-ivory);
+  font-family: var(--lux-font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  border: 1px solid rgba(244, 239, 230, 0.4);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.lux-btn-outline:hover {
+  border-color: var(--lux-ivory);
+  background-color: rgba(244, 239, 230, 0.08);
+}
+
+.lux-link-arrow {
+  font-family: var(--lux-font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lux-ivory);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.lux-link-arrow:hover {
+  color: var(--lux-gold-soft);
+  transform: translateX(3px);
+}
+
+/* 1. TOP ANNOUNCEMENT BAR */
+.lux-top-announcement {
+  background-color: #050505;
+  border-bottom: 1px solid #1a1918;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  letter-spacing: 0.24em;
+  color: #bfb8ab;
+  text-transform: uppercase;
+  font-weight: 500;
+  z-index: 60;
+  position: relative;
+}
+
+/* 2. SECURED PAYMENTS STRIP */
+.lux-secured-strip {
+  background-color: #000000;
+  border-bottom: 1px solid #141312;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  color: #8c8579;
+  text-transform: uppercase;
+  font-weight: 500;
+  z-index: 60;
+  position: relative;
+}
+
+/* 3. MAIN NAVBAR */
+.lux-navbar {
+  background-color: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #1c1b18;
+  height: 72px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.lux-navbar--scrolled {
+  background-color: rgba(0, 0, 0, 0.98);
+  border-bottom-color: #2b2824;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+/* Search input */
+.lux-search-pill {
+  background-color: #121110;
+  border: 1px solid #282622;
+  border-radius: 9999px;
+  color: var(--lux-ivory);
+  font-size: 0.78rem;
+  padding: 0.42rem 0.9rem 0.42rem 2.2rem;
+  width: 170px;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+@media (min-width: 1280px) {
+  .lux-search-pill {
+    width: 210px;
+  }
+}
+
+.lux-search-pill:focus {
+  border-color: var(--lux-gold-soft);
+  background-color: #181614;
+  width: 240px;
+}
+
+.lux-search-pill::placeholder {
+  color: #635d54;
+}
+
+/* Nav icon buttons & counters */
+.lux-nav-icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--lux-ivory);
+  transition: color 0.2s ease;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.lux-nav-icon-btn:hover {
+  color: var(--lux-gold-soft);
+}
+
+.lux-nav-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 3px;
+  border-radius: 9999px;
+  background-color: #8b5cf6;
+  color: #ffffff;
+  font-size: 0.58rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.lux-user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  background-color: #7c3aed;
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.lux-user-avatar:hover {
+  opacity: 0.9;
+}
+
+/* 4. HERO SECTION */
+.lux-hero-panel img {
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lux-hero-panel:hover img {
+  transform: scale(1.035);
+}
+
+/* 5. TRUST / SERVICE BENEFITS */
+.lux-trust-bar {
+  background-color: #030303;
+  border-top: 1px solid #1c1a17;
+  border-bottom: 1px solid #1c1a17;
+}
+
+.lux-trust-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  padding: 1.6rem 1.4rem;
+}
+
+/* 6. FLASH SALE BANNER */
+.lux-flash-sale {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1273 / 725;
+  min-height: 0;
+  background-color: #080808;
+}
+
+@media (min-width: 640px) {
+  .lux-flash-sale {
+    min-height: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lux-flash-sale {
+    min-height: 0;
+  }
+}
+
+.lux-flash-sale > img {
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+.lux-flash-overlay {
+  background: linear-gradient(90deg, rgba(0,0,0,.04) 0%, rgba(0,0,0,.06) 37%, rgba(0,0,0,.38) 58%, rgba(0,0,0,.76) 100%);
+}
+
+.lux-flash-content { min-height: 100%; padding: clamp(1.5rem, 4vw, 5rem); }
+
+.lux-flash-copy {
+  width: 41%;
+  max-width: 650px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(.65rem, 1vw, 1.15rem);
+  transform: translateX(clamp(8px, 1.4vw, 28px));
+}
+
+.lux-flash-kicker {
+  color: var(--lux-gold-soft);
+  font-size: clamp(.68rem, .85vw, .9rem);
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.lux-flash-title {
+  color: var(--lux-white);
+  font-size: clamp(2.75rem, 4.6vw, 5.9rem);
+  font-weight: 400;
+  letter-spacing: -.025em;
+  line-height: .98;
+  white-space: nowrap;
+}
+
+.lux-flash-subtitle {
+  color: var(--lux-cream);
+  font-size: clamp(.82rem, 1.15vw, 1.3rem);
+  font-weight: 300;
+  letter-spacing: .015em;
+}
+
+.lux-countdown-row { display: flex; gap: clamp(.55rem, .9vw, 1rem); padding-top: .55rem; }
+.lux-flash-action { padding-top: clamp(.5rem, 1vw, 1rem); }
+.lux-flash-button { min-width: clamp(190px, 16vw, 295px); min-height: 58px; }
+
+.lux-countdown-box {
+  background-color: rgba(4, 9, 12, 0.28);
+  border: 1px solid rgba(244, 239, 230, 0.5);
+  padding: .8rem .65rem;
+  min-width: clamp(62px, 5.2vw, 88px);
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .lux-countdown-box {
+    padding: 1rem .85rem;
+  }
+}
+
+/* 7. SHOP BY CATEGORY (MEN / WOMEN SPLIT) */
+.lux-category-heading-wrap { padding: 10px; }
+
+.lux-category-copy {
+  padding-block: clamp(24px, 4vw, 60px) !important;
+  padding-inline: 10px !important;
+  gap: 0 !important;
+}
+
+.lux-category-copy--men {
+  position: absolute !important;
+  inset-block: 0;
+  left: clamp(18px, 2.2vw, 42px);
+  width: max-content;
+  max-width: calc(100% - 20px);
+  align-items: flex-start;
+  text-align: left;
+}
+
+.lux-category-copy--women {
+  position: absolute !important;
+  inset-block: 0;
+  right: clamp(18px, 2.2vw, 42px);
+  width: max-content;
+  max-width: calc(100% - 20px);
+  margin-left: 0 !important;
+  align-items: flex-end;
+  text-align: right !important;
+}
+
+.lux-category-copy--women ul { text-align: right; }
+.lux-category-copy--women .lux-category-link { text-align: right; }
+.lux-category-copy--women .lux-category-link::after { margin-left: auto; }
+
+.lux-category-copy h3 {
+  margin-bottom: clamp(18px, 1.8vw, 28px);
+  font-size: clamp(2rem, 3vw, 3.25rem) !important;
+}
+
+.lux-category-copy ul {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(7px, .7vw, 11px);
+}
+
+.lux-category-copy .lux-category-link {
+  font-size: clamp(.82rem, 1vw, 1.05rem) !important;
+  line-height: 1.25;
+}
+
+.lux-category-copy ul + div { padding-top: clamp(24px, 2.5vw, 38px) !important; }
+.lux-category-copy .lux-link-arrow { font-size: clamp(.75rem, .9vw, .95rem) !important; }
+
+.lux-category-card img {
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lux-category-card:hover img {
+  transform: scale(1.03);
+}
+
+/* 8. THE MAISON EDIT */
+.lux-maison-content { padding: clamp(20px, 3vw, 48px) 10px; }
+
+.lux-maison-content .lux-section-heading {
+  margin-bottom: clamp(30px, 4vw, 58px);
+}
+
+.lux-maison-brands {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  align-items: center;
+  justify-items: center;
+  column-gap: clamp(16px, 2.5vw, 48px);
+  row-gap: 28px;
+}
+
+.lux-maison-brands .lux-brand-text-item {
+  width: 100%;
+  min-height: 52px;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.lux-maison-view-all { margin-top: clamp(32px, 4vw, 56px); }
+
+.lux-maison-strip {
+  border-top: 1px solid #191816;
+  border-bottom: 1px solid #191816;
+  background-color: #030303;
+  padding: 2.8rem 0;
+}
+
+.lux-brand-logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  opacity: 0.85;
+  transition: all 0.3s ease;
+  filter: brightness(0.95);
+}
+
+.lux-brand-logo-item:hover {
+  opacity: 1;
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+.lux-brand-text-item { transition: transform 300ms ease, opacity 300ms ease; }
+.lux-brand-text-item:hover { transform: translateY(-4px); }
+
+/* 9. SHOP THE EDIT / PRODUCT CAROUSEL */
+.lux-product-card {
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  transition: transform 0.35s ease;
+}
+
+.lux-product-image-box {
+  background-color: var(--lux-cream);
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  overflow: hidden;
+}
+
+.lux-product-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lux-product-card:hover .lux-product-image-box img {
+  transform: scale(1.04);
+}
+
+.lux-wishlist-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.lux-wishlist-btn:hover {
+  transform: scale(1.15);
+  color: #000000;
+}
+
+.lux-wishlist-btn.is-active {
+  color: #dc2626;
+}
+
+.lux-product-details {
+  padding: 1.1rem 0.2rem 0.5rem 0.2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.lux-product-brand {
+  font-family: var(--lux-font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lux-white);
+  margin-bottom: 0.45rem;
+}
+
+.lux-product-name {
+  font-family: var(--lux-font-sans);
+  font-size: 0.78rem;
+  color: #bcb6ac;
+  margin-bottom: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lux-product-pricing {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.7rem;
+}
+
+.lux-product-price-old {
+  font-size: 0.75rem;
+  color: #706a61;
+  text-decoration: line-through;
+}
+
+.lux-product-price-new {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--lux-gold-soft);
+}
+
+.lux-product-auth-badge {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--lux-gold);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* 10. DISCOVER MORE EDITORIAL CARDS */
+.lux-discover-section { padding-top: clamp(38px, 5vw, 78px) !important; padding-bottom: clamp(38px, 5vw, 78px) !important; }
+.lux-discover-header { margin-bottom: clamp(20px, 2vw, 30px); }
+.lux-discover-grid { gap: 5px; }
+.lux-discover-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
+.lux-discover-copy h3 { margin-bottom: clamp(12px, 1vw, 18px); font-size: clamp(1.35rem, 1.8vw, 2rem) !important; }
+.lux-discover-copy p { max-width: 18ch; line-height: 1.65; margin-bottom: clamp(20px, 2vw, 32px); }
+.lux-discover-copy > div { padding-top: 0 !important; }
+
+.lux-discover-card img {
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lux-discover-card:hover img {
+  transform: scale(1.04);
+}
+
+.lux-discover-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.1) 100%);
+}
+
+/* 11. AUTHENTICITY, ASSURED */
+.lux-authenticity-section {
+  background-color: #030303;
+  padding: 4.5rem 0;
+}
+
+.lux-authenticity-wrap { padding-top: clamp(20px, 3vw, 46px) !important; }
+.lux-authenticity-wrap .lux-section-heading { margin-bottom: 16px; }
+.lux-authenticity-wrap .lux-section-heading + p {
+  line-height: 1.8;
+  margin-bottom: clamp(14px, 2vw, 24px);
+}
+
+.lux-authenticity-wrap .grid {
+  column-gap: clamp(28px, 3vw, 52px);
+  row-gap: clamp(28px, 4vw, 48px);
+}
+
+.lux-authenticity-wrap .grid > div:not(:last-child) {
+  gap: clamp(18px, 1.5vw, 26px);
+  padding-block: 12px;
+}
+
+.lux-authenticity-wrap .grid h3 {
+  margin-bottom: 10px !important;
+  line-height: 1.4;
+}
+
+.lux-authenticity-wrap .grid p {
+  line-height: 1.75;
+}
+
+.lux-authenticity-wrap .lux-auth-box-cta {
+  padding-block: clamp(20px, 2vw, 30px);
+  line-height: 1.7;
+}
+
+.lux-auth-box-cta {
+  border: 1px solid #332f28;
+  padding: 1.6rem 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.3s ease;
+  background-color: #080706;
+  text-decoration: none;
+}
+
+.lux-auth-box-cta:hover {
+  border-color: var(--lux-gold);
+  background-color: #0e0d0b;
+  box-shadow: 0 0 20px rgba(197, 160, 89, 0.15);
+}
+
+/* 12. LIT GAME INTERACTIVE */
+.lux-game-section {
+  background-color: #000000;
+  padding: 4.5rem 0;
+}
+
+.lux-game-card {
+  position: relative;
+  background-color: #0d0c0a;
+  border: 1px solid #24221e;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+.lux-game-card:hover {
+  border-color: var(--lux-gold);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+}
+
+.lux-game-card.is-selected {
+  border-color: var(--lux-gold-soft);
+  box-shadow: 0 0 25px rgba(197, 160, 89, 0.3);
+}
+
+.lux-vs-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 9999px;
+  background-color: #12110f;
+  border: 1px solid var(--lux-gold-muted);
+  color: var(--lux-gold-soft);
+  font-family: var(--lux-font-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+/* 13. CART DRAWER */
+.lux-cart-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  transition: opacity 0.3s ease;
+}
+
+.lux-cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 440px;
+  background-color: #0a0a0a;
+  border-left: 1px solid #24221e;
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -15px 0 40px rgba(0, 0, 0, 0.9);
+}
+
+/* 14. FOOTER */
+.lux-footer {
+  background-color: #000000;
+  color: #a09a8e;
+  font-size: 0.78rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lux-footer-col-title {
+  font-family: var(--lux-font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lux-white);
+  margin-bottom: 1.2rem;
+}
+
+.lux-footer-link {
+  color: #8c867a !important;
+  text-decoration: none;
+  font-size: 0.78rem;
+  line-height: 1.9;
+  display: block;
+  transition: color 0.2s ease;
+}
+
+.lux-footer-link:hover {
+  color: #d8b87a !important;
+}
+
+/* Custom horizontal scrollbar for product carousel */
+.lux-carousel-track {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: clamp(24px, 2.5vw, 38px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  padding-bottom: 0.5rem;
+}
+
+.lux-carousel-track::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.lux-carousel-item {
+  flex: 0 0 270px;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 640px) {
+  .lux-carousel-item {
+    flex: 0 0 290px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lux-carousel-item {
+    flex: 0 0 calc((100% - 5 * 1.25rem) / 6);
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 767px) {
+  .lux-top-announcement {
+    min-height: 34px;
+    height: auto;
+    padding: 0.45rem 1rem;
+    text-align: center;
+    font-size: 0.55rem;
+    line-height: 1.45;
+    letter-spacing: 0.16em;
+  }
+
+  .lux-navbar { height: 64px; }
+  .lux-nav-icon-btn { width: 32px; height: 36px; }
+  .lux-nav-badge { right: 0; }
+  .lux-hero-panel { min-height: 68svh; aspect-ratio: 4 / 5; }
+  .lux-flash-sale { min-height: 0; aspect-ratio: 1273 / 725; }
+  .lux-flash-sale > img { object-fit: contain !important; object-position: center !important; }
+  .lux-flash-overlay { background: linear-gradient(180deg, rgba(0,0,0,.06) 0%, rgba(0,0,0,.18) 36%, rgba(0,0,0,.92) 75%, #050505 100%); }
+  .lux-flash-content { align-items: flex-end; justify-content: flex-end; padding: clamp(.65rem, 3vw, 1.25rem); }
+  .lux-flash-copy { width: 56%; max-width: 520px; gap: clamp(.25rem, 1.2vw, .55rem); transform: none; }
+  .lux-flash-kicker { font-size: clamp(.42rem, 1.8vw, .65rem); }
+  .lux-flash-title { font-size: clamp(1.25rem, 7vw, 3rem); white-space: nowrap; }
+  .lux-flash-subtitle { font-size: clamp(.48rem, 2vw, .78rem); }
+  .lux-countdown-row { width: 100%; gap: .45rem; }
+  .lux-countdown-box { padding: .35rem .2rem; }
+  .lux-countdown-box span:first-child { font-size: clamp(.7rem, 3vw, 1.1rem); }
+  .lux-countdown-box span:last-child { font-size: clamp(.35rem, 1.5vw, .55rem); }
+  .lux-flash-action { padding-top: .1rem; }
+  .lux-flash-button { min-width: 0; min-height: 34px; padding: .5rem .8rem; font-size: clamp(.45rem, 1.7vw, .65rem); }
+  .lux-category-card { height: clamp(390px, 112vw, 520px); min-height: 0; aspect-ratio: auto; }
+  .lux-category-copy--women {
+    position: absolute !important;
+    right: 18px;
+    width: max-content;
+    max-width: calc(100% - 20px);
+    align-items: flex-end;
+    text-align: right !important;
+  }
+  .lux-category-copy--women ul,
+  .lux-category-copy--women .lux-category-link { text-align: right; }
+  .lux-category-copy--women .lux-category-link::after { margin-left: auto; }
+  .lux-discover-card { height: clamp(390px, 112vw, 510px); min-height: 0; }
+  .lux-discover-grid { gap: 10px; }
+  .lux-discover-header { align-items: flex-end; gap: 16px; }
+  .lux-maison-brands { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 14px; row-gap: 24px; }
+  .lux-maison-brands .lux-brand-text-item:last-child { grid-column: 1 / -1; }
+  .lux-maison-content .lux-section-heading { margin-bottom: 28px; }
+  .lux-maison-view-all { margin-top: 30px; }
+  .lux-section-heading { line-height: 1.2; }
+  .lux-carousel-item { flex-basis: min(82vw, 310px); }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .lux-maison-brands { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 30px; }
+  .lux-maison-brands .lux-brand-text-item:last-child { grid-column: 2 / 4; }
+}
+
+@media (max-width: 420px) {
+  .lux-nav-icon-btn:nth-of-type(2) { display: none; }
+  .lux-countdown-box { min-width: 0; flex: 1; padding: 0.6rem 0.35rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lux-marketplace *,
+  .lux-marketplace *::before,
+  .lux-marketplace *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

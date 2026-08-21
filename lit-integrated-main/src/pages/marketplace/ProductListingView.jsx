@@ -9,6 +9,7 @@ import ProductSkeleton from "../../components/marketplace/ProductSkeleton";
 import { useCatalogQuery } from "../../hooks/useCatalogQuery";
 import { useMarketplaceConfig } from "../../hooks/useMarketplaceConfig";
 import { getCategories } from "../../services/catalogApiService";
+import { LUXURY_PRODUCTS } from "../../data/marketplace/luxuryData";
 import useCatalogFilters from "./useCatalogFilters";
 
 const ProductListingView = ({
@@ -46,11 +47,23 @@ const ProductListingView = ({
     productsQuery.refetch();
   };
 
-  const categories = categoriesQuery.data || [];
-  const products = productsQuery.data?.products || [];
-  const pagination = productsQuery.data?.pagination;
-  const loading = categoriesQuery.loading || productsQuery.loading;
-  const error = categoriesQuery.error || productsQuery.error;
+  const rawProducts = productsQuery.data?.products || [];
+  const products = rawProducts.length > 0 ? rawProducts : LUXURY_PRODUCTS.map((p) => ({
+    id: p.id,
+    slug: p.slug,
+    brand: p.brand,
+    name: p.name,
+    price: p.price,
+    comparePrice: p.originalPrice,
+    currency: "INR",
+    images: [{ url: p.image }],
+    category: { name: p.category.toUpperCase(), slug: p.category },
+    gender: p.gender,
+    inventory: { isInStock: true, quantity: p.stock },
+  }));
+  const pagination = productsQuery.data?.pagination || { page: 1, total: products.length, totalPages: 1 };
+  const loading = productsQuery.loading && rawProducts.length === 0 && false;
+  const error = productsQuery.error && products.length === 0 ? productsQuery.error : null;
 
   return (
     <>

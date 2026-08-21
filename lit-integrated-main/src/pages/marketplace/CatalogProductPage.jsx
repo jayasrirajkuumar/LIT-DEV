@@ -13,14 +13,31 @@ import { getProductBySlug } from "../../services/catalogApiService";
 import { formatCatalogPrice, getDiscountPercent } from "../../utils/catalogFormat";
 import { trackRecentlyViewed } from "../../utils/recentlyViewed";
 
+import { LUXURY_PRODUCTS } from "../../data/marketplace/luxuryData";
+
 const CatalogProductPage = () => {
   const { slug } = useParams();
   const { addToCart, buyNow, toggleWishlist, isWishlisted } = useShopping();
   const [quantity, setQuantity] = useState(1);
 
-  const { data: product, loading, error } = useCatalogQuery(`product:${slug}`, () =>
+  const { data: apiProduct, loading, error } = useCatalogQuery(`product:${slug}`, () =>
     getProductBySlug(slug),
   );
+
+  const fallbackProduct = LUXURY_PRODUCTS.find((p) => p.slug === slug || String(p.id) === slug);
+  const product = apiProduct || (fallbackProduct ? {
+    id: fallbackProduct.id,
+    slug: fallbackProduct.slug,
+    brand: fallbackProduct.brand,
+    name: fallbackProduct.name,
+    price: fallbackProduct.price,
+    comparePrice: fallbackProduct.originalPrice,
+    currency: "INR",
+    images: [{ url: fallbackProduct.image }],
+    category: { name: fallbackProduct.category.toUpperCase(), slug: fallbackProduct.category },
+    shortDescription: fallbackProduct.description,
+    inventory: { isInStock: true, quantity: fallbackProduct.stock },
+  } : null);
 
   useEffect(() => {
     if (product) {
@@ -28,7 +45,7 @@ const CatalogProductPage = () => {
     }
   }, [product]);
 
-  if (loading) {
+  if (loading && !fallbackProduct) {
     return (
       <MarketplaceLayout showSearch={false} backLabel="Back to Marketplace" backTo="/shop/products">
         <ProductSkeleton count={1} />
@@ -36,7 +53,7 @@ const CatalogProductPage = () => {
     );
   }
 
-  if (error || !product) {
+  if (!product) {
     return (
       <MarketplaceLayout showSearch={false} backLabel="Back to Marketplace" backTo="/shop/products">
         <ErrorState message={error?.message || "Product not found."} onRetry={() => window.location.reload()} />

@@ -1,190 +1,97 @@
-import React, { memo } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { useShopping } from "../../context/ShoppingContext";
-import LazyImage from "./LazyImage";
-import QuickViewModal from "./QuickViewModal";
-import { formatCatalogPrice, getDiscountPercent } from "../../utils/catalogFormat";
+import { Heart, Check } from "lucide-react";
+import { useLuxuryShopping } from "../../context/LuxuryShoppingContext";
+import "../../styles/marketplace-luxury.css";
 
-const premiumCardMotion = {
-  rest: { y: 0, scale: 1 },
-  hover: {
-    y: -8,
-    scale: 1,
-    transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
-  },
-};
+const ProductCard = ({ product }) => {
+  const { toggleWishlist, isWishlisted, addToCart } = useLuxuryShopping();
+  const wishlisted = isWishlisted(product.id);
 
-const ProductCard = memo(({ product, variant = "default" }) => {
-  const isPremium = variant === "premium";
-  const { addToCart, buyNow, toggleWishlist, isWishlisted } = useShopping();
-  const [quickViewOpen, setQuickViewOpen] = React.useState(false);
-
-  const productId = product.id;
-  const wishlisted = isWishlisted(productId);
-  const discount = getDiscountPercent(product.price, product.comparePrice);
-  const image = product.primaryImage || product.images?.[0]?.imageUrl;
-  const productUrl = `/shop/product/${product.slug}`;
-  const inStock = product.inventory?.isInStock ?? product.status !== "OUT_OF_STOCK";
-  const isLowStock = product.inventory?.isLowStock;
-
-  const handleWishlistClick = async (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    await toggleWishlist(productId);
+  const handleWishlistClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleWishlist(product.id);
   };
 
-  const handleAddToCart = async (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    await addToCart(productId, 1);
+  const handleQuickAdd = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(product);
   };
-
-  const handleBuyNow = async (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    await buyNow(productId, 1);
-  };
-
-  const handleQuickView = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setQuickViewOpen(true);
-  };
-
-  const CardWrapper = isPremium ? motion.article : motion.article;
-  const cardProps = isPremium
-    ? {
-        className: "mp-product-card mp-product-card--premium",
-        initial: "rest",
-        whileHover: "hover",
-        animate: "rest",
-        variants: premiumCardMotion,
-      }
-    : {
-        className: "mp-product-card",
-        whileHover: { y: -6 },
-        transition: { duration: 0.3 },
-      };
 
   return (
-    <>
-      <CardWrapper {...cardProps}>
-        <div className="mp-product-media">
-          <Link to={productUrl} className="mp-product-image-wrap" aria-label={product.name}>
-            <LazyImage
-              src={image}
-              alt={product.name}
-              className="mp-product-image-inner"
-              fit={isPremium ? "cover" : "contain"}
-            />
-            {isPremium && <span className="mp-product-image-overlay" aria-hidden="true" />}
-            {isPremium && <span className="mp-product-image-shade" aria-hidden="true" />}
-          </Link>
+    <div className="lux-product-card group select-none">
+      {/* Product Image Area (Light cream background container) */}
+      <Link
+        to={`/shop/product/${product.slug}`}
+        className="lux-product-image-box block relative"
+        aria-label={`View ${product.brand} ${product.name}`}
+      >
+        <img
+          src={product.image}
+          alt={`${product.brand} ${product.name}`}
+          className="w-full h-full object-contain"
+          loading="lazy"
+        />
 
-          <div className="mp-product-badges">
-            {!inStock && <span className="mp-stock-pill out">Sold Out</span>}
-            {inStock && isLowStock && <span className="mp-stock-pill low">Low Stock</span>}
-            {discount && <span className="mp-discount-pill">{discount}% OFF</span>}
-          </div>
+        {/* Wishlist Heart Button */}
+        <button
+          type="button"
+          onClick={handleWishlistClick}
+          className={`lux-wishlist-btn ${wishlisted ? "is-active text-red-500" : "text-[#22201d] hover:text-[#000000]"}`}
+          aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
+        >
+          <Heart
+            size={18}
+            strokeWidth={1.75}
+            fill={wishlisted ? "currentColor" : "none"}
+          />
+        </button>
 
+        {/* Quick Add Overlay on Hover */}
+        <div className="absolute inset-x-3 bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:block">
           <button
             type="button"
-            className={`mp-wishlist-btn ${wishlisted ? "active" : ""}`}
-            onClick={handleWishlistClick}
-            aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
+            onClick={handleQuickAdd}
+            className="w-full bg-black/90 hover:bg-black text-[#faf8f5] text-[10px] font-bold tracking-[0.16em] uppercase py-2.5 transition-colors"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill={wishlisted ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-            </svg>
+            + QUICK ADD
           </button>
+        </div>
+      </Link>
 
-          <motion.button
-            type="button"
-            className="mp-quickview-btn"
-            onClick={handleQuickView}
-            whileHover={{ scale: 1.04 }}
-            transition={{ duration: 0.3 }}
-          >
-            Quick View
-          </motion.button>
+      {/* Product Info (Near-black background) */}
+      <div className="lux-product-details">
+        <Link to={`/shop/product/${product.slug}`} className="block">
+          <h4 className="lux-product-brand">
+            {product.brand}
+          </h4>
+          <p className="lux-product-name" title={product.name}>
+            {product.name}
+          </p>
+        </Link>
+
+        <div className="lux-product-pricing">
+          {product.originalPrice && (
+            <span className="lux-product-price-old">
+              ₹{product.originalPrice.toLocaleString("en-IN")}
+            </span>
+          )}
+          <span className="lux-product-price-new">
+            ₹{product.price.toLocaleString("en-IN")}
+          </span>
         </div>
 
-        <div className={`mp-product-info${isPremium ? " mp-product-info--premium" : ""}`}>
-          <Link to={productUrl} className="mp-product-info-link">
-            <div className="mp-brand-name">{product.brand}</div>
-            <h3 className="mp-product-title">{product.name}</h3>
-            {(product.category?.name || product.shortDescription) && (
-              <p className="mp-product-category">
-                {product.category?.name || product.shortDescription}
-              </p>
-            )}
-            {!isPremium && (
-              <div className="mp-product-rating" aria-label="Premium curated product">
-                <span className="mp-product-rating__stars" aria-hidden="true">★★★★★</span>
-                <span className="mp-product-rating__label">Curated</span>
-              </div>
-            )}
-          </Link>
-
-          {isPremium && (
-            <div className="mp-product-meta">
-              <div className="mp-product-rating" aria-label="Premium curated product">
-                <span className="mp-product-rating__stars" aria-hidden="true">★★★★★</span>
-                <span className="mp-product-rating__label">Premium · Curated</span>
-              </div>
-              <div className="mp-price-row mp-price-row--premium">
-                <span className="mp-current-price">
-                  {formatCatalogPrice(product.price, product.currency)}
-                </span>
-                {product.comparePrice && (
-                  <span className="mp-original-price">
-                    {formatCatalogPrice(product.comparePrice, product.currency)}
-                  </span>
-                )}
-                {discount && <span className="mp-discount-percent">{discount}% off</span>}
-              </div>
-            </div>
-          )}
-
-          {!isPremium && (
-            <>
-              <div className="mp-price-row">
-                <span className="mp-current-price">
-                  {formatCatalogPrice(product.price, product.currency)}
-                </span>
-              </div>
-              {product.comparePrice && (
-                <div className="mp-original-price">
-                  {formatCatalogPrice(product.comparePrice, product.currency)}
-                </div>
-              )}
-            </>
-          )}
-
-          <div className="mp-button-row">
-            <button type="button" className="mp-buy-now" onClick={handleBuyNow} disabled={!inStock}>
-              Buy Now
-            </button>
-            <button type="button" className="mp-add-to-cart" onClick={handleAddToCart} disabled={!inStock}>
-              Add to Cart
-            </button>
+        {product.authenticated && (
+          <div className="lux-product-auth-badge">
+            <Check size={13} strokeWidth={2.5} className="text-[#c5a059]" />
+            <span>AUTHENTICATED</span>
           </div>
-        </div>
-      </CardWrapper>
-
-      <QuickViewModal
-        product={product}
-        open={quickViewOpen}
-        onClose={() => setQuickViewOpen(false)}
-        onAddToCart={() => addToCart(productId, 1)}
-        onToggleWishlist={handleWishlistClick}
-        isWishlisted={wishlisted}
-      />
-    </>
+        )}
+      </div>
+    </div>
   );
-});
-
-ProductCard.displayName = "ProductCard";
+};
 
 export default ProductCard;
